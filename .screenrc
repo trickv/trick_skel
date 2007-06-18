@@ -1,4 +1,28 @@
+# trick's screenrc
+
+# ssh!
 vbell on
+
+# Nice long default scrollback
 defscrollback 5000
+
+# Nice little caption at the bottom
 caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
+
+# Escape with a `
 escape ``
+
+# Detach on hangup
+autodetach on
+
+# no copyright page, please
+startup_message off
+
+# Resizing keybindings
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+
+
+
