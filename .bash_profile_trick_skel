@@ -10,3 +10,4 @@ export PS2='>'
 # My aliases
 alias 'ls.'='ls -d .*'
 alias 'l'='ls'
+alias 'j'='jobs'
