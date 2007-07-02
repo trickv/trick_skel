@@ -24,6 +24,7 @@ alias j='jobs'
 alias lss='screen -ls'
 alias pico='nano -w'
 alias nano='nano -w'
+alias strdate='date -u +%Y%m%d-%H%M%S'
 
 # Conditional stuff
 if [ -d $HOME/man ] export MANPATH=$MANPATH:$HOME/man
