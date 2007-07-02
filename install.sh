@@ -30,7 +30,7 @@ if [ $? -ne 0 ]; then
     echo "Installing bash_profile hook..."
     echo "
 # trick's bash_profile script
-source $HOME/.bash_profile_trick_skel" >> $HOME/.bash_profile
+source ~/.bash_profile_trick_skel" >> $HOME/.bash_profile
 fi
 
 echo "Done."
