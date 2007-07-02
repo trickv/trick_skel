@@ -27,7 +27,7 @@ alias nano='nano -w'
 alias strdate='date -u +%Y%m%d-%H%M%S'
 
 # Conditional stuff
-if [ -d $HOME/man ] export MANPATH=$MANPATH:$HOME/man
+if [ -d $HOME/man ]; then export MANPATH=$MANPATH:$HOME/man; fi
 
 if [ "`uname`" == "FreeBSD" ]; then
     # FreeBSD-specific stuff goes here!
@@ -40,4 +40,5 @@ fi
 
 if [ "`uname`" == "Linux" ]; then
     # Linux-specific stuff goes here
+    false
 fi
