@@ -4,6 +4,8 @@ INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel"
 
 #####
 
+echo "Installing in `whoami`@`hostname`..."
+
 mkdir -p $HOME/tmp/trick_skel_backup
 
 echo -n "Backing up "
