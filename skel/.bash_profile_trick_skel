@@ -29,7 +29,7 @@ alias strdate='date -u +%Y%m%d-%H%M%S'
 
 # Hilarity
 alias y='echo Why, you ask? WHY NOT!'
-alias s='echo Learn to type.  You meant \`\`ls'', right?'
+alias ks='echo Learn to type.  You meant \`\`ls'', right?'
 
 # Conditional stuff
 if [ -d $HOME/man ]; then export MANPATH=$MANPATH:$HOME/man; fi
