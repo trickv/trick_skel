@@ -2,6 +2,7 @@
 # trickv's bash_profile skeleton
 # Should run on any sh-compatible shell
 export PATH=~/bin:$PATH
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 
 # Handy environment variables that make me happy
 export PAGER=less
