@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel"
+INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc"
+INSTALL_BINFILES="colordiff mk mkins mkunins mkcln"
 
 #####
 
@@ -24,6 +25,13 @@ echo -n "Installing "
 for cur in $INSTALL_DOTFILES; do
     echo -n "$cur, "
     cp skel/$cur $HOME/$cur
+done
+echo
+
+echo -n "Installing bin files "
+for cur in $INSTALL_BINFILES; do
+    echo -n "$cur, "
+    cp skel/bin/$cur $HOME/bin/$cur
 done
 echo
 
