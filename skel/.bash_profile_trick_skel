@@ -72,9 +72,10 @@ fi
 my_svn () {
     # TODO: add handling for when piping to a file
     if [ "${1}" == "diff" ]; then
-        $TRICK_SVN $@ | colordiff
+        $TRICK_SVN $* | colordiff
     else
-        $TRICK_SVN $@
+        IFS=$'\n'
+        $TRICK_SVN $*
     fi
 }
 
