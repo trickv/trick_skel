@@ -33,6 +33,7 @@ alias lss='screen -ls'
 alias pico='nano -w'
 alias nano='nano -w'
 alias strdate='date -u +%Y%m%d-%H%M%S'
+alias bzip2='bzip2 --show-progress'
 
 # Hilarity
 alias y='echo Why, you ask? WHY NOT!'
