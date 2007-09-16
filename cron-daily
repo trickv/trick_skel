@@ -6,10 +6,13 @@ if [ $? -ne 0 ]; then
 fi
 
 TRICKV_HOSTNAME=`hostname -s`
+
+case $TRICKV_HOSTNAME in
+    bigweld|sting|mc|sam) svn up > /dev/null;;
+esac
+
 if [ $TRICKV_HOSTNAME = "bigweld" ]; then
-    cd $HOME/src/trick_skel
-    svn up > /dev/null
     ./mintel_push.sh > /dev/null
 fi
 
-./install.sh > /dev/null
+#./install.sh > /dev/null
