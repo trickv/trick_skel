@@ -18,7 +18,7 @@ for cur in $INSTALL_DOTFILES; do
 done
 echo
 
-tar cfj $HOME/tmp/trick_skel_backup-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null
+tar cfj $HOME/tmp/trick_skel_backup-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
 rm -rf $HOME/tmp/trick_skel_backup
 
 echo -n "Installing "

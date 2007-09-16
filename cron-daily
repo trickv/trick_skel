@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd $HOME/src/trick_skel
+if [ $? -ne 0 ]; then
+    exit
+fi
+
+TRICKV_HOSTNAME=`hostname -s`
+if [ $TRICKV_HOSTNAME = "bigweld" ]; then
+    cd $HOME/src/trick_skel
+    svn up > /dev/null
+    ./mintel_push.sh > /dev/null
+fi
+
+./install.sh > /dev/null
