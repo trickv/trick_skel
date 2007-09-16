@@ -16,8 +16,17 @@ export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
 # My fancy BASH prompt
 # TODO: alternate the color of the username when this is root
 # TODO: don't colorize if color isn't available in this terminal.  see system bashrc on any gentoo box
-export PS1='\[\033[01;37m\]\u\[\033[1;33m\]@\[\033[1;32m\]\h\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[1;31m\]/\[\033[00m\] '
+TRICKV_HOSTNAME=`hostname -s`
+case $TRICKV_HOSTNAME in
+    sting) TRICKV_HOSTNAME_COLOR="1;32m";;
+    willow) TRICKV_HOSTNAME_COLOR="1;33m";;
+    anya) TRICKV_HOSTNAME_COLOR="1;33m";;
+    *) TRICKV_HOSTNAME_COLOR="1;32m";;
+esac
+TRICKV_USERNAME_COLOR="01;37m";
+export PS1="\[\033[${TRICKV_USERNAME_COLOR}\]\u\[\033[1;33m\]@\[\033[${TRICKV_HOSTNAME_COLOR}\]\h\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[1;31m\]/\[\033[00m\] "
 export PS2='>'
+unset TRICKV_HOSTNAME_COLOR TRICKV_USERNAME_COLOR TRICKV_HOSTNAME
 
 # Core shell workflow aliases
 alias 'ls.'='ls -d .*'
