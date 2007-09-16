@@ -15,4 +15,4 @@ if [ $TRICKV_HOSTNAME = "bigweld" ]; then
     ./mintel_push.sh > /dev/null
 fi
 
-#./install.sh > /dev/null
+./install.sh > /dev/null
