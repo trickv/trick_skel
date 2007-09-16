@@ -18,7 +18,7 @@ export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
 # TODO: don't colorize if color isn't available in this terminal.  see system bashrc on any gentoo box
 TRICKV_HOSTNAME=`hostname -s`
 case $TRICKV_HOSTNAME in
-    sting) TRICKV_HOSTNAME_COLOR="1;32m";;
+    sting) TRICKV_HOSTNAME_COLOR="1;31m";;
     willow) TRICKV_HOSTNAME_COLOR="1;33m";;
     anya) TRICKV_HOSTNAME_COLOR="1;33m";;
     *) TRICKV_HOSTNAME_COLOR="1;32m";;
