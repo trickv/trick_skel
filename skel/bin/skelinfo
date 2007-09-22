@@ -10,5 +10,5 @@ print "Is this thing on?  Yeah, it is.  This is trick_skel.\n";
 print "====================================================\n";
 print "Last updated: " . $doc->{'entry'}->{'commit'}->{'date'} . "\n";
 print "SVN Revision: " . $doc->{'entry'}->{'commit'}->{'revision'} . "\n";
-print "\n";
+print "Installed: " . `cat ~/.trick_skel_install_date`;
 
