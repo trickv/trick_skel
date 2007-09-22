@@ -50,6 +50,7 @@ alias bzip2='bzip2 --show-progress'
 # Hilarity
 alias y='echo Why, you ask? WHY NOT!'
 alias ks="echo Learn to type.  You meant ls, right?"
+alias dude="echo I AM the dude."
 
 # Conditional stuff
 # TODO: nested if required because sh whines...wtf?!
@@ -99,3 +100,12 @@ trick_h () {
         history
     fi
 }
+
+skelup () {
+    OLD_REV=$TRICK_SKEL_ENV_REVISION
+    source ~/.bash_profile_trick_skel
+    echo "skelup'd from $OLD_REV to $TRICK_SKEL_ENV_REVISION :)"
+    unset OLD_REV
+}
+
+export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel_info | grep ^Revision | cut -d\  -f2`

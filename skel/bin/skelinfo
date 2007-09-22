@@ -12,3 +12,9 @@ print "Last updated: " . $doc->{'entry'}->{'commit'}->{'date'} . "\n";
 print "SVN Revision: " . $doc->{'entry'}->{'commit'}->{'revision'} . "\n";
 print "Installed: " . `cat ~/.trick_skel_install_date`;
 
+my $env_rev=$ENV{'TRICK_SKEL_ENV_REVISION'};
+if ($env_rev != $doc->{'entry'}->{'commit'}->{'revision'}) {
+    print "This env is behind the skel env.  You're running r$env_rev. skelup!\n";
+} else {
+    print "You're up to date with r$env_rev.\n";
+}
