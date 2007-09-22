@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc"
-INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo"
+INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate"
 
 #####
 
 echo "Installing in `whoami`@`hostname`..."
+
+mkdir -p $HOME/bin
 
 mkdir -p $HOME/tmp/trick_skel_backup
 

@@ -5,14 +5,19 @@ export PATH=$PATH:/usr/local/bin
 
 cd $HOME/src/trick_skel
 if [ $? -ne 0 ]; then
+    echo "can't cd to trick_skel, bailing out"
     exit
 fi
 
 TRICK_HOSTNAME=`hostname -s`
 
+if [ "${TRICK_HOSTNAME}" == "atlas" ]; then
+    source ~/.proxy_auth
+fi
+
 case $TRICK_HOSTNAME in
     sting|mc|sam|atlas) svn up > /dev/null;;
-    doobie|willow) rsync rsync://${atlas}/trick_skel/ . -a --del
+    doobie|willow) rsync rsync://${atlas}/trick_skel/ . -a --del;;
 esac
 
 ./install.sh > /dev/null
