@@ -7,14 +7,11 @@ if [ $? -ne 0 ]; then
     exit
 fi
 
-TRICKV_HOSTNAME=`hostname -s`
+TRICK_HOSTNAME=`hostname -s`
 
-case $TRICKV_HOSTNAME in
-    bigweld|sting|mc|sam) svn up > /dev/null;;
+case $TRICK_HOSTNAME in
+    sting|mc|sam|atlas) svn up > /dev/null;;
+    doobie|willow) rsync rsync://${atlas}/trick_skel/ . -a --del
 esac
-
-if [ $TRICKV_HOSTNAME = "bigweld" ]; then
-    ./mintel_push.sh > /dev/null
-fi
 
 ./install.sh > /dev/null

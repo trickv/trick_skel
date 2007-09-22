@@ -13,6 +13,9 @@ export MONO_THEME=clearlooks
 # TODO: this is not true on all boxen
 export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
 
+# Until mintel gets me a DNS pointer...
+atlas=172.17.6.14
+
 # My fancy BASH prompt
 # TODO: alternate the color of the username when this is root
 # TODO: don't colorize if color isn't available in this terminal.  see system bashrc on any gentoo box
