@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc"
-INSTALL_BINFILES="colordiff mk mkins mkunins mkcln"
+INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo"
 
 #####
 
@@ -43,4 +43,14 @@ if [ $? -ne 0 ]; then
 source ~/.bash_profile_trick_skel" >> $HOME/.bash_profile
 fi
 
+echo "Installing .trick_skel_info{,.xml}..."
+which svn &> /dev/null
+if [ $? -eq 0 ]; then
+    `which svn` info > ~/.trick_skel_info
+    `which svn` info --xml > ~/.trick_skel_info.xml
+else
+    echo "svn not available, skelinfo will not be available"
+fi
+
 echo "Done."
+

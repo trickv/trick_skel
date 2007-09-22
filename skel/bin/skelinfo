@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+use XML::Simple;
+
+my $file = $ENV{'HOME'} . '/.trick_skel_info.xml';
+my $xsl = XML::Simple->new();
+my $doc = $xsl->XMLin($file);
+
+print "Is this thing on?  Yeah, it is.  This is trick_skel.\n";
+print "====================================================\n";
+print "Last updated: " . $doc->{'entry'}->{'commit'}->{'date'} . "\n";
+print "SVN Revision: " . $doc->{'entry'}->{'commit'}->{'revision'} . "\n";
+print "\n";
+
