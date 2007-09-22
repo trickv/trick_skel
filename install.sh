@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc"
 INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo"
 
