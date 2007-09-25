@@ -1,6 +1,6 @@
 #!/bin/sh
 
-atlas=172.17.6.14
+atlas=172.17.2.255
 export PATH=$PATH:/usr/local/bin
 
 cd $HOME/src/trick_skel
@@ -11,13 +11,18 @@ fi
 
 TRICK_HOSTNAME=`hostname -s`
 
-if [ "${TRICK_HOSTNAME}" == "atlas" ]; then
+if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
     source ~/.proxy_auth
 fi
 
 case $TRICK_HOSTNAME in
-    sting|mc|sam|atlas) svn up > /dev/null;;
-    doobie|willow) rsync rsync://${atlas}/trick_skel/ . -a --del;;
+    sting|mc|sam|atlas)
+        svn up > /dev/null
+        break;;
+    cartman|bigweld|doobie|willow)
+        #rsync rsync://${atlas}/trick_skel/ . -a --del
+        ./update-mintel-rsync.sh
+        break;;
 esac
 
 ./install.sh > /dev/null
