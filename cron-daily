@@ -1,6 +1,5 @@
 #!/bin/sh
 
-atlas=172.17.2.255
 export PATH=$PATH:/usr/local/bin
 
 cd $HOME/src/trick_skel
