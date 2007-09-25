@@ -20,7 +20,6 @@ case $TRICK_HOSTNAME in
         svn up > /dev/null
         break;;
     cartman|bigweld|doobie|willow)
-        #rsync rsync://${atlas}/trick_skel/ . -a --del
         ./update-mintel-rsync.sh
         break;;
 esac
