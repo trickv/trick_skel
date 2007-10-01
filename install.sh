@@ -7,10 +7,14 @@ INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate"
 
 echo "Installing in `whoami`@`hostname`..."
 
+echo "DEBUG: wd=`pwd`"
+
+# On a fresh home dir, ~/bin does not exist
 mkdir -p $HOME/bin
 
+# Backup old files
+# First stuff them into a temp dir
 mkdir -p $HOME/tmp/trick_skel_backup
-
 echo -n "Backing up "
 for cur in $INSTALL_DOTFILES; do
     pushd $HOME > /dev/null
@@ -19,27 +23,29 @@ for cur in $INSTALL_DOTFILES; do
     popd > /dev/null
 done
 echo
-
+# Then tar 'em up
 tar cfj $HOME/tmp/trick_skel_backup-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
-rm -rf $HOME/tmp/trick_skel_backup
+rm -r $HOME/tmp/trick_skel_backup
+# Finally, delete old backups
+find $HOME/tmp -name "trick_skel_backup*" -ctime +7 -delete
 
-# Delete old backups
-find $HOME/tmp/trick_skel_backup* -ctime +7 -delete
-
-echo -n "Installing "
+# Install .dotfiles
+echo -n "Installing: "
 for cur in $INSTALL_DOTFILES; do
     echo -n "$cur, "
     cp skel/$cur $HOME/$cur
 done
 echo
 
-echo -n "Installing bin files "
+# Install scripts into ~/bin
+echo -n "Installing bin files: "
 for cur in $INSTALL_BINFILES; do
     echo -n "$cur, "
     cp skel/bin/$cur $HOME/bin/$cur
 done
 echo
 
+# If this is a new installation, add a call to the bash_profile
 grep bash_profile_trick_skel $HOME/.bash_profile &> /dev/null
 if [ $? -ne 0 ]; then
     echo "Installing bash_profile hook..."
@@ -48,6 +54,7 @@ if [ $? -ne 0 ]; then
 source ~/.bash_profile_trick_skel" >> $HOME/.bash_profile
 fi
 
+# Install info on this version of trick_skel
 echo "Installing .trick_skel_info{,.xml}..."
 which svn &> /dev/null
 if [ $? -eq 0 ]; then
@@ -58,5 +65,6 @@ else
 fi
 date -u > ~/.trick_skel_install_date
 
+# Viola!
 echo "Done."
 
