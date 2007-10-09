@@ -126,7 +126,7 @@ foreach $config_file (@config_files) {
 
 # If output is to a file, switch off colours, unless 'color_patch' is set
 # Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=378563
-if ((-f STDOUT) && ($color_patch == 0)) {
+if (!(-t STDOUT) && ($color_patch == 0)) {
     $plain_text='';
     $file_old='';
     $file_new='';
