@@ -1,5 +1,5 @@
 #!/bin/sh
 
-atlas=172.17.2.255
+atlas=172.17.3.47
 
 rsync rsync://${atlas}/trick_skel/ $HOME/src/trick_skel -a --del
