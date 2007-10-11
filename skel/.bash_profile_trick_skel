@@ -66,8 +66,11 @@ if [ "${UNAME}" = "FreeBSD" ]; then
     alias make=gmake
     export SHELL=/usr/local/bin/bash
     
-    # I don't know what this does, but it's from a FreeBSD bash profile
+    # This enables colors with ``ls''
     export CLICOLOR=1
+
+    # w -i sorts by idle time
+    alias w='w -i'
 fi
 
 if [ "${UNAME}" = "Linux" ]; then
