@@ -20,7 +20,7 @@ export MONO_THEME=clearlooks
 export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
 
 # Until mintel gets me a DNS pointer...
-atlas=172.17.2.255
+atlas=172.17.3.47
 
 # My fancy BASH prompt
 # TODO: alternate the color of the username when this is root
