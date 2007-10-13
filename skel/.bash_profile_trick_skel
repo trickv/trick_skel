@@ -26,9 +26,7 @@ atlas=172.17.3.47
 # TODO: alternate the color of the username when this is root
 # TODO: don't colorize if color isn't available in this terminal.  see system bashrc on any gentoo box
 case $TRICK_HOSTNAME in
-    sting) TRICK_HOSTNAME_COLOR="1;31m";;
-    willow) TRICK_HOSTNAME_COLOR="1;33m";;
-    anya) TRICK_HOSTNAME_COLOR="1;33m";;
+    anya|willow|sting|baldrick) TRICK_HOSTNAME_COLOR="1;33m";;
     *) TRICK_HOSTNAME_COLOR="1;32m";;
 esac
 TRICK_USERNAME_COLOR="01;37m";
