@@ -7,8 +7,6 @@ INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate"
 
 echo "Installing in `whoami`@`hostname`..."
 
-echo "DEBUG: wd=`pwd`"
-
 # On a fresh home dir, ~/bin does not exist
 mkdir -p $HOME/bin
 
