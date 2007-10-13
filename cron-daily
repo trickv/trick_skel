@@ -23,7 +23,4 @@ case $TRICK_HOSTNAME in
         break;;
 esac
 
-# Sleep 10 seconds for sanity
-#sleep 10
-
 ./install.sh > /dev/null
