@@ -1,0 +1,25 @@
+add a line to user crontab:
+30 4 * * * $HOME/src/trick_skel/cron-daily 2>&1
+
+time allocation (ideal)
+boxes following this have an * next to them
+mintel boxen: 10:00-11:59 UTC (?? CDT, ?? CST)
+10AM UTC svn block:
+    10:00 pv@atlas
+    10:05 root@atlas
+11AM UTC rsync block:
+    11:00 pv@willow
+    11:05 pv@bigweld
+    11:10 pv@doobie
+    11:15 pv@cartman
+    11:20 pv@baldrick
+
+12PM UTC personal boxen:
+    12:00 pv@mc
+    12:05 root@mc
+    12:10 pv@sting
+    12:15 root@sting
+    12:20 pv@sam *
+    12:25 root@sam *
+    12:30 pv@ed
+    12:35 root@ed
