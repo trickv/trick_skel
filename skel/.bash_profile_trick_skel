@@ -45,6 +45,7 @@ alias ll='ls -l'
 alias h=trick_h
 alias j=jobs
 alias f=fg
+alias u=uptime
 
 # Application-specific aliases
 alias lss='screen -ls'
