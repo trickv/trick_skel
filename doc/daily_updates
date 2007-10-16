@@ -3,23 +3,28 @@ add a line to user crontab:
 
 time allocation (ideal)
 boxes following this have an * next to them
-mintel boxen: 10:00-11:59 UTC (?? CDT, ?? CST)
-10AM UTC svn block:
-    10:00 pv@atlas
-    10:05 root@atlas
-11AM UTC rsync block:
-    11:00 pv@willow
-    11:05 pv@bigweld
-    11:10 pv@doobie
-    11:15 pv@cartman
-    11:20 pv@baldrick
 
-12PM UTC personal boxen:
-    12:00 pv@mc
-    12:05 root@mc
-    12:10 pv@sting
-    12:15 root@sting
-    12:20 pv@sam *
-    12:25 root@sam *
-    12:30 pv@ed
-    12:35 root@ed
+Mintel block:
+02:00 [local TZ] svn block (CDT=>8AM UTC,CST=>7AM UTC)
+    2:00 pv@atlas *
+    2:05 root@atlas *
+02:30 [local TZ] Chicago rsync boxes:
+    2:30 pv@bigweld *
+10:00 [local TZ] London rsync boxes:
+    10:00 pv@doobie *
+    10:05 pv@cartman *
+    10:10 pv@baldrick *
+09:00 UTC boxes:
+    09:00 pv@willow *
+
+03:15 [local TZ] Home boxes:
+    3:30 trick@mc *
+    3:32 root@mc *
+    3:34 trick@sting *
+    3:36 root@sting *
+    3:38 trick@ed
+    3:40 root@ed
+
+10:00 UTC Personal boxes:
+    4:00 trick@sam *
+    4:02 root@sam *
