@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc"
+INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel"
 INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate"
 
 #####
@@ -50,6 +50,13 @@ if [ $? -ne 0 ]; then
     echo "
 # trick's bash_profile script
 source ~/.bash_profile_trick_skel" >> $HOME/.bash_profile
+fi
+
+# MySQL .my.cnf file generation [magic]
+if [ -f $HOME/.my.cnf.local ]; then
+    cat $HOME/.my.cnf.local > ~/.my.cnf
+    echo >> ~/.my.cnf
+    cat $HOME/.my.cnf.trick_skel >> ~/.my.cnf
 fi
 
 # Install info on this version of trick_skel
