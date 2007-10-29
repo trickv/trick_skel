@@ -128,3 +128,5 @@ skelup () {
 export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel_info | grep ^Revision | cut -d\  -f2`
 
 unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME
+
+uptime
