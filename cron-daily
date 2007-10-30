@@ -15,7 +15,7 @@ if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
 fi
 
 case $TRICK_HOSTNAME in
-    sting|mc|sam|atlas)
+    sting|mc|sam|atlas|vanstaveren)
         svn up > /dev/null
         break;;
     cartman|bigweld|doobie|willow)
