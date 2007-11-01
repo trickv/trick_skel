@@ -1,3 +1,6 @@
+#!/bin/sh
+# this is ``mkins'' from trick_skel
+
 mk || exit
 
 PREFIX=`cat Makefile | grep ^prefix | cut -d\  -f3-`

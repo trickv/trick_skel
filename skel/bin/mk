@@ -1,3 +1,6 @@
+#!/bin/sh
+# this is ``mk'' from trick_skel
+
 echo -e "\033[1m* Making default target\033[0m"
 
 make > /dev/null

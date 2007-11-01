@@ -1,3 +1,6 @@
+#!/bin/sh
+# this is ``mkunins'' from trick_skel
+
 PREFIX=`cat Makefile | grep ^prefix | cut -d\  -f3-`
 
 echo -e "\033[1m* Uninstalling from prefix \E[01;33m${PREFIX}\E[01;37m...\033[0m"

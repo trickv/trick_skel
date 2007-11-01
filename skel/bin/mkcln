@@ -1,3 +1,6 @@
+#!/bin/sh
+# this is ``mkcln'' from trick_skel
+
 echo -e "\033[1m* Making clean\033[0m"
 
 make > /dev/null

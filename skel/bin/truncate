@@ -1,4 +1,5 @@
 #!/bin/sh
+# this is a hacky messy version of truncate for generic use via trick_skel
 
 if [ "{$1}" != "" ]; then
     rm $1
