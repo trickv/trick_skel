@@ -22,8 +22,8 @@ Mintel block:
     3:32 root@mc *
     3:34 trick@sting *
     3:36 root@sting *
-    3:38 trick@ed
-    3:40 root@ed
+    3:38 trick@ed *
+    3:40 root@ed *
 
 10:00 UTC Personal boxes:
     4:00 trick@sam *
