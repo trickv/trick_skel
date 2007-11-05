@@ -3,7 +3,7 @@
 
 echo -e "\033[1m* Making default target\033[0m"
 
-make > /dev/null
+make $@ > /dev/null
 
 if [ $? -ne 0 ]; then
 	echo -e '\E[01;31m'"\033[1m* Make failed :(\033[0m"
