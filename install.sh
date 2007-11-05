@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel"
-INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate"
+INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate vacuum"
 
 #####
 
