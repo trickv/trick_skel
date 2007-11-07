@@ -60,11 +60,20 @@ if [ -f $HOME/.my.cnf.local ]; then
 fi
 
 # Install info on this version of trick_skel
-echo "Installing .trick_skel_info{,.xml}..."
 which svn &> /dev/null
 if [ $? -eq 0 ]; then
-    `which svn` info > ~/.trick_skel_info
-    `which svn` info --xml > ~/.trick_skel_info.xml
+    SVN=`which svn`
+    SVN_VER_R=`$SVN --version | head -n 1 | cut -d\( -f2- | cut -dr -f2 | cut -d\) -f1`
+    $SVN info > ~/.trick_skel_info
+    echo "Installing .trick_skel_info..."
+    if [ $SVN_VER_R -gt 13838 ]; then
+        # newer than svn 1.1.4, which is known to not have info --xml support (darth)
+        echo "Installing .trick_skel_info.xml..."
+        $SVN info --xml > ~/.trick_skel_info.xml
+    else
+        echo "Not installing XML as this is an old version of svn.  skelinfo will not work."
+    fi
+    unset SVN SVN_VER_R
 else
     echo "svn not available, skelinfo will not be available"
 fi
