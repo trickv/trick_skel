@@ -64,6 +64,15 @@ alias dude="echo I AM the dude."
 # TODO: nested if required because sh whines...wtf?!
 if [ -d $HOME/man ]; then if [ "${MANPATH}" != "" ]; then export MANPATH=$MANPATH:$HOME/man; fi; fi
 
+trick_append_motd () {
+    TRICK_MOTD="${TRICK_MOTD}${1}
+"
+}
+
+trick_motd () {
+    echo -n "$TRICK_MOTD"
+}
+
 UNAME=`uname`
 if [ "${UNAME}" = "FreeBSD" ]; then
     # FreeBSD-specific stuff goes here!
@@ -75,6 +84,13 @@ if [ "${UNAME}" = "FreeBSD" ]; then
 
     # w -i sorts by idle time
     alias w='w -i'
+
+    # If this is the default freebsd motd, nuke it.
+    egrep '^FreeBSD (6.1|6.2|4.11)-STABLE.*$' /etc/motd &> /dev/null
+    if [ $? -eq 0 ]; then
+        clear
+        trick_append_motd "`head -n 1 /etc/motd`"
+    fi
 fi
 
 if [ "${UNAME}" = "Linux" ]; then
@@ -128,6 +144,7 @@ skelup () {
 
 export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel_info | grep ^Revision | cut -d\  -f2`
 
-unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME
+trick_append_motd "`uptime`"
+trick_motd
 
-uptime
+unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME TRICK_MOTD
