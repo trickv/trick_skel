@@ -145,6 +145,6 @@ skelup () {
 export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel_info | grep ^Revision | cut -d\  -f2`
 
 trick_append_motd "`uptime`"
-trick_motd
+#trick_motd
 
 unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME TRICK_MOTD
