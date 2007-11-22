@@ -25,7 +25,7 @@ echo
 tar cfj $HOME/tmp/trick_skel_backup-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
 rm -r $HOME/tmp/trick_skel_backup
 # Finally, delete old backups
-find $HOME/tmp -name "trick_skel_backup*" -ctime +7 -delete
+find $HOME/tmp -name "trick_skel_backup*" -ctime +7 | xargs rm
 
 # Install .dotfiles
 echo -n "Installing: "
