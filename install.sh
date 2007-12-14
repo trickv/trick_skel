@@ -79,6 +79,11 @@ else
 fi
 date -u > ~/.trick_skel_install_date
 
+# install optional scripts depending on conditionals
+if [ "`hostname -s`" = "atlas" ]; then
+    cp optional/myterm_remote $HOME/bin/
+fi
+
 # Viola!
 echo "Done."
 

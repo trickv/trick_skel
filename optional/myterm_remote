@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# myterm_remote from trick_skel
+
+# $1 = host
+# $2 = service
+# for $2 = mysql:
+#  $3 = database [optional]
+HOST=$1
+SERVICE=$2
+DATABASE=$3
+
+usage () {
+    echo "Usgae: $0 host service [database]"
+}
+
+if [ "$SERVICE" = "" ]; then
+    usage
+    exit 1
+fi
+
+MYTERM=gnome-terminal
+
+if [ "$SERVICE" = "ssh" ]; then
+    CMD="ssh $HOST"
+    TITLE="ssh connecting to $USER@$HOST..."
+    GEOMETRY=90x28
+fi
+
+if [ "$SERVICE" = "mysql" ]; then
+    CMD="mysql --show-warnings -h$HOST -upv -ppv $DATABASE"
+    TITLE="MySQL: $USER@$HOST"
+    GEOMETRY=100x28
+fi
+
+if [ "$HOST" = "anya" ]; then
+    FLAGS="$FLAGS --window-with-profile=anya"
+fi
+
+if [ "$HOST" = "willow" ]; then
+    FLAGS="$FLAGS --window-with-profile=willow"
+fi
+
+if [ "$SERVICE" = "zzz" ]; then
+    CMD='zzz zzz'
+    TITLE=zzz
+    GEOMETRY=100x10
+fi
+
+$MYTERM $FLAGS -e "$CMD" -t "$TITLE" --geometry=$GEOMETRY
