@@ -5,15 +5,19 @@ INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate vacuum"
 
 #####
 
+ARCHIVE_DIR=$HOME/tmp/trick_skel_archive
+
+####
+
 echo "Installing in `whoami`@`hostname`..."
 
 # On a fresh home dir, ~/bin does not exist
-mkdir -p $HOME/bin
+mkdir -p $HOME/bin $ARCHIVE_DIR
 
-# Backup old files
+# Archive old files
 # First stuff them into a temp dir
 mkdir -p $HOME/tmp/trick_skel_backup
-echo -n "Backing up "
+echo -n "Archiving "
 for cur in $INSTALL_DOTFILES; do
     pushd $HOME > /dev/null
     echo -n "$cur, "
@@ -22,10 +26,14 @@ for cur in $INSTALL_DOTFILES; do
 done
 echo
 # Then tar 'em up
-tar cfj $HOME/tmp/trick_skel_backup-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
+tar cfj $ARCHIVE_DIR/archive-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
 rm -r $HOME/tmp/trick_skel_backup
-# Finally, delete old backups
+# Finally, delete old archives
+find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
+
+# This should be removed after 2008-01-10
 find $HOME/tmp -name "trick_skel_backup*" -ctime +7 | xargs -n 10 rm -f
+
 
 # Install .dotfiles
 echo -n "Installing: "
