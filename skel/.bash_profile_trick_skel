@@ -20,6 +20,9 @@ export MONO_THEME=clearlooks
 export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
 # TODO: this should only be run within certain terminal emulators -- specifically, makes trouble on a linux VT
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+export CVS_RSH="ssh"
+export EMAIL_ADDRESS="trick@vanstaveren.us"
+export REAL_NAME="Patrick van Staveren"
 
 # Until mintel gets me a DNS pointer...
 atlas=172.17.3.47
@@ -48,6 +51,8 @@ alias h=trick_h
 alias j=jobs
 alias f=fg
 alias u=uptime
+alias diff='diff -Nru'
+alias nl='nl -ba'
 
 # Application-specific aliases
 alias lss='screen -ls'
