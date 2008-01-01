@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# trick_skel clocktxt
+
+while [ true ]
+do
+	date +%c
+	sleep 0.2s
+	clear
+done
