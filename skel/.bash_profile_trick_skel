@@ -3,7 +3,7 @@
 # trickv's bash_profile skeleton
 # Should run on any sh-compatible shell, but realistically probably only bash.
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH

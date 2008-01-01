@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel"
-INSTALL_BINFILES="colordiff mk mkins mkunins mkcln skelinfo truncate vacuum clocktxt"
 
 #####
 
@@ -12,7 +11,7 @@ ARCHIVE_DIR=$HOME/tmp/trick_skel_archive
 echo "Installing in `whoami`@`hostname`..."
 
 # On a fresh home dir, ~/bin does not exist
-mkdir -p $HOME/bin $ARCHIVE_DIR
+mkdir -p $HOME/bin/trick_skel $ARCHIVE_DIR
 
 # Archive old files
 # First stuff them into a temp dir
@@ -44,10 +43,12 @@ done
 echo
 
 # Install scripts into ~/bin
-echo -n "Installing bin files: "
-for cur in $INSTALL_BINFILES; do
+echo -n "Installing bin files and wiping out any conflicts in ~/bin: "
+rm -f $HOME/bin/trick_skel/*
+for cur in `ls skel/bin/`; do
     echo -n "$cur, "
-    cp skel/bin/$cur $HOME/bin/$cur
+    rm -f $HOME/bin/$cur
+    cp skel/bin/$cur $HOME/bin/trick_skel/$cur
 done
 echo
 
