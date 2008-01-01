@@ -100,5 +100,10 @@ case "`hostname -s`" in atlas|mc)
     cp optional/select-{color,font} $HOME/bin/trick_skel/
 esac
 
+if [ "`uname`" = "Linux" ]; then
+    rm -f $HOME/bin/lside
+    cp optional/lside $HOME/bin/trick_skel/
+fi
+
 # Viola!
 echo "Done."
