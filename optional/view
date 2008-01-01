@@ -1,0 +1,68 @@
+#!/bin/sh
+
+winUser='Patrick van Staveren'
+domain=MINTELCHICAGO
+skynet=PifWycs2
+nearFullScreen='1268x972'
+londonVncEncoding=CoRRE
+
+rdesktop=`which rdesktop`
+vnc=`which vncviewer`
+
+vncPasswords=$HOME/.vnc/passwords
+
+TFILE=`mktemp`
+
+lookup () {
+    host $1 2> /dev/null > $TFILE
+    if [ $? -eq 0 ]; then
+        IP=`cat $TFILE | grep 'has address' | tail -n 1 | cut -d\  -f4`
+        return
+    fi
+
+    nmblookup $1 2> /dev/null > $TFILE
+    cat $TFILE | tail -n 1 | grep failed &> /dev/null
+    if [ $? -ne 0 ]; then
+        IP=`cat $TFILE | tail -n 1 | cut -d\  -f1`
+        return
+    fi
+
+    IP=""
+    xmessage "Sorry, couldn't figure out who $1 is.";
+}
+
+lookup $1
+echo $IP
+
+rm $TFILE
+
+case $1 in
+op|opserver)
+    case $2 in
+        'rdp')
+            $rdesktop -g $nearFullScreen -u "${winUser}" -d "$domain" -p $skynet op
+            ;;
+        'vnc')
+            $vnc -passwd $vncPasswords/4mph1b14n -encodings $londonVncEncoding op
+            ;;
+        esac
+    ;;
+*)
+    $vnc -passwd $vncPasswords/puff3r $IP
+    ;;
+esac
+
+#'zorro')
+    # Melanie
+#    $vnc -passwd $vncPasswords/puff3r 172.17.6.22
+#    ;;
+#'amsterdam')
+#    # Courtney
+#    $vnc -passwd $vncPasswords/puff3r 172.17.0.210
+#    ;;
+#'gadolinium')
+#    # Michelle
+#    $vnc -passwd $vncPasswords/puff3r 172.17.5.65
+#esac
+
+# Cara Cosentino = WOLVERINE

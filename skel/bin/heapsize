@@ -1,0 +1,16 @@
+#!/bin/sh
+# heapsize script from trick_skel
+# this doesn't look like my work, I think I stole this from somewhere else, but I have no clue where...please step forward if you're the author
+
+if [ "$1" == "" ]; then
+	echo "Usage: heapsize {process name}"
+	exit 1
+fi
+
+ps aux | grep $1 | grep -v grep > /dev/null 2> /dev/null
+if [ $? -ne 0 ]; then
+	echo "Process $1 is not in memory...";
+	exit 2
+fi
+
+pmap -x `pidof $1` | grep rw | awk '{ total += $2 } END { print total }'
