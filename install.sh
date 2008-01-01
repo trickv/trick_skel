@@ -95,6 +95,9 @@ case "`hostname -s`" in atlas|mc)
 
     rm -f $HOME/bin/myterm_remote
     cp optional/myterm_remote $HOME/bin/trick_skel/
+
+    rm -f $HOME/bin/select-{color,font}
+    cp optional/select-{color,font} $HOME/bin/trick_skel/
 esac
 
 # Viola!

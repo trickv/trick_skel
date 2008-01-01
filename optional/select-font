@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+
+import sys
+
+import pygtk
+pygtk.require('2.0')
+import gtk
+
+dialog = gtk.FontSelectionDialog(u'Select font\u2026')
+dialog.ok_button.hide()
+dialog.add_button(gtk.STOCK_COPY, gtk.RESPONSE_OK)
+dialog.set_default_response(gtk.RESPONSE_OK)
+
+result = dialog.run()
+
+if result == gtk.RESPONSE_OK:
+    font_name = dialog.get_font_name()
+
+    if '--no-clipboard' not in sys.argv[1:]:
+        clipboard = gtk.Clipboard()
+        clipboard.set_text(font_name)
+        clipboard.store()
+
+    if '--no-print' not in sys.argv[1:]:
+        print font_name
+
