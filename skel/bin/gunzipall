@@ -1,0 +1,12 @@
+#!/bin/sh
+# gunzipall from trick_skel
+echo "gunzip'ing all *.gz files in dir..."
+du -hc `ls *.gz` | grep total
+for a in `ls *.gz`
+do
+	echo -n ":  "
+	echo "${a}"
+	gunzip "${a}"
+done
+
+

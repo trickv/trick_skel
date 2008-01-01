@@ -1,0 +1,3 @@
+#!/bin/sh
+# tightvnc from trick_skel
+vncviewer -depth 8 -compresslevel 9 -quality 2 ${@}

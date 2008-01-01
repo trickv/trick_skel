@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# bunzip2all from trick_skel
+
+echo "bunzip2'ing all *.bz2 files in dir..."
+for a in `ls *.bz2`
+do
+	echo -n ":  "
+	echo "${a}"
+	bunzip2 "${a}"
+done

@@ -1,0 +1,6 @@
+#!/bin/sh
+# findin from trick_skel
+for cur in `ls *.c *.h *.cs *.php *.inc`; do
+	echo $cur
+	cat $cur | grep $*
+done

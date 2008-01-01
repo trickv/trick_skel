@@ -1,0 +1,15 @@
+#!/usr/bin/python
+# lc from trick_skel
+import sys
+
+if len(sys.argv) > 1:
+	file = open(sys.argv[1])
+else:
+	file = sys.stdin
+
+count = 0
+
+for line in file:
+	count = count + 1
+
+print(count)

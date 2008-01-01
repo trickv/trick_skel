@@ -1,0 +1,23 @@
+#!/bin/sh
+# bzip2all from trick_skel
+FILES=`ls -1 --color=never *.tar`
+
+echo "'bzip2 -9'-ing each *.tar file in cwd ..."
+du -hc $FILES | grep total
+for a in `ls *.tar`
+do
+	echo -n ":  "
+	echo -n "${a}"
+	echo -n " --> "
+	echo -n "${a}.bz2"
+	echo ""
+	bzip2 -9 "${a}"
+done
+
+BZFILES=""
+for a in $FILES
+do
+	BZFILES="${BZFILES} ${a}.bz2"
+done
+
+du -hc $BZFILES | grep total
