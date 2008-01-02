@@ -18,8 +18,11 @@ case $TRICK_HOSTNAME in
     sting|mc|sam|atlas|vanstaveren)
         svn up > /dev/null
         break;;
-    cartman|bigweld|doobie|willow)
+    cartman|bigweld|doobie|willow|gasket|diesel)
         ./update-mintel-rsync.sh
+        break;;
+    *)
+        echo "no update location set in cron-daily, help me."
         break;;
 esac
 
