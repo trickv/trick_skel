@@ -101,6 +101,9 @@ case "`hostname -s`" in atlas|mc)
 
     rm -f $HOME/bin/select-{color,font}
     cp optional/select-{color,font} $HOME/bin/trick_skel/
+
+    rm -f $HOME/bin/gnome-help
+    ln -s /bin/true $HOME/bin/trick_skel/gnome-help
 esac
 
 if [ "`uname`" = "Linux" ]; then
