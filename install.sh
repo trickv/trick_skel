@@ -33,6 +33,9 @@ find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 # This should be removed after 2008-01-10
 find $HOME/tmp -name "trick_skel_backup*" -ctime +7 | xargs -n 10 rm -f
 
+# Install ~/.trick_skel directory
+rm -rf $HOME/.trick_skel
+cp -R skel/.trick_skel/ $HOME
 
 # Install .dotfiles
 echo -n "Installing: "

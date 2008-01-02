@@ -1,0 +1,30 @@
+# Keychain automagicalness
+trick_skel_start_keychain () {
+    TRICK_KEYCHAIN=`which keychain 2> /dev/null`
+    if [ $? -eq 0 ]; then
+        # we have keychain
+
+        # quick check to ensure we're not already starting keychain
+        egrep '^keychain' $HOME/.bash_profile &> /dev/null
+        if [ $? -ne 1 ]; then
+            echo "Refusing to run keychain as it seems to be in this bash_profile already."
+            return
+        fi
+        
+        # find keys and load them in
+        TRICK_KEYS=`find $HOME/.ssh/ -name "id_?sa" | grep -v backup | grep -v old`
+        if [ "$TRICK_KEYS" != "" ]; then
+            for cur in $TRICK_KEYS; do
+                $TRICK_KEYCHAIN -q $cur
+            done
+            . $HOME/.keychain/`hostname`-sh
+        else
+            echo "No keys!"
+        fi
+    else
+        echo "no keychain"
+    fi
+    unset TRICK_KEYCHAIN TRICK_KEYS cur
+}
+
+# vim:filetype=sh

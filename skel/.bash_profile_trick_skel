@@ -3,6 +3,8 @@
 # trickv's bash_profile skeleton
 # Should run on any sh-compatible shell, but realistically probably only bash.
 
+. $HOME/.trick_skel/sh-functions
+
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 if [ -d $HOME/local/bin ]; then
@@ -115,6 +117,9 @@ unset $UNAME
 if [ "${TERM}" == "screen" ]; then
     alias 'screen'='echo It appears that you are a masochist. Do not run screen within screen.  It causes cancer.'
 fi
+
+# start keychain
+trick_skel_start_keychain
 
 # If we have a hostname specific script in ~/.${host}.sh, run it
 if [ -f ${HOME}/.${TRICK_FULL_HOSTNAME}.sh ]; then
