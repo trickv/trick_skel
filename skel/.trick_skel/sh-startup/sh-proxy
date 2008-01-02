@@ -1,20 +1,32 @@
 # functions for setting env vars for mintel proxy
 
 trick_skel_proxy () {
-    hostname | egrep "(atlas|usdmm.com|mintel.co.uk)" &> /dev/null
+    hostname | egrep "(atlas|usdmm.com)" &> /dev/null
     if [ $? -eq 0 ]; then
-        trick_skel_mintel_us_proxy
+        trick_skel_mintel_proxy us
+    fi
+    hostname | egrep "mintel.co.uk" &> /dev/null
+    if [ $? -eq 0 ]; then
+        trick_skel_mintel_proxy uk
     fi
 }
 
-trick_skel_mintel_us_proxy () {
-    export HTTP_PROXY=http://proxy.usdmm.com:3128
+trick_skel_mintel_proxy () {
+    # $1 should be either 'us' or 'uk'
+    case "$1" in
+        us)
+            export HTTP_PROXY=http://proxy.usdmm.com:3128
+            export HTTP_PROXY_USER=pvanstaveren@mintel.com
+            export HTTP_PROXY_PASSWORD=`master_password`
+        ;;
+        uk)
+            export HTTP_PROXY=http://10.255.255.254:3128
+        ;;
+    esac
+    
     export http_proxy=$HTTP_PROXY
     export FTP_PROXY=$HTTP_PROXY
     export ftp_proxy=$HTTP_PROXY
-
-    export HTTP_PROXY_USER=pvanstaveren@mintel.com
-    export HTTP_PROXY_PASSWORD=`master_password`
 }
 
 # vim:filetype=sh
