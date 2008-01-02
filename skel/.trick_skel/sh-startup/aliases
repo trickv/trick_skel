@@ -1,0 +1,27 @@
+trick_skel_aliases () {
+    # Core shell workflow aliases
+    alias 'ls.'='ls -d .*'
+    alias l='ls'
+    alias ll='ls -l'
+    #alias h='history | tail'
+    alias h=trick_h
+    alias j=jobs
+    alias f=fg
+    alias u=uptime
+    alias diff='diff -Nru'
+    alias nl='nl -ba'
+    
+    # Application-specific aliases
+    alias lss='screen -ls'
+    alias pico='nano -w'
+    alias nano='nano -w'
+    alias strdate='date -u +%Y%m%d-%H%M%S'
+    alias 'ssh-keys'='ssh-add -l'
+    
+    # Hilarity
+    alias y='echo Why, you ask? WHY NOT!'
+    alias ks="echo Learn to type.  You meant ls, right?"
+    alias dude="echo I AM the dude."
+}
+
+# vim:filetype=sh
