@@ -2,7 +2,7 @@
 
 winUser='Patrick van Staveren'
 domain=MINTELCHICAGO
-skynet=PifWycs2
+skynet=`master_password`
 nearFullScreen='1268x972'
 londonVncEncoding=CoRRE
 
