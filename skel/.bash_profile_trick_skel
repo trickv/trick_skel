@@ -3,7 +3,11 @@
 # trickv's bash_profile skeleton
 # Should run on any sh-compatible shell, but realistically probably only bash.
 
-. $HOME/.trick_skel/sh-functions
+#. $HOME/.trick_skel/sh-functions
+#. $HOME/.trick_skel/sh-startup/*
+for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | grep -v svn`; do
+    source $cur
+done
 
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -120,6 +124,9 @@ fi
 
 # start keychain
 trick_skel_start_keychain
+
+# set up proxy as necessary
+trick_skel_proxy
 
 # If we have a hostname specific script in ~/.${host}.sh, run it
 if [ -f ${HOME}/.${TRICK_FULL_HOSTNAME}.sh ]; then

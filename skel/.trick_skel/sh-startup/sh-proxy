@@ -1,0 +1,20 @@
+# functions for setting env vars for mintel proxy
+
+trick_skel_proxy () {
+    hostname | egrep "(atlas|usdmm.com|mintel.co.uk)" &> /dev/null
+    if [ $? -eq 0 ]; then
+        trick_skel_mintel_us_proxy
+    fi
+}
+
+trick_skel_mintel_us_proxy () {
+    export HTTP_PROXY=http://proxy.usdmm.com:3128
+    export http_proxy=$HTTP_PROXY
+    export FTP_PROXY=$HTTP_PROXY
+    export ftp_proxy=$HTTP_PROXY
+
+    export HTTP_PROXY_USER=pvanstaveren@mintel.com
+    export HTTP_PROXY_PASSWORD=`master_password`
+}
+
+# vim:filetype=sh
