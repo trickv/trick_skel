@@ -73,7 +73,12 @@ trick_motd () {
 UNAME=`uname`
 if [ "${UNAME}" = "FreeBSD" ]; then
     # FreeBSD-specific stuff goes here!
-    alias make=gmake
+    which gmake &> /dev/null
+    if [ $? -eq 0 ]; then
+        alias make=gmake
+    fi
+    alias head=ghead
+    alias tail=gtail
     export SHELL=/usr/local/bin/bash
     
     # This enables colors with ``ls''
