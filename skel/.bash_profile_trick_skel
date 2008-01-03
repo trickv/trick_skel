@@ -73,7 +73,6 @@ trick_motd () {
 UNAME=`uname`
 if [ "${UNAME}" = "FreeBSD" ]; then
     # FreeBSD-specific stuff goes here!
-    echo freebsd
     trick_skel_if_exists_then_alias gmake make
     trick_skel_if_exists_then_alias ghead head
     trick_skel_if_exists_then_alias gtail tail
