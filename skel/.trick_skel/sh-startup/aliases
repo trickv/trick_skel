@@ -10,6 +10,7 @@ trick_skel_aliases () {
     alias u=uptime
     alias diff='diff -Nru'
     alias nl='nl -ba'
+    alias nicey='nice -n 19'
     
     # Application-specific aliases
     alias lss='screen -ls'
