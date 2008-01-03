@@ -25,4 +25,14 @@ trick_skel_aliases () {
     alias dude="echo I AM the dude."
 }
 
+trick_skel_if_exists_then_alias () {
+    # $1  command to see if it exists
+    # $2  command to alias it to if it does exist
+
+    which $1 &> /dev/null
+    if [ $? -eq 0 ]; then
+        alias $2=$1
+    fi
+}
+
 # vim:filetype=sh
