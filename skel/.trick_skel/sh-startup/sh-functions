@@ -21,8 +21,6 @@ trick_skel_start_keychain () {
         else
             echo "No keys!"
         fi
-    else
-        echo "no keychain"
     fi
     unset TRICK_KEYCHAIN TRICK_KEYS cur
 }
