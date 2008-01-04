@@ -1,0 +1,13 @@
+trick_skel_graphviz_dot () {
+    dot -T$1 $2 -o `basename $2 .dot`.$1
+}
+
+alias gv-svg='trick_skel_graphviz_dot svg'
+alias gv-png='trick_skel_graphviz_dot png'
+
+trick_skel_graphviz_preview () {
+    eog *.{svg,png}
+}
+alias gv-prev=trick_skel_graphviz_preview
+
+# vim:filetype=sh
