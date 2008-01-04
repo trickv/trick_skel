@@ -81,8 +81,9 @@ if [ $? -eq 0 ]; then
     svn info --xml > $HOME/.trick_skel/info/xml
     svn info > $HOME/.trick_skel/info/txt
     if [ "`hostname -s`" = "atlas" ]; then
-        rm -rf info
-        cp -R $HOME/.trick_skel/info svn-info
+        rm -rf svn-info
+        mkdir -p svn-info
+        cp $HOME/.trick_skel/info/* svn-info/
     fi
 else
     # we don't have svn; see if atlas has already written this info for us
