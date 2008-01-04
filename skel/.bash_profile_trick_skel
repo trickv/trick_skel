@@ -29,6 +29,7 @@ export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\0
 export CVS_RSH="ssh"
 export EMAIL_ADDRESS="trick@vanstaveren.us"
 export REAL_NAME="Patrick van Staveren"
+export LS_OPTIONS="--color=auto -F"
 
 # Until mintel gets me a DNS pointer...
 atlas=172.17.3.47
@@ -77,6 +78,7 @@ if [ "${UNAME}" = "FreeBSD" ]; then
     trick_skel_if_exists_then_alias ghead head
     trick_skel_if_exists_then_alias gtail tail
     trick_skel_if_exists_then_alias gls ls
+    trick_skel_if_exists_then_alias grm rm
     
     export SHELL=/usr/local/bin/bash
     
