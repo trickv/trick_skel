@@ -2,7 +2,7 @@
 
 use XML::Simple;
 
-my $file = $ENV{'HOME'} . '/.trick_skel_info.xml';
+my $file = $ENV{'HOME'} . '/.trick_skel/info/xml';
 my $xsl = XML::Simple->new();
 my $doc = $xsl->XMLin($file);
 
@@ -10,7 +10,7 @@ print "Is this thing on?  Yeah, it is.  This is trick_skel.\n";
 print "====================================================\n";
 print "Last updated: " . $doc->{'entry'}->{'commit'}->{'date'} . "\n";
 print "SVN Revision: " . $doc->{'entry'}->{'commit'}->{'revision'} . "\n";
-print "Installed: " . `cat ~/.trick_skel_install_date`;
+print "Installed: " . `cat ~/.trick_skel/info/install_date`;
 
 my $env_rev=$ENV{'TRICK_SKEL_ENV_REVISION'};
 if ($env_rev != $doc->{'entry'}->{'commit'}->{'revision'}) {

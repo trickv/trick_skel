@@ -29,7 +29,8 @@ export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\0
 export CVS_RSH="ssh"
 export EMAIL_ADDRESS="trick@vanstaveren.us"
 export REAL_NAME="Patrick van Staveren"
-export LS_OPTIONS="--color=auto -F"
+#export LS_OPTIONS="--color=auto -F"
+export LS_OPTIONS="-F --color=auto"
 
 # Until mintel gets me a DNS pointer...
 atlas=172.17.3.47
@@ -151,7 +152,7 @@ skelup () {
     unset OLD_REV
 }
 
-export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel_info | grep ^Revision | cut -d\  -f2`
+export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel/info/txt | grep ^Revision | cut -d\  -f2`
 
 trick_append_motd "`uptime`"
 #trick_motd

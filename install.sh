@@ -72,24 +72,27 @@ if [ -f $HOME/.my.cnf.local ]; then
 fi
 
 # Install info on this version of trick_skel
-which svn &> /dev/null
+# TODO: remove the following line after it has propogated (2008-01-10)
+rm -f $HOME/.trick_skel{_info,_info.xml,_install_date}
+mkdir -p $HOME/.trick_skel/info
+svn info &> /dev/null
 if [ $? -eq 0 ]; then
-    SVN=`which svn`
-    SVN_VER_R=`$SVN --version | head -n 1 | cut -d\( -f2- | cut -dr -f2 | cut -d\) -f1`
-    $SVN info > ~/.trick_skel_info
-    echo "Installing .trick_skel_info..."
-    if [ $SVN_VER_R -gt 13838 ]; then
-        # newer than svn 1.1.4, which is known to not have info --xml support (darth)
-        echo "Installing .trick_skel_info.xml..."
-        $SVN info --xml > ~/.trick_skel_info.xml
-    else
-        echo "Not installing XML as this is an old version of svn.  skelinfo will not work."
+    # we have svn and it can read the properties
+    svn info --xml > $HOME/.trick_skel/info/xml
+    svn info > $HOME/.trick_skel/info/txt
+    if [ "`hostname -s`" = "atlas" ]; then
+        rm -rf info
+        cp -R $HOME/.trick_skel/info svn-info
     fi
-    unset SVN SVN_VER_R
 else
-    echo "svn not available, skelinfo will not be available"
+    # we don't have svn; see if atlas has already written this info for us
+    if [ -d svn-info ]; then
+        # we have infos, copy in place
+        cp svn-info/* $HOME/.trick_skel/info/
+    fi
 fi
-date -u > ~/.trick_skel_install_date
+
+date -u > ~/.trick_skel/info/install_date
 
 # install optional scripts depending on conditionals
 case "`hostname -s`" in atlas|mc)
