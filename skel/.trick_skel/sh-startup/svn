@@ -1,0 +1,25 @@
+which colordiff &> /dev/null
+if [ $? -eq 0 ]; then
+    TRICK_SVN=`which svn`
+    alias svn=trick_skel_svn_wrapper
+fi
+
+trick_skel_svn_wrapper () {
+    case "$1" in
+        diff)
+            $TRICK_SVN $* | colordiff
+        ;;
+        addnew)
+            echo "** Adding all new files:"
+            $TRICK_SVN stat | egrep "^\?" | egrep -v "\.swp" | cut -b8- | xargs -n 1 -t $TRICK_SVN add
+        ;;
+        *)
+            OLD_IFS=$IFS
+            IFS=$'\n'
+            $TRICK_SVN $*
+            IFS=$OLD_IFS
+        ;;
+    esac
+}
+
+# vim:filetype=sh

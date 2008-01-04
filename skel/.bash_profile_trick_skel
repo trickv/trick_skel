@@ -5,7 +5,7 @@
 
 #. $HOME/.trick_skel/sh-functions
 #. $HOME/.trick_skel/sh-startup/*
-for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | grep -v svn | grep -v swp`; do
+for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp`; do
     source $cur
 done
 
@@ -120,22 +120,6 @@ if [ -f ${HOME}/.${TRICK_FULL_HOSTNAME}.sh ]; then
     echo "Executing machine-specific shell script ${HOME}/.${TRICK_FULL_HOSTNAME}.sh"
     . ${HOME}/.${TRICK_FULL_HOSTNAME}.sh
 fi
-
-which colordiff &> /dev/null
-if [ $? -eq 0 ]; then
-    TRICK_SVN=`which svn`
-    alias svn=my_svn
-fi
-
-my_svn () {
-    # TODO: add handling for when piping to a file? colordiff seems to take care of this
-    if [ "${1}" == "diff" ]; then
-        $TRICK_SVN $* | colordiff
-    else
-        IFS=$'\n'
-        $TRICK_SVN $*
-    fi
-}
 
 trick_h () {
     if [ "$1" -gt 0 &> /dev/null ]; then
