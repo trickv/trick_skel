@@ -18,7 +18,7 @@ case $TRICK_HOSTNAME in
     sting|mc|sam|atlas|vanstaveren|ed)
         svn up > /dev/null
         break;;
-    cartman|bigweld|doobie|willow|gasket|diesel|baldrick|darth)
+    cartman|bigweld|doobie|willow|gasket|diesel|baldrick|darth|raquel)
         ./update-mintel-rsync.sh
         break;;
     *)
