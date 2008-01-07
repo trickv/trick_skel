@@ -18,3 +18,14 @@ define mono_backtrace
  end
 end
 
+define mono_stack
+ set $mono_thread = mono_thread_current ()
+ if ($mono_thread == 0x00)
+   printf "No mono thread associated with this thread\n"
+ else
+   set $ucp = malloc (sizeof (ucontext_t))
+   call (void) getcontext ($ucp)
+   call (void) mono_print_thread_dump ($ucp)
+   call (void) free ($ucp)
+ end
+end
