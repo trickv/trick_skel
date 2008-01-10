@@ -30,9 +30,6 @@ rm -r $HOME/tmp/trick_skel_backup
 # Finally, delete old archives
 find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 
-# This should be removed after 2008-01-10
-find $HOME/tmp -name "trick_skel_backup*" -ctime +7 | xargs -n 10 rm -f
-
 # Install ~/.trick_skel directory
 rm -rf $HOME/.trick_skel
 cp -R skel/.trick_skel $HOME
@@ -72,8 +69,6 @@ if [ -f $HOME/.my.cnf.local ]; then
 fi
 
 # Install info on this version of trick_skel
-# TODO: remove the following line after it has propogated (2008-01-10)
-rm -f $HOME/.trick_skel{_info,_info.xml,_install_date}
 mkdir -p $HOME/.trick_skel/info
 svn info &> /dev/null
 if [ $? -eq 0 ]; then
