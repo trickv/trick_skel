@@ -14,6 +14,7 @@ trick_skel_aliases () {
     alias diff='diff -Nru'
     alias nl='nl -ba'
     alias nicey='nice -n 19'
+    alias 'df.'='df -h .'
     
     # Application-specific aliases
     alias pico='nano -w'
