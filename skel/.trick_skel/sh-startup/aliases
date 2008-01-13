@@ -20,11 +20,6 @@ trick_skel_aliases () {
     alias nano='nano -w'
     alias strdate='date -u +%Y%m%d-%H%M%S'
     alias 'ssh-keys'='ssh-add -l'
-    
-    # Hilarity
-    alias y='echo Why, you ask? WHY NOT!'
-    alias ks="echo Learn to type.  You meant ls, right?"
-    alias dude="echo I AM the dude."
 }
 
 trick_skel_if_exists_then_alias () {
