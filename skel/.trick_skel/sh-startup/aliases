@@ -15,6 +15,7 @@ trick_skel_aliases () {
     alias nl='nl -ba'
     alias nicey='nice -n 19'
     alias 'df.'='df -h .'
+    alias ping1='ping -c 1'
     
     # Application-specific aliases
     alias pico='nano -w'
