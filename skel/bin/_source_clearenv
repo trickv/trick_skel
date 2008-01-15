@@ -1,0 +1,19 @@
+#!/bin/sh
+
+KEEP="SHELL TERM SSH_CLIENT SSH_TTY USER PATH MAIL BLOCKSIZE PWD SHLVL HOME LOGNAME SSH_CONNECTION _ PS1 PS2 REAL_NAME PAGER EDITOR"
+
+kill_unless_keep () {
+    for i in $KEEP; do
+        if [ "$i" = "$1" ]; then
+            return 1
+        fi
+    done
+    unset $1
+}
+
+for cur in `env | cut -d= -f1`; do
+    kill_unless_keep $cur
+    export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+    export PS1="[\u@\h \w]\$ "
+    export PS2="> "
+done
