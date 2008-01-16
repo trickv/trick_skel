@@ -1,0 +1,11 @@
+0 - 50: Common stuff
+
+0 - 19: library, base functionality for other scripts
+
+20 - 49: General startup
+
+########
+
+50 - 69: Frilly things, depends on Common
+
+71 - 99: Site-specific stuff
