@@ -3,6 +3,8 @@
 # trickv's bash_profile skeleton
 # Should run on any sh-compatible shell, but realistically probably only bash.
 
+TRICK_SKEL_START_TIME=`date -u +%s`
+
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 
 for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp`; do
@@ -141,3 +143,5 @@ trick_append_motd "`uptime`"
 #trick_motd
 
 unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME TRICK_MOTD
+
+trick_skel_timing_finish

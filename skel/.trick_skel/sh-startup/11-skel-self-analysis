@@ -1,0 +1,13 @@
+# timing function(s)
+
+trick_skel_timing_finish () {
+    TRICK_SKEL_FINISH_TIME=`date -u +%s`
+    let TRICK_SKEL_RUN_TIME=$TRICK_SKEL_FINISH_TIME-$TRICK_SKEL_START_TIME
+
+    if [ $TRICK_SKEL_RUN_TIME -gt 2 ]; then
+        echo "skel took $TRICK_SKEL_RUN_TIME seconds to init."
+    fi
+    unset TRICK_SKEL_RUN_TIME TRICK_SKEL_FINISH_TIME TRICK_SKEL_START_TIME
+}
+
+# vim:filetype=sh
