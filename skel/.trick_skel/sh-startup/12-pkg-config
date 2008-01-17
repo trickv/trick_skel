@@ -1,0 +1,7 @@
+if [ "$PKG_CONFIG_PATH" = "" ]; then
+    export PKG_CONFIG_PATH=/usr/lib/pkgconfig
+fi
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+
+# vim:filetype=sh

@@ -11,7 +11,6 @@ for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.sv
     source $cur
 done
 
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
 fi
