@@ -43,11 +43,10 @@ done
 echo
 
 # Install scripts into ~/bin
-echo -n "Installing bin files and wiping out any conflicts in ~/bin: "
+echo -n "Installing bin files ~/bin/trick_skel: "
 rm -f $HOME/bin/trick_skel/*
 for cur in `ls skel/bin/`; do
     echo -n "$cur, "
-    rm -f $HOME/bin/$cur
     cp skel/bin/$cur $HOME/bin/trick_skel/$cur
 done
 echo
