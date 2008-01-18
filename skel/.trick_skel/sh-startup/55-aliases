@@ -11,6 +11,7 @@ trick_skel_aliases () {
     alias j=jobs
     alias f=fg
     alias u=uptime
+    alias t=tree
     alias diff='diff -Nru'
     alias nl='nl -ba'
     alias nicey='nice -n 19'
@@ -19,6 +20,7 @@ trick_skel_aliases () {
     alias ping1='ping -c 1'
     alias sudol='sudo -l'
     alias dmesgt=trick_skel_dmesg_tail
+    alias crontabl='crontab -l'
     
     # Application-specific aliases
     alias pico='nano -w'
