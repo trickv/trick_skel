@@ -24,7 +24,11 @@ MYTERM=gnome-terminal
 if [ "$SERVICE" = "ssh" ]; then
     CMD="ssh $HOST"
     TITLE="ssh connecting to $USER@$HOST..."
-    GEOMETRY=90x28
+    if [ "`hostname`" = "mc.home.vanstaveren.us" ]; then
+        GEOMETRY=80x24
+    else
+        GEOMETRY=90x28
+    fi
 fi
 
 if [ "$SERVICE" = "mysql" ]; then
