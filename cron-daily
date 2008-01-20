@@ -17,6 +17,12 @@ fi
 case $TRICK_HOSTNAME in
     sting|mc|sam|atlas|vanstaveren|ed)
         svn up > /dev/null
+        SVN_STAT=`svn stat`
+        if [ "$SVN_STAT" != "" ]; then
+            echo "Local modifications exist:"
+            echo $SVN_STAT
+            echo
+        fi
         break;;
     cartman|bigweld|doobie|willow|gasket|diesel|baldrick|darth|raquel)
         ./update-mintel-rsync.sh
