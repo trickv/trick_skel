@@ -16,9 +16,11 @@ trick_skel_aliases () {
     alias nl='nl -ba'
     alias nicey='nice -n 19'
     alias 'df.'='df -h .'
+    alias dfh='df -h'
     alias 'du.'='du -hs .'
     alias ping1='ping -c 1'
     alias sudol='sudo -l'
+    alias 'su-'='sudo su -'
     alias dmesgt=trick_skel_dmesg_tail
     alias crontabl='crontab -l'
     
