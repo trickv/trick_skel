@@ -141,6 +141,8 @@ export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel/info/txt | grep '^Last Cha
 trick_append_motd "`uptime`"
 #trick_motd
 
+cat $HOME/.trick_skel/motd/*
+
 unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME TRICK_MOTD
 
 trick_skel_timing_finish
