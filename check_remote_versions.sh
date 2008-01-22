@@ -2,7 +2,7 @@
 
 cmd="cat .trick_skel/info/txt | grep 'Last Changed Rev'"
 
-HOME_HOSTS="trick@sting root@sting trick@mc root@mc pv@atlas root@atlas trick@sam root@sam"
+HOME_HOSTS="trick@sting root@sting trick@mc root@mc trick@sam root@sam"
 WORK_HOSTS="pv@gasket pv@raquel pv@baldrick pv@darth pv@willow"
 
 case "$1" in
