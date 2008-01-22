@@ -33,7 +33,7 @@ export REAL_NAME="Patrick van Staveren"
 export LS_OPTIONS="-F --color=auto"
 
 # Until mintel gets me a DNS pointer...
-atlas=172.17.3.47
+export atlas=172.17.3.47
 
 # My fancy BASH prompt
 # TODO: alternate the color of the username when this is root

@@ -1,0 +1,39 @@
+#!/usr/bin/env perl
+
+my $mintelUsProxyCommand = "connect -H proxy.usdmm.com:3128 %h %p";
+
+my %hosts = (
+    'svn.gnome.org' => {
+        'IdentityFile' => '~/.ssh/trickv@gnome.org/id_rsa',
+        'User' => 'trickv'},
+    'lish' => {
+        'HostName' => 'lish.v9n.us',
+        'User' => 'trickv'}
+);
+
+my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4);
+
+$hostname = `hostname`;
+print "# ssh config generated for $hostname\n";
+
+if ($hostname =~ /mc.home.vanstaveren.us/) {
+    foreach $cur (@mintelHosts) {
+        $hosts{$cur} = {'User' => 'pv'};
+    }
+    $hosts{'atlas'}{'HostName'} = $ENV{'atlas'};
+}
+
+if ($hostname =~ /atlas/) {
+    for my $host ( keys %hosts ) {
+        $hosts{$host}{'ProxyCommand'} = $mintelUsProxyCommand;
+    }
+}
+
+# Read the hosts hash and output in a somewhat-standard format
+while ( my ($hostname, $properties) = each(%hosts) ) {
+    print "Host $hostname\n";
+    while ( my ($property, $value) = each(%$properties) ) {
+        print "    $property $value\n";
+    }
+}
+

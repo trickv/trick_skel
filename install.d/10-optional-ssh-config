@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [ "`hostname`" = "mc.home.vanstaveren.us" ]; then
+    optional/ssh-config > $HOME/.ssh/config
+fi

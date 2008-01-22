@@ -114,5 +114,11 @@ if [ "`uname`" = "Linux" ]; then
     cp optional/lside $HOME/bin/trick_skel/
 fi
 
+for cur in `ls install.d`; do
+    if [ -x install.d/$cur ]; then
+        install.d/$cur
+    fi
+done
+
 # Viola!
 echo "Done."
