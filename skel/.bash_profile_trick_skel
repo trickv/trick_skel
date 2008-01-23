@@ -30,7 +30,7 @@ export CVS_RSH="ssh"
 export EMAIL_ADDRESS="trick@vanstaveren.us"
 export REAL_NAME="Patrick van Staveren"
 #export LS_OPTIONS="--color=auto -F"
-export LS_OPTIONS="-F --color=auto"
+export LS_OPTIONS="-F"
 
 # Until mintel gets me a DNS pointer...
 export atlas=172.17.3.47
