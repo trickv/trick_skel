@@ -6,7 +6,7 @@ trick_skel_aliases () {
     alias ls="ls $LS_OPTIONS"
     alias lst='ls -ltrh'
     alias lss='ls -lSrh'
-    #alias h='history | tail'
+    alias lsh='ls -lh'
     alias h=trick_h
     alias j=jobs
     alias f=fg
