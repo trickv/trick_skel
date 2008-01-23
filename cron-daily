@@ -32,4 +32,4 @@ case $TRICK_HOSTNAME in
         break;;
 esac
 
-./install.sh > /dev/null
+./install > /dev/null

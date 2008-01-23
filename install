@@ -116,6 +116,7 @@ fi
 
 for cur in `ls install.d`; do
     if [ -x install.d/$cur ]; then
+        echo Running install.d/$cur
         install.d/$cur
     fi
 done
