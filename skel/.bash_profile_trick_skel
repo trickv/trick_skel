@@ -30,9 +30,6 @@ export CVS_RSH="ssh"
 export EMAIL_ADDRESS="trick@vanstaveren.us"
 export REAL_NAME="Patrick van Staveren"
 
-# Until mintel gets me a DNS pointer...
-export atlas=172.17.3.47
-
 # My fancy BASH prompt
 # TODO: alternate the color of the username when this is root
 # TODO: don't colorize if color isn't available in this terminal.  see system bashrc on any gentoo box
