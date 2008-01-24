@@ -9,9 +9,17 @@ trick_skel_svn_wrapper () {
         diff)
             $TRICK_SVN $* | colordiff
         ;;
-        addnew)
-            echo "** Adding all new files:"
-            $TRICK_SVN stat | egrep "^\?" | egrep -v "\.swp" | cut -b8- | xargs -n 1 -t $TRICK_SVN add
+        addnew|an)
+            svn stat | egrep '^\?' > /dev/null
+            if [ $? -eq 0 ]; then
+                echored "-- "
+                echowhite "Adding all new files:"
+                echo
+                $TRICK_SVN stat | egrep "^\?" | egrep -v "\.swp" | cut -b8- | xargs -n 1 -t $TRICK_SVN add
+            else
+                echoyellow "No new files to add."
+                echo
+            fi
         ;;
         *)
             OLD_IFS=$IFS

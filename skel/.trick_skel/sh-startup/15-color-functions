@@ -4,20 +4,4 @@ export TRICK_SKEL_COLOR_RED="\E[01;31m"
 export TRICK_SKEL_COLOR_GREEN="\E[01;32m"
 export TRICK_SKEL_COLOR_YELLOW="\E[01;33m"
 
-echo_white () {
-    echo -n -e "${TRICK_SKEL_COLOR_WHITE}${@}${TRICK_SKEL_COLOR_DEFAULT}"
-}
-
-echo_red () {
-    echo -n -e "${TRICK_SKEL_COLOR_RED}${@}${TRICK_SKEL_COLOR_DEFAULT}"
-}
-
-echo_green () {
-    echo -n -e "${TRICK_SKEL_COLOR_GREEN}${@}${TRICK_SKEL_COLOR_DEFAULT}"
-}
-
-echo_yellow () {
-    echo -n -e "${TRICK_SKEL_COLOR_YELLOW}${@}${TRICK_SKEL_COLOR_DEFAULT}"
-}
-
 # vim:filetype=sh

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cmd=`basename $0 | cut -b5-`
+
+case $cmd in
+    white) COLOR=$TRICK_SKEL_COLOR_WHITE;;
+    red) COLOR=$TRICK_SKEL_COLOR_RED;;
+    green) COLOR=$TRICK_SKEL_COLOR_GREEN;;
+    yellow) COLOR=$TRICK_SKEL_COLOR_YELLOW;;
+    *) echo "Unknown color $cmd"
+esac
+
+echo -n -e "${COLOR}${@}${TRICK_SKEL_COLOR_DEFAULT}"
