@@ -31,8 +31,14 @@ if ($hostname =~ /atlas/) {
 
 # Read the hosts hash and output in a somewhat-standard format
 while ( my ($hostname, $properties) = each(%hosts) ) {
+    if ($hostname =~ /^$/) {
+        $hostname = 'ERROR';
+    }
     print "Host $hostname\n";
     while ( my ($property, $value) = each(%$properties) ) {
+        if ($value =~ /^$/) {
+            $value = 'ERROR';
+        }
         print "    $property $value\n";
     }
 }
