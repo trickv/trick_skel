@@ -7,6 +7,7 @@ case $cmd in
     red) COLOR=$TRICK_SKEL_COLOR_RED;;
     green) COLOR=$TRICK_SKEL_COLOR_GREEN;;
     yellow) COLOR=$TRICK_SKEL_COLOR_YELLOW;;
+    blue) COLOR=$TRICK_SKEL_COLOR_BLUE;;
     *) echo "Unknown color $cmd"
 esac
 

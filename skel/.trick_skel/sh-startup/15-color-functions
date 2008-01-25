@@ -3,5 +3,6 @@ export TRICK_SKEL_COLOR_WHITE="\033[1m"
 export TRICK_SKEL_COLOR_RED="\E[01;31m"
 export TRICK_SKEL_COLOR_GREEN="\E[01;32m"
 export TRICK_SKEL_COLOR_YELLOW="\E[01;33m"
+export TRICK_SKEL_COLOR_BLUE="\E[01;34m"
 
 # vim:filetype=sh
