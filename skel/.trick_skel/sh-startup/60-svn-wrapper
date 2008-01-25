@@ -12,10 +12,19 @@ trick_skel_svn_wrapper () {
         addnew|an)
             svn stat | egrep '^\?' > /dev/null
             if [ $? -eq 0 ]; then
-                echored "-- "
-                echowhite "Adding all new files:"
-                echo
-                $TRICK_SVN stat | egrep "^\?" | egrep -v "\.swp" | cut -b8- | xargs -n 1 -t $TRICK_SVN add
+                FILES=`mktemp`
+                $TRICK_SVN stat | egrep "^\?" | egrep -v "\.swp" | cut -b8- > $FILES
+                FILES_COUNT=`cat $FILES | wc -l`
+                if [ $FILES_COUNT -eq 0 ]; then
+                    echored "No new files to add."
+                    echo
+                else
+                    echored "-- "
+                    echowhite "Adding all new files:"
+                    echo
+                    cat $FILES | xargs -n 1 -t $TRICK_SVN add
+                fi
+                rm $FILES
             else
                 echoyellow "No new files to add."
                 echo
