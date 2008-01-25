@@ -1,5 +1,14 @@
 trick_skel_graphviz_dot () {
-    dot -T$1 $2 -o `basename $2 .dot`.$1
+    NUM_FILES=`ls *.dot 2>/dev/null | wc -l`
+    if [ $NUM_FILES -eq 1 ]; then
+        INFILE=`ls *dot`
+        echo -n "Using file "
+        echowhite $INFILE
+        echo
+    else
+        INFILE=$2
+    fi
+    dot -T$1 $INFILE -o `basename $INFILE .dot`.$1
 }
 
 alias gv-svg='trick_skel_graphviz_dot svg'
