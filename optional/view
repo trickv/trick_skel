@@ -11,30 +11,49 @@ vnc=`which vncviewer`
 
 vncPasswords=$HOME/.vnc/passwords
 
-TFILE=`mktemp`
 
 lookup () {
-    host $1 2> /dev/null > $TFILE
+    TFILE=`mktemp`
+
+    HOST=`echo $1 | cut -d: -f1`
+    VNC_DISPLAY=`echo $1 | cut -d: -f2`
+
+    host $HOST 2> /dev/null > $TFILE
     if [ $? -eq 0 ]; then
         IP=`cat $TFILE | grep 'has address' | tail -n 1 | cut -d\  -f4`
-        return
+        DOMAIN=`cat $TFILE | cut -d\  -f1 | cut -d. -f2-`
+        return 0
     fi
 
-    nmblookup $1 2> /dev/null > $TFILE
+    nmblookup $HOST 2> /dev/null > $TFILE
     cat $TFILE | tail -n 1 | grep failed &> /dev/null
     if [ $? -ne 0 ]; then
         IP=`cat $TFILE | tail -n 1 | cut -d\  -f1`
-        return
+        return 0
     fi
 
-    IP=""
-    xmessage "Sorry, couldn't figure out who $1 is.";
+    rm $TFILE
+    return 1
+}
+
+custom_error_msg () {
+    ERR_MSG="$@"
+    which zenity &> /dev/null
+    if [ $? -eq 0 ]; then
+        zenity --error --text="${ERR_MSG}"
+    else
+        xmessage "${ERR_MSG}"
+    fi
 }
 
 lookup $1
-echo $IP
-
-rm $TFILE
+if [ $? -ne 0 ]; then
+    ERR_MSG="Sorry, couldn't figure out who $1 is."
+    custom_error_msg "${ERR_MSG}"
+    exit 1
+else
+    echo "Found $HOST, IP=$IP, VNC_DISPLAY=$VNC_DISPLAY"
+fi
 
 case $1 in
 op|opserver)
@@ -43,12 +62,33 @@ op|opserver)
             $rdesktop -g $nearFullScreen -u "${winUser}" -d "$domain" -p $skynet op
             ;;
         'vnc')
-            $vnc -passwd $vncPasswords/4mph1b14n -encodings $londonVncEncoding op
+            $vnc -passwd $vncPasswords/uk-win-admin -encodings $londonVncEncoding op
             ;;
         esac
     ;;
 *)
-    $vnc -passwd $vncPasswords/puff3r $IP
+    if [ "$VNC_DISPLAY" != "" ]; then
+        CONNECT_HOST="$IP:$VNC_DISPLAY"
+    else
+        CONNECT_HOST=$IP
+    fi
+
+    case $DOMAIN in
+        home.vanstaveren.us)
+            PASSWD_FILE=$vncPasswords/home.vanstaveren.us
+            ;;
+        usdmm.com)
+            PASSWD_FILE=$vncPasswords/usdmm.com
+            ;;
+    esac
+
+    if [ "$PASSWD_FILE" != "" ]; then
+        PASSWD_STRING="-passwd $PASSWD_FILE"
+    fi
+
+    cmd="$vnc $PASSWD_STRING $CONNECT_HOST"
+    echo $cmd
+    $cmd
     ;;
 esac
 
