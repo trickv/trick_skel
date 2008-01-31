@@ -1,9 +1,15 @@
 #!/bin/sh
 # this is ``mk'' from trick_skel
 
-echo -e "\033[1m* Making default target\033[0m"
+if [ "$*" == "" ]; then
+    false
+else
+    EXTRA_PARAMS=" with flags '$@'"
+fi
 
-make $@ > /dev/null
+echo -e "\033[1m* Making default target${EXTRA_PARAMS}\033[0m"
+
+make "$@" > /dev/null
 
 if [ $? -ne 0 ]; then
 	echo -e '\E[01;31m'"\033[1m* Make failed :(\033[0m"
