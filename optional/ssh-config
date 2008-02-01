@@ -2,6 +2,7 @@
 
 my $mintelUsProxyCommand = "connect -H proxy.usdmm.com:3128 %h %p";
 
+# general use stuff
 my %hosts = (
     'svn.gnome.org' => {
         'IdentityFile' => '~/.ssh/trickv@gnome.org/id_rsa',
@@ -16,13 +17,19 @@ my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman bald
 $hostname = `hostname`;
 print "# ssh config generated for $hostname\n";
 
+# special cases for mc
 if ($hostname =~ /mc.home.vanstaveren.us/) {
     foreach $cur (@mintelHosts) {
         $hosts{$cur} = {'User' => 'pv'};
     }
     $hosts{'atlas'}{'HostName'} = $ENV{'atlas'};
+
+    $hosts{'atlas-vpn'} = {
+        'HostName' => 'atlas.home.vanstaveren.us',
+        'User' => 'pv' };
 }
 
+# special cases for atlas
 if ($hostname =~ /atlas/) {
     for my $host ( keys %hosts ) {
         $hosts{$host}{'ProxyCommand'} = $mintelUsProxyCommand;
