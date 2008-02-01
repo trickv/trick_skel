@@ -15,7 +15,10 @@ my %hosts = (
 my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4);
 
 $hostname = `hostname`;
-print "# ssh config generated for $hostname\n";
+$hostname =~ s/\s+$//g;
+my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime();
+printf "# ssh config generated for $hostname at %4d-%02d-%02d %02d:%02d:%02d\n\n",
+    $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
 
 # special cases for mc
 if ($hostname =~ /mc.home.vanstaveren.us/) {
