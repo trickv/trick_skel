@@ -12,7 +12,7 @@ my %hosts = (
         'User' => 'trickv'}
 );
 
-my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4);
+my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4i cupid);
 
 $hostname = `hostname`;
 $hostname =~ s/\s+$//g;
