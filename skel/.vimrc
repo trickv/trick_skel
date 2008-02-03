@@ -11,6 +11,8 @@ set softtabstop=4
 set shiftwidth=4
 set hlsearch
 
+set smartindent
+
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \     exe "normal g'\"" |
