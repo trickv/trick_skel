@@ -1,0 +1,5 @@
+shopt -s no_empty_cmd_completion
+
+# According to the bash man page, no_empty_cmd_completion means
+# that bash will not attempt to complete an empty command line
+# (which is usually a cpu-intensive task and pointless)
