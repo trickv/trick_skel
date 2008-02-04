@@ -1,0 +1,21 @@
+digraph g {
+    svn;
+
+    svn -> root_sting;
+    svn -> trick_sting;
+    svn -> root_mc;
+    svn -> trick_mc;
+    svn -> root_ed;
+    svn -> trick_ed;
+    svn -> trick_sam;
+    svn -> root_sam;
+
+    svn -> root_atlas;
+    svn -> pv_atlas -> pv_atlas_rsync;
+
+    pv_atlas_rsync -> pv_gasket;
+    pv_atlas_rsync -> pv_raquel;
+    pv_atlas_rsync -> pv_baldrick;
+    pv_atlas_rsync -> pv_darth;
+    pv_atlas_rsync -> pv_willow;
+}
