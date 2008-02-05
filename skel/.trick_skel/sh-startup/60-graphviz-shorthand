@@ -37,12 +37,11 @@ alias gv=trick_skel_graphviz_default
 trick_skel_graphviz_cleanup () {
     NUM_FILES=`ls *.dot 2>/dev/null | wc -l`
     if [ $NUM_FILES -gt 0 ]; then
-        echowhite "Cleaning up for "
-        echoyellow $INFILE
-        echowhite "..."
-        echo
-
         for INFILE in `ls *dot`; do
+            echowhite "Cleaning up for "
+            echoyellow $INFILE
+            echowhite "..."
+            echo
             BASE=`basename $INFILE .dot`
             rm -f $BASE.{png,svg,ps}
         done
