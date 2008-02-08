@@ -15,7 +15,7 @@ if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
 fi
 
-TRICK_HOSTNAME=`hostname -s`
+TRICK_HOSTNAME=`hostname | cut -d. -f1`
 TRICK_FULL_HOSTNAME=`hostname`
 
 # Handy environment variables that make me happy
