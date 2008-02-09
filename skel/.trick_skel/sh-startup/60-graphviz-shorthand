@@ -33,6 +33,13 @@ trick_skel_graphviz_default () {
 }
 alias gv=trick_skel_graphviz_default
 
+trick_skel_graphviz_infinite_preview () {
+    while [ true ]; do
+        gv
+    done
+}
+alias gv-inf=trick_skel_graphviz_infinite_preview
+
 # cleans up any .{ps,png,svg} files for each .dot found
 trick_skel_graphviz_cleanup () {
     NUM_FILES=`ls *.dot 2>/dev/null | wc -l`
