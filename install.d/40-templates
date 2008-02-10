@@ -1,5 +1,6 @@
 #!/bin/sh
 
-echo "Installing Templates:"
-
-cp -v skel/Templates/* $HOME/Templates/
+if [ -d $HOME/Templates ]; then
+    echo "Installing Templates:"
+    cp -v skel/Templates/* $HOME/Templates/
+fi
