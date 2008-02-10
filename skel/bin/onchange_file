@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# parameters
+# 1: the filename
+# 2-: the command to run
+
+if [ "`uname`" != "Linux" ]; then
+    # this should really be refactored into a library function
+    echo "This script prolly doesn't work right anywhere but Linux."
+    exit 1
+fi
+
+TEMP1=`mktemp`
+TEMP2=`mktemp`
+
+while [ true ]; do
+
+	cp $TEMP1 $TEMP2
+	ls -lh $1 --full-time > $TEMP1
+	diff $TEMP1 $TEMP2 > /dev/null; A=$?
+	if [ $A -eq 1 ]; then
+		# run compile commands - it's changed!
+		clear
+		echo "changed! changed! changed! changed! changed! "
+		echo "changed! changed! changed! changed! changed! "
+		sleep 0.1s;
+		clear
+		date
+		$2 $3 $4 $5 $6 $7 $8 $9
+		echo "
+		
+		
+		
+Ready!"
+	fi
+	sleep 1s;
+done
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Installing Templates:"
+
+cp -v skel/Templates/* $HOME/Templates/
