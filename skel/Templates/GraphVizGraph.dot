@@ -1,0 +1,12 @@
+digraph g {
+    graph [
+        rankdir = "LR",
+        margin = "1, 1"
+    ];
+    node [
+        
+    ];
+    edge [
+        
+    ];
+}
