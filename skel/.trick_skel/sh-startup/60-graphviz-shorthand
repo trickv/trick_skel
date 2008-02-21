@@ -59,4 +59,29 @@ trick_skel_graphviz_cleanup () {
 }
 alias gv-clean=trick_skel_graphviz_cleanup
 
+trick_skel_graphviz_publish () {
+    gv-png
+    gv-svg
+    DOMAIN=`dnsdomainname 2> /dev/null`
+    if [ $? -ne 0 ]; then
+        echo "Sorry, seems dnsdomainname is broken."
+        exit 1
+    fi
+
+    PROJECT=`basename $PWD`
+
+    case "$DOMAIN" in
+        usdmm.com)
+            PROJECT_PATH=public_html/graphs/${PROJECT}
+            ssh gasket mkdir -p /home/chicago/pv/${PROJECT_PATH}
+            scp * gasket:/home/chicago/pv/${PROJECT_PATH}/
+            ;;
+        *)
+            echo "Action for domain $DOMAIN undefined."
+            exit 2
+            ;;
+    esac
+}
+alias gv-pub=trick_skel_graphviz_publish
+
 # vim:filetype=sh
