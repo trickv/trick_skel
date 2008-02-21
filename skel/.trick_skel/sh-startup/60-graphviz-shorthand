@@ -50,7 +50,7 @@ trick_skel_graphviz_cleanup () {
             echowhite "..."
             echo
             BASE=`basename $INFILE .dot`
-            rm -f $BASE.{png,svg,ps}
+            rm -f $BASE.{svg,png,ps}
         done
     else
         echored "No .dot files in current directory."
