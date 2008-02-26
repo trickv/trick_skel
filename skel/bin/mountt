@@ -1,0 +1,61 @@
+#!/bin/sh
+
+IFS=$'\n'
+
+spaceout () {
+    for (( I=0; $I < $1; I++)); do
+        echo -n " "
+    done
+}
+
+echo_width () {
+    # parameters:
+    # 1: text
+    # 2: width
+    let REMAINDER=$2-${#1}
+    echo -n $1
+    if [ $REMAINDER -gt 0 ]; then
+        spaceout $REMAINDER
+    fi
+    spaceout 1
+}
+
+max () {
+    # parameters
+    # 1: a numberr
+    # 2: another number
+    if [ $1 -lt $2 ]; then
+        echo $2
+    else
+        echo $1
+    fi
+}
+
+DEV_MAX=0
+MOUNT_MAX=0
+FS_MAX=0
+OPTS_MAX=0
+
+for cur in `mount`; do
+    DEV=`echo $cur | cut -d\  -f1`
+    MOUNT=`echo $cur | cut -d\  -f3`
+    FS=`echo $cur | cut -d\  -f5`
+    OPTS=`echo $cur | cut -d\  -f6-`
+    DEV_MAX=`max $DEV_MAX ${#DEV}`
+    MOUNT_MAX=`max $MOUNT_MAX ${#MOUNT}`
+    FS_MAX=`max $FS_MAX ${#FS}`
+    OPTS_MAX=`max $OPTS_MAX ${#OPTS}`
+done
+
+for cur in `mount`; do
+    DEV=`echo $cur | cut -d\  -f1`
+    MOUNT=`echo $cur | cut -d\  -f3`
+    FS=`echo $cur | cut -d\  -f5`
+    OPTS=`echo $cur | cut -d\  -f6-`
+
+    echo_width $DEV $DEV_MAX
+    echo_width $MOUNT $MOUNT_MAX
+    echo_width $FS $FS_MAX
+    echo_width $OPTS $OPTS_MAX
+    echo
+done
