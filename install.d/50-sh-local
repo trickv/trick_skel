@@ -5,7 +5,7 @@ DEST=$HOME/.trick_skel/sh-local/50-sh-local
 which sudo &> /dev/null
 
 if [ $? -eq 0 ]; then
-    echo "alias 'su-'='sudo su -'" > $DEST
+    echo "alias \"su-\"=\"echo -n 'sudo: '; sudo su -\"" > $DEST
 else
-    echo "alias 'su-'='su -'" > $DEST
+    echo "alias \"su-\"=\"echo -n 'su: '; su -\"" > $DEST
 fi
