@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+which sudo &> /dev/null
+
+DEST=$HOME/.trick_skel/sh-local/50-sh-local
+
+if [ $? -eq 0 ]; then
+    echo "alias 'su-'='sudo su -'" > $DEST
+else
+    echo "alias 'su-'='su -'" > $DEST
+fi

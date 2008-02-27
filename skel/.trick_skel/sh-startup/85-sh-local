@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# run scripts in ~/.trick_shel/sh-local/
+
+for cur in `find $HOME/.trick_skel/sh-local/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp`; do
+    source $cur
+done

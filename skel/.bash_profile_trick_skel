@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # trickv's bash_profile skeleton
-# Should run on any sh-compatible shell, but realistically probably only bash.
+# Should run on any sh-compatible shell if I weren't such a hack, but I am.
 
 TRICK_SKEL_START_TIME=`date -u +%s`
 
