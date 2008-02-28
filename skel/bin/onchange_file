@@ -1,17 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # parameters
 # 1: the filename
 # 2-: the command to run
 
-if [ "`uname`" != "Linux" ]; then
-    # this should really be refactored into a library function
-    echo "This script prolly doesn't work right anywhere but Linux."
-    exit 1
-fi
+. $HOME/.trick_skel/sh-startup/55-aliases
+trick_skel_if_exists_then_alias gls ls
+shopt -s expand_aliases
 
-TEMP1=`mktemp`
-TEMP2=`mktemp`
+TEMP1=`mktemp /tmp/onchange.XXXXXXXX`
+TEMP2=`mktemp /tmp/onchange.XXXXXXXX`
 
 while [ true ]; do
 
