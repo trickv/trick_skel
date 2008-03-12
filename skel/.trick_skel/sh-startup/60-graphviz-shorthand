@@ -21,6 +21,7 @@ trick_skel_graphviz_dot () {
 
 alias gv-svg='trick_skel_graphviz_dot svg'
 alias gv-png='trick_skel_graphviz_dot png'
+alias gv-ps='trick_skel_graphviz_dot ps'
 
 trick_skel_graphviz_preview () {
     eog *.{svg,png}
