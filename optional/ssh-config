@@ -4,6 +4,8 @@ my $mintelUsProxyCommand = "connect -H proxy.usdmm.com:3128 %h %p";
 
 # general use stuff
 my %hosts = (
+    '*' => {
+        'ForwardX11' => 'yes'},
     'svn.gnome.org' => {
         'IdentityFile' => '~/.ssh/trickv@gnome.org/id_rsa',
         'User' => 'trickv'},
@@ -20,8 +22,8 @@ my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime();
 printf "# ssh config generated for $hostname at %4d-%02d-%02d %02d:%02d:%02d\n\n",
     $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
 
-# special cases for mc
-if ($hostname =~ /mc.home.vanstaveren.us/) {
+# special cases for home boxen
+if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/) {
     foreach $cur (@mintelHosts) {
         $hosts{$cur} = {'User' => 'pv'};
     }
