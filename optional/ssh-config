@@ -14,7 +14,7 @@ my %hosts = (
         'User' => 'trickv'}
 );
 
-my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4i cupid lister kryten bunsen beaker narthex mecca maverick goose);
+my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4 cupid lister kryten bunsen beaker narthex mecca maverick goose);
 
 $hostname = `hostname`;
 $hostname =~ s/\s+$//g;
