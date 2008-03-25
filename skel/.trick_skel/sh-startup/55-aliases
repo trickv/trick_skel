@@ -9,6 +9,7 @@ trick_skel_aliases () {
     alias lsh='ls -lh'
     alias h=trick_h
     alias j=jobs
+    alias jobs='jobs -l'
     alias f=fg
     alias u=uptime
     alias t=tree
