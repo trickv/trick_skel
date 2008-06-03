@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-my $mintelUsProxyCommand = "connect -H proxy.usdmm.com:3128 %h %p";
+my $mintelUsProxyCommand = "connect -S localhost:3129 %h %p";
 
 # general use stuff
 my %hosts = (
@@ -27,9 +27,8 @@ if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/) {
     foreach $cur (@mintelHosts) {
         $hosts{$cur} = {'User' => 'pv'};
     }
-    $hosts{'atlas'}{'HostName'} = $ENV{'atlas'};
 
-    $hosts{'atlas-vpn'} = {
+    $hosts{'atlas'} = {
         'HostName' => 'atlas.home.vanstaveren.us',
         'User' => 'pv' };
 }
