@@ -37,11 +37,11 @@ if [ "$SERVICE" = "mysql" ]; then
     GEOMETRY=100x28
 fi
 
-if [ "$HOST" = "anya" ]; then
+if [ "$HOST" = "survey-app-primary.svc" -o "$HOST" = "anya" ]; then
     FLAGS="$FLAGS --window-with-profile=anya"
 fi
 
-if [ "$HOST" = "willow" ]; then
+if [ "$HOST" = "survey-app-backup.svc" -o "$HOST" = "willow" ]; then
     FLAGS="$FLAGS --window-with-profile=willow"
 fi
 
