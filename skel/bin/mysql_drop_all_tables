@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+mysql=mysql
+mysqldump=mysqldump
+
+TMP_DROP_TABLES_SQL=`mktemp /var/tmp/drop-tables-sql-XXXXXX`
+
+$mysqldump --add-drop-table --no-data $* \
+    | grep ^DROP \
+    > $TMP_DROP_TABLES_SQL
+
+if [ $? -ne 0 ]; then
+    echo "There was an error getting the table list."
+    exit 1
+fi
+
+cat $TMP_DROP_TABLES_SQL
+echo
+echo "About to run this, using $mysql $*.  OK?"
+read asdf
+
+cat $TMP_DROP_TABLES_SQL | $mysql $*
+
+
+rm $TMP_DROP_TABLES_SQL
