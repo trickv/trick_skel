@@ -31,6 +31,8 @@ if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/) {
     $hosts{'atlas'} = {
         'HostName' => 'atlas.home.vanstaveren.us',
         'User' => 'pv' };
+    $hosts{'atlas.home.vanstaveren.us'} = {
+        'User' => 'pv' };
 }
 
 # special cases for atlas
