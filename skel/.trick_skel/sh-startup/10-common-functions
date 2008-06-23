@@ -25,4 +25,17 @@ trick_skel_start_keychain () {
     unset TRICK_KEYCHAIN TRICK_KEYS cur
 }
 
+# change up a bunch of directories at once
+up () {
+    if [ "$1" = "" ]; then
+        UP_DIRS=1
+    else
+        UP_DIRS=$1
+    fi
+
+    for (( i = 1; i <= $UP_DIRS; i += 1 )); do
+        cd ..
+    done
+}
+
 # vim:filetype=sh
