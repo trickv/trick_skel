@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ "`basename $0`" == "opentcp" ]; then
+    METHOD="-A"
+else
+    METHOD="-D"
+fi
+
+if [ "${1}" == "" ]; then
+    echo "Usage: $0 portnumber"
+    exit 1
+fi
+
+CMD="iptables -v $METHOD INPUT --protocol tcp --dport $1 -j ACCEPT"
+
+echo "Running command: \`${CMD}\`"
+
+$CMD
