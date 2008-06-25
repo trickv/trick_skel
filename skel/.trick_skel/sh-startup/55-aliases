@@ -32,6 +32,11 @@ trick_skel_aliases () {
     alias 'ssh-keys'='ssh-add -l'
     alias clearenv='source _source_clearenv'
 
+    # if we're root, this is handy
+    if [ "$USER" = "root" ]; then
+        alias iptl='iptables -L'
+    fi
+
     # `date` wrappers for timezones
     alias chicagotime='TZ=America/Chicago date'
     alias londontime='TZ=Europe/London date'
