@@ -1,0 +1,35 @@
+#!/usr/bin/env perl
+
+use warnings;
+
+my $iptables = `which iptables`;
+chomp $iptables;
+my $iptables_flags = "-v";
+my $DEBUG = 1;
+
+my $method;
+my $protocol;
+my $port;
+
+if (!($0 =~ /\/(?:new_|)(open|close)(tcp|udp)$/)) {
+    print "Bug: can't determine what you're asking by running this as $0.\n";
+    exit 1;
+} else {
+    $method = $1 eq "open" ? "-A" : "-D";
+    $protocol = $2;
+}
+
+if ($#ARGV != 0 || !($ARGV[0] =~ /(\d+)/)) {
+    print "Usage: $0 portnumber.\n";
+    exit 1;
+} else {
+    $port = $1;
+}
+
+print "Method: $method\nProtocol: $protocol\nPort: $port\n\n" if $DEBUG;
+
+$cmd = "$iptables $iptables_flags $method INPUT --protocol $protocol --dport $port -j ACCEPT";
+
+print "Running: \`$cmd\`\n";
+
+print `$cmd`;
