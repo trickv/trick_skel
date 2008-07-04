@@ -22,6 +22,11 @@ my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime();
 printf "# ssh config generated for $hostname at %4d-%02d-%02d %02d:%02d:%02d\n\n",
     $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
 
+# global stuff
+print "# global settings\n";
+print "EscapeChar ^s\n\n";
+
+
 # special cases for home boxen
 if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/) {
     foreach $cur (@mintelHosts) {
@@ -43,6 +48,7 @@ if ($hostname =~ /atlas/) {
 }
 
 # Read the hosts hash and output in a somewhat-standard format
+print "# per-host settings\n";
 while ( my ($hostname, $properties) = each(%hosts) ) {
     if ($hostname =~ /^$/) {
         $hostname = 'ERROR';
