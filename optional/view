@@ -67,18 +67,27 @@ op|opserver)
         esac
     ;;
 *)
+    # If a display is specified, use it, else don't specify
     if [ "$VNC_DISPLAY" != "" ]; then
         CONNECT_HOST="$IP:$VNC_DISPLAY"
     else
         CONNECT_HOST=$IP
     fi
 
+    # Set passwords for general domain use
     case $DOMAIN in
         home.vanstaveren.us)
             PASSWD_FILE=$vncPasswords/home.vanstaveren.us
             ;;
         usdmm.com)
             PASSWD_FILE=$vncPasswords/usdmm.com
+            ;;
+    esac
+
+    # Override domain-set passwords on a hostname basis here:
+    case $1 in
+        unnilquadium.mintelchicago:0)
+            PASSWD_FILE=$vncPasswords/unnilquadium.mintelchicago
             ;;
     esac
 
