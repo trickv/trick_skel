@@ -1,11 +1,9 @@
 #!/bin/sh
 
 if [ "`hostname`" = "mc.home.vanstaveren.us" -a "`whoami`" = "trick" ]; then
-    source $HOME/.trick_skel/sh-startup/95-env-atlas-ip
     optional/ssh-config > $HOME/.ssh/config
 fi
 
 if [ "`hostname`" = "ed.home.vanstaveren.us" -a "`whoami`" = "trick" ]; then
-    source $HOME/.trick_skel/sh-startup/95-env-atlas-ip
     optional/ssh-config > $HOME/.ssh/config
 fi
