@@ -25,7 +25,7 @@ trick_skel_svn_wrapper () {
                     echored "-- "
                     echowhite "Adding all new files:"
                     echo
-                    cat $FILES | xargs -0 -n 1 -t $TRICK_SVN add
+                    cat $FILES | xargs -L 1 -t -I % $TRICK_SVN add "%"
                 fi
                 rm $FILES
             else
