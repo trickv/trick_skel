@@ -13,6 +13,8 @@ set hlsearch
 
 set smartindent
 
+set bg=dark
+
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \     exe "normal g'\"" |
