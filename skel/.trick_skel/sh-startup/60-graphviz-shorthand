@@ -24,7 +24,7 @@ alias gv-png='trick_skel_graphviz_dot png'
 alias gv-ps='trick_skel_graphviz_dot ps'
 
 trick_skel_graphviz_preview () {
-    eog *.{svg,png}
+    eog --fullscreen *.{svg,png}
 }
 alias gv-prev=trick_skel_graphviz_preview
 
