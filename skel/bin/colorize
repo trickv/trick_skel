@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl -w
+#!/usr/bin/env perl
 use Term::ANSIColor;
 use POSIX qw(strftime);
 use Getopt::Long;
