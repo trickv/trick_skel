@@ -112,7 +112,7 @@ trick_skel_proxy
 
 # If we have a hostname specific script in ~/.${host}.sh, run it
 if [ -f ${HOME}/.${TRICK_FULL_HOSTNAME}.sh ]; then
-    echo "Executing machine-specific shell script ${HOME}/.${TRICK_FULL_HOSTNAME}.sh"
+    echo "Executing .${TRICK_FULL_HOSTNAME}.sh"
     . ${HOME}/.${TRICK_FULL_HOSTNAME}.sh
 fi
 
