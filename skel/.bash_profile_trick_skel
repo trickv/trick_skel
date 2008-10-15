@@ -82,13 +82,6 @@ if [ "${UNAME}" = "FreeBSD" ]; then
 
     # w -i sorts by idle time
     alias w='w -i'
-
-    # If this is the default freebsd motd, nuke it.
-    egrep '^FreeBSD (6.1|6.2|4.11)-STABLE.*$' /etc/motd &> /dev/null
-    if [ $? -eq 0 ]; then
-        clear
-        trick_append_motd "`head -n 1 /etc/motd`"
-    fi
 fi
 
 if [ "${UNAME}" = "Linux" ]; then
