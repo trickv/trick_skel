@@ -33,6 +33,12 @@ trick_skel_svn_wrapper () {
                 echo
             fi
         ;;
+        stm|statm)
+            svn stat | egrep '^M'
+        ;;
+        stu|statu)
+            svn stat -u
+        ;;
         *)
             OLD_IFS=$IFS
             IFS=$'\n'
