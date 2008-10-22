@@ -24,11 +24,13 @@ trick_skel_aliases () {
     alias sudol='sudo -l'
     alias dmesgt=trick_skel_dmesg_tail
     alias crontabl='crontab -l'
+    alias psg=trick_skel_psg
 
     # Mintel sudo usernames
     alias sudocs='sudo -H -u custom-services bash'
     alias sudoreplicate='sudo -H -u replicate bash'
     alias sudoroot='sudo -H bash'
+    alias sudomysql='sudo -u mysql bash'
     
     # Application-specific aliases
     alias pico='nano -w'
@@ -65,6 +67,10 @@ trick_skel_if_exists_then_alias () {
 
 trick_skel_dmesg_tail () {
     dmesg | tail
+}
+
+trick_skel_psg () {
+    ps auxwww | egrep -v 'grep|ps auxwww' | grep $*
 }
 
 # vim:filetype=sh
