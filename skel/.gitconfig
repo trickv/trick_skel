@@ -1,0 +1,6 @@
+# ~/.gitconfig from trick_skel
+# $Id$
+
+[user]
+	email = trick@vanstaveren.us
+	name = Patrick van Staveren
