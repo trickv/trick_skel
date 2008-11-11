@@ -1,4 +1,5 @@
 # trick_skel gdbinit
+# $Id$
 
 handle SIGXCPU SIG35 SIG33 SIGPWR nostop noprint
 handle SIGSEGV pass noprint

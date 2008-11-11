@@ -1,4 +1,5 @@
-# Configuration file for colorize
+# Configuration file for colorize, in trick_skel
+# $Id$
 #
 # Available 'pre' attributes: bold, underline, underscore, blink, reverse, concealed
 # Available colors:  black, red, green, yellow, blue, magenta, cyan, white

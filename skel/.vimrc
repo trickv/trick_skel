@@ -1,4 +1,5 @@
 " trick_skel vimrc
+" $Id$
 
 set number
 set nocompatible

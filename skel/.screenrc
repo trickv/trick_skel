@@ -1,6 +1,7 @@
-# trick's screenrc
+# trick's screenrc in trick_skel
+# $Id$
 
-# ssh!
+# ssh! or should I say shh?
 vbell on
 
 # Nice long default scrollback
@@ -25,7 +26,7 @@ bind + resize +1
 bind - resize -1
 bind _ resize max
 
-# bind F# keys 2-9 to screens 0-7; offset by two :$
+# bind F# keys 5-9 to screens 0-5; offset by a few :$
 bindkey -k k5 select 0
 bindkey -k k6 select 1
 bindkey -k k7 select 2

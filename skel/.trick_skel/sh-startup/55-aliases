@@ -38,6 +38,7 @@ trick_skel_aliases () {
     alias strdate='date -u +%Y%m%d-%H%M%S'
     alias 'ssh-keys'='ssh-add -l'
     alias clearenv='source _source_clearenv'
+    alias svn_id='svn propset svn:keywords Id'
 
     # git aliases
     alias 'git-st'='git-status'
