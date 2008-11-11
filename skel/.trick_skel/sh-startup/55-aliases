@@ -39,6 +39,9 @@ trick_skel_aliases () {
     alias 'ssh-keys'='ssh-add -l'
     alias clearenv='source _source_clearenv'
 
+    # git aliases
+    alias 'git-st'='git-status'
+
     # if we're root, this is handy
     if [ "$USER" = "root" ]; then
         alias iptl='iptables -L -n -v'
