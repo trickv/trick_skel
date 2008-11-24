@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export PATH=$PATH:/usr/local/bin
 
@@ -11,7 +11,7 @@ fi
 TRICK_HOSTNAME=`hostname -s`
 
 if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
-    source ~/.proxy_auth
+    source $HOME/.proxy_auth
 fi
 
 case $TRICK_HOSTNAME in
@@ -23,13 +23,13 @@ case $TRICK_HOSTNAME in
             echo $SVN_STAT
             echo
         fi
-        break;;
+        ;;
     cartman|bigweld|doobie|willow|gasket|diesel|baldrick|darth|raquel)
         ./update-mintel-rsync.sh
-        break;;
+        ;;
     *)
         echo "no update location set in cron-daily, help me."
-        break;;
+        ;;
 esac
 
 ./install > /dev/null
