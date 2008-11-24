@@ -43,6 +43,7 @@ trick_skel_aliases () {
     # git aliases
     alias 'git-st'='git-status'
     alias 'git-ci'='git-commit'
+    alias 'git-diff'='git-diff --color'
 
     # if we're root, this is handy
     if [ "$USER" = "root" ]; then
