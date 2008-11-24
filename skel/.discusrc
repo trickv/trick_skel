@@ -27,7 +27,7 @@ opts["mtab"] = "!/usr/bin/env mount -t nonfs,devfs,nullfs,fdescfs,procfs | awk '
 opts["places"] = 1
 
 ##  Filesystems to ignore.
-opts["skip_list"] = ["/dev", "/proc"]
+opts["skip_list"] = ["/dev", "/proc", "/var/run", "/var/lock", "/proc/fs/nfsd", "/proc/sys/fs/binfmt_misc", "/sys/kernel/security"]
 
 ##  Use smart formatting of numbers.
 opts["smart"] = 1
