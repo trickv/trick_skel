@@ -98,6 +98,7 @@ env &> $HOME/.trick_skel/info/install_env
 case "`hostname`" in atlas.usdmm.com|mc.home.vanstaveren.us)
     rm -f $HOME/bin/view
     cp optional/view $HOME/bin/trick_skel/
+    ln -s $HOME/bin/trick_skel/view $HOME/bin/trick_skel/remote_view
 
     rm -f $HOME/bin/myterm_remote
     cp optional/myterm_remote $HOME/bin/trick_skel/

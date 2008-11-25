@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. ~/.bash_profile_trick_skel
+
 winUser='Patrick van Staveren'
 domain=MINTELCHICAGO
 skynet=`master_password`
