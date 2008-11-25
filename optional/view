@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 winUser='Patrick van Staveren'
 domain=MINTELCHICAGO
@@ -16,7 +16,7 @@ lookup () {
     TFILE=`mktemp`
 
     HOST=`echo $1 | cut -d: -f1`
-    VNC_DISPLAY=`echo $1 | cut -d: -f2`
+    VNC_DISPLAY=`echo $1 | cut -s -d: -f2`
 
     host $HOST 2> /dev/null > $TFILE
     if [ $? -eq 0 ]; then
@@ -86,7 +86,7 @@ op|opserver)
 
     # Override domain-set passwords on a hostname basis here:
     case $1 in
-        unnilquadium.mintelchicago:0)
+        unnilquadium)
             PASSWD_FILE=$vncPasswords/unnilquadium.mintelchicago
             ;;
     esac
