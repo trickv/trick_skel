@@ -25,11 +25,13 @@ trick_skel_mintel_proxy () {
             export HTTP_PROXY=http://atlas.usdmm.com:3128
         ;;
         uk)
-            export HTTP_PROXY=http://10.255.255.254:3128
+            export HTTP_PROXY=http://proxy.mintel.co.uk:3128
         ;;
     esac
     
     export http_proxy=$HTTP_PROXY
+    export HTTPS_PROXY=$HTTP_PROXY
+    export https_proxy=$HTTP_PROXY
     export FTP_PROXY=$HTTP_PROXY
     export ftp_proxy=$HTTP_PROXY
 }
