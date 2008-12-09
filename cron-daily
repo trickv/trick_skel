@@ -24,7 +24,7 @@ case $TRICK_HOSTNAME in
             echo
         fi
         ;;
-    cartman|bigweld|doobie|willow|gasket|diesel|baldrick|darth|raquel)
+    survey-app01|gasket|raquel)
         ./update-mintel-rsync.sh
         ;;
     *)
