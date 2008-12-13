@@ -21,7 +21,7 @@ opts["graph_fill"] = "-"
 ##  first character) rather than a file:
 ##	opts["mtab"] = "!/bin/mount |awk '{print $1, $3}'"
 ##  opts["mtab"] = "/etc/mtab"
-opts["mtab"] = "!/usr/bin/env mount -t nonfs,devfs,nullfs,fdescfs,procfs | awk '{print $1, $3}'"
+opts["mtab"] = "!/usr/bin/env mount -t nonfs,devfs,nullfs,fdescfs,procfs,usbfs,sysfs,devpts | awk '{print $1, $3}'"
 
 ##  Number of decimal places to display, same as -p
 opts["places"] = 1
