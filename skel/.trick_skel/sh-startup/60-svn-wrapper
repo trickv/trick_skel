@@ -12,6 +12,9 @@ trick_skel_svn_wrapper () {
         colordiff)
             $TRICK_SVN diff $2 $3 $5 $5 $6 $7 $8 $9 | _colordiff_force_color
         ;;
+        diffl)
+            $TRICK_SVN diff $2 $3 $5 $5 $6 $7 $8 $9 | _colordiff_force_color | less -R
+        ;;
         diff)
             $TRICK_SVN $* | colordiff
         ;;
