@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sysctl kern.msgbuf | egrep "sshd|sudo|distccd" | perl -n -e '/... \d\d:\d\d:\d\d (.*) (?:sshd|sudo|distccd)/ && print "$1\n"' | head -n 1
