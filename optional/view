@@ -90,6 +90,7 @@ op|opserver)
     case $1 in
         unnilquadium)
             PASSWD_FILE=$vncPasswords/unnilquadium.mintelchicago
+            FLAGS="$FLAGS -encodings tight"
             ;;
     esac
 
@@ -97,7 +98,7 @@ op|opserver)
         PASSWD_STRING="-passwd $PASSWD_FILE"
     fi
 
-    cmd="$vnc $PASSWD_STRING $CONNECT_HOST"
+    cmd="$vnc $PASSWD_STRING $CONNECT_HOST $FLAGS"
     echo $cmd
     $cmd
     ;;
