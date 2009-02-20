@@ -16,6 +16,9 @@ set smartindent
 
 set bg=dark
 
+" show whitespace at end of lines    
+set list listchars=trail:#
+
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \     exe "normal g'\"" |
