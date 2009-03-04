@@ -31,6 +31,7 @@ trick_skel_aliases () {
     alias sudoreplicate='sudo -H -u replicate bash'
     alias sudoroot='sudo -H bash'
     alias sudomysql='sudo -u mysql bash'
+    alias sudopg='sudo -u `pguser` bash'
     
     # Application-specific aliases
     alias pico='nano -w'
