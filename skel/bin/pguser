@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+PART1=`hostname | cut -d\- -f1`
+
+if [ "$PART1" = "test" ]; then
+    PART1="tst"
+fi
+
+PART2=`hostname | cut -d\- -f2 | cut -b1-4`
+PART3=`hostname | cut -d\- -f3 | cut -b1-3`
+PART4=`hostname | sed s:[a-z\\.-]::g`
+
+echo "pg-${PART1}${PART2}${PART3}${PART4}"
+
