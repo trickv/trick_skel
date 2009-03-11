@@ -11,6 +11,7 @@ dialog = gtk.FontSelectionDialog(u'Select font\u2026')
 dialog.ok_button.hide()
 dialog.add_button(gtk.STOCK_COPY, gtk.RESPONSE_OK)
 dialog.set_default_response(gtk.RESPONSE_OK)
+dialog.resize(400, 600)
 
 result = dialog.run()
 
