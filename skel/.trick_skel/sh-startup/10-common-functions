@@ -10,12 +10,12 @@ trick_skel_start_keychain () {
             echo "Refusing to run keychain as it seems to be in this bash_profile already."
             return
         fi
-        
+
         # find keys and load them in
         TRICK_KEYS=`find $HOME/.ssh/ -name "id_?sa" | grep -v backup | grep -v old`
         if [ "$TRICK_KEYS" != "" ]; then
             for cur in $TRICK_KEYS; do
-                $TRICK_KEYCHAIN -q $cur
+                $TRICK_KEYCHAIN -q --nogui $cur
             done
             . $HOME/.keychain/`hostname`-sh
         else
@@ -23,6 +23,20 @@ trick_skel_start_keychain () {
         fi
     fi
     unset TRICK_KEYCHAIN TRICK_KEYS cur
+}
+
+trick_skel_first_ssh_run () {
+    trick_skel_start_keychain
+    unalias ssh
+    ssh $@
+}
+
+trick_skel_verify_ssh_agent () {
+    ps auxwww | grep ^$USER | grep -v grep | grep ssh-agent &> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Notice: ssh-agent not running yet."
+        alias ssh=trick_skel_first_ssh_run
+    fi
 }
 
 # change up a bunch of directories at once

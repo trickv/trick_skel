@@ -123,8 +123,7 @@ if [ "${TERM}" == "screen" ]; then
     alias 'screen'='echo It appears that you are a masochist. Do not run screen within screen.  It causes cancer.'
 fi
 
-# start keychain
-trick_skel_start_keychain
+trick_skel_verify_ssh_agent
 
 # set up proxy as necessary
 trick_skel_proxy
