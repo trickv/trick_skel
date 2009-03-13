@@ -36,6 +36,8 @@ trick_skel_verify_ssh_agent () {
     if [ $? -ne 0 ]; then
         echo "Notice: ssh-agent not running yet."
         alias ssh=trick_skel_first_ssh_run
+    else
+        trick_skel_start_keychain
     fi
 }
 
