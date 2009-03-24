@@ -45,6 +45,9 @@ trick_skel_svn_wrapper () {
         stu|statu)
             svn stat -u
         ;;
+        sti|stie)
+            svn stat --ignore-externals
+        ;;
         *)
             OLD_IFS=$IFS
             IFS=$'\n'
