@@ -25,6 +25,7 @@ trick_skel_aliases () {
     alias dmesgt=trick_skel_dmesg_tail
     alias crontabl='crontab -l'
     alias psg=trick_skel_psg
+    alias vimp="vim -c 'set paste'"
 
     # Mintel sudo usernames
     alias sudocs='sudo -H -u custom-services bash'
