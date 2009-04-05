@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use warnings;
+
 my $mintelUsProxyCommand = "connect -S localhost:3129 %h %p";
 
 # general use stuff
@@ -14,7 +16,27 @@ my %hosts = (
         'User' => 'trickv'}
 );
 
-my @mintelHosts = qw(atlas diesel bigweld gasket anya willow doobie cartman baldrick raquel bbbx3 bbbx4 cupid lister kryten bunsen beaker narthex mecca maverick goose test-survey-app01 test-survey-app02 test-survey-app03 atlas.usdmm.com);
+open (FILE, "optional/mintel_hosts") or die("Failed to open optional/mintel_hosts");
+my @mintelHosts = <FILE>;
+close (FILE);
+chomp @mintelHosts;
+
+# Now for the fun stuff:
+# Take every possible jail name that I might want to SSH to...
+# And add a host line for it :)
+my @mintelHostPrefixes = ( "dev-", "test-", "" );
+my @mintelHostNames = ( "survey", "fedex", "pepsi", "iron" );
+my @mintelHostSuffixes = ( "db", "app", "analysis" );
+for ($i = 1; $i < 20; $i++) {
+    foreach $prefix (@mintelHostPrefixes) {
+        foreach $name (@mintelHostNames) {
+            foreach $suffix (@mintelHostSuffixes) {
+                $host = sprintf("%s%s-%s%02d", $prefix, $name, $suffix, $i);
+                push @mintelHosts, $host;
+            }
+        }
+    }
+}
 
 $hostname = `hostname`;
 $hostname =~ s/\s+$//g;
@@ -27,9 +49,9 @@ print "# global settings\n";
 print "EscapeChar ^s\n\n";
 print "StrictHostKeyChecking no\n\n";
 
-
 # special cases for home boxen
-if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/) {
+if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/ or $hostname =~ /^ss$/) {
+    my $mintelHostString;
     foreach $cur (@mintelHosts) {
         $hosts{$cur} = {'User' => 'pv'};
     }
