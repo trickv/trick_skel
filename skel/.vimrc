@@ -16,6 +16,9 @@ set smartindent
 
 set bg=dark
 
+" turn on mouse support
+set mouse=a
+
 " show whitespace at end of lines    
 set list listchars=trail:#
 
