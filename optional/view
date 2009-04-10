@@ -90,7 +90,8 @@ op|opserver)
     case $1 in
         unnilquadium)
             PASSWD_FILE=$vncPasswords/unnilquadium.mintelchicago
-            FLAGS="$FLAGS -encodings tight"
+            FLAGS="$FLAGS -encodings tight -compresslevel 9 -quality 4"
+            CONNECT_HOST=unnilquadium.mintelchicago.usdmm.com:1
             ;;
     esac
 
