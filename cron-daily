@@ -16,6 +16,7 @@ fi
 
 case $TRICK_HOSTNAME in
     sting|mc|sam|atlas|vanstaveren|ed|ss)
+        . $HOME/.keychain/`hostname`-sh
         svn up > /dev/null
         SVN_STAT=`svn stat`
         if [ "$SVN_STAT" != "" ]; then
