@@ -28,9 +28,9 @@ trick_skel_aliases () {
     alias vimp="vim -c 'set paste'"
 
     # Mintel sudo usernames
-    alias sudocs='sudo -H -u custom-services bash'
-    alias sudoreplicate='sudo -H -u replicate bash'
-    alias sudoroot='sudo -H bash'
+    alias sudocs='sudo -H -u custom-services bash --login'
+    alias sudoreplicate='sudo -H -u replicate bash --login'
+    alias sudoroot='sudo -H bash --login'
     alias sudomysql='sudo -u mysql bash'
     alias sudopg='sudo -H -u `pguser` bash'
     
