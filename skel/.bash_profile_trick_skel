@@ -58,11 +58,7 @@ if [ "`uname`" = "FreeBSD" ]; then
     else
         dbg "We're on the jail host, not setting prompt"
         JAIL_HOST_INSERT=""
-        ezjail-admin list &> /dev/null
-        RET=$?
-        if [ $RET -eq 0 ]; then
-            ezjail-admin list
-        fi
+        jls
     fi
 fi
 
