@@ -40,7 +40,7 @@ trick_skel_svn_wrapper () {
             fi
         ;;
         stm|statm)
-            svn stat | egrep '^M|^A'
+            svn stat | egrep '^M|^A|^D|^R|^C'
         ;;
         stu|statu)
             svn stat -u
