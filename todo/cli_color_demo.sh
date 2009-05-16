@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 #   This file was taken from the BASH Prompt HOWTO at:
 #   http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
