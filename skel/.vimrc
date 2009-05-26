@@ -22,6 +22,9 @@ set mouse=a
 " show whitespace at end of lines    
 set list listchars=trail:#
 
+" Don't allow vim to use dos filetype.  Make those ugly ^M's stand out!
+set fileformats=unix
+
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \     exe "normal g'\"" |
