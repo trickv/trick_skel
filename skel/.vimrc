@@ -20,7 +20,7 @@ set bg=dark
 set mouse=a
 
 " show whitespace at end of lines    
-set list listchars=trail:#
+set list listchars=trail:.
 
 " Don't allow vim to use dos filetype.  Make those ugly ^M's stand out!
 set fileformats=unix
