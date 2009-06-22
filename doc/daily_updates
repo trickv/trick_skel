@@ -8,19 +8,16 @@ Mintel block:
 02:00 [local TZ] svn block (CDT=>8AM UTC,CST=>7AM UTC)
     2:00 pv@atlas *
     2:05 root@atlas *
-10:00 [local TZ] London rsync boxes:
-    10:00 pv@raquel *
-09:00 UTC boxes:
+09:00 UTC boxes rsync'ing from atlas:
     09:00 pv@survey-app01 *
     09:05 pv@gasket *
+    09:10 pv@raquel *
 
 03:15 [local TZ] Home boxes:
     3:30 trick@mc *
     3:32 root@mc *
     3:34 trick@sting *
     3:36 root@sting *
-    #3:38 trick@ed * ## trick@ed disabled temporarily b/c it's sharing home w/ mc
-    3:40 root@ed *
     3:42 trick@ss
     3:44 root@ss
 
