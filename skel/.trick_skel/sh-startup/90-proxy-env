@@ -34,6 +34,7 @@ trick_skel_mintel_proxy () {
     export https_proxy=$HTTP_PROXY
     export FTP_PROXY=$HTTP_PROXY
     export ftp_proxy=$HTTP_PROXY
+    export no_proxy="mintel.co.uk,usdmm.com"
 }
 
 # vim:filetype=sh
