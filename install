@@ -95,7 +95,7 @@ hostname -s &> $HOME/.trick_skel/info/install_hostname_short
 env &> $HOME/.trick_skel/info/install_env
 
 # install optional scripts depending on conditionals
-case "`hostname`" in atlas.usdmm.com|mc.home.vanstaveren.us|ss)
+case "`hostname`" in atlas.usdmm.com|atlas|mc.home.vanstaveren.us|ss)
     rm -f $HOME/bin/view
     cp optional/view $HOME/bin/trick_skel/
     ln -s $HOME/bin/trick_skel/view $HOME/bin/trick_skel/remote_view
