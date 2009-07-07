@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# sync-music-from-mc from trick_skel
+# $Id$
+
+echo "Script ID: $Id$"
+
+echo "Started at `date`"
+
+if [ "`hostname`" = "atlas" ]; then
+    bwlimit=10
+else
+    bwlimit=1000
+fi
+
+echo "Bandwidth limit set to ${bwlimit}k"
+
+# see man lockfile-create
+
+LOCKFILE=/var/tmp/sync-update
+
+lockfile-create --retry 0 --verbose $LOCKFILE
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+lockfile-touch $LOCKFILE &
+# Save the PID of the lockfile-touch process
+BADGER="$!"
+rsync rsync://mc/music/ $HOME/Music/ --archive --verbose --delete-during --bwlimit=${bwlimit}
+kill "${BADGER}"
+lockfile-remove $LOCKFILE
+
+echo "Finished at `date`"
