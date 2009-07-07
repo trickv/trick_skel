@@ -8,7 +8,7 @@ echo 'Script ID: $Id$'
 echo "Started at `date`"
 
 if [ "`hostname`" = "atlas" ]; then
-    bwlimit=10
+    bwlimit=15
 else
     bwlimit=1000
 fi
