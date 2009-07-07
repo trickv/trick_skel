@@ -3,7 +3,7 @@
 # sync-music-from-mc from trick_skel
 # $Id$
 
-echo "Script ID: $Id$"
+echo 'Script ID: $Id$'
 
 echo "Started at `date`"
 
