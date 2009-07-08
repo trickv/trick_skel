@@ -29,7 +29,7 @@ case $TRICK_HOSTNAME in
         ./update-mintel-rsync.sh
         ;;
     *)
-        echo "no update location set in cron-daily, help me."
+        echo "no update location set in cron-daily for hostname=${TRICK_HOSTNAME}, help me."
         ;;
 esac
 
