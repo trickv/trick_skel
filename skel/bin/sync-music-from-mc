@@ -3,9 +3,11 @@
 # sync-music-from-mc from trick_skel
 # $Id$
 
-echo 'Script ID: $Id$'
+LOGFILE=/var/tmp/sync-update.log
 
-echo "Started at `date`"
+echo 'Script ID: $Id$' > $LOGFILE
+
+echo "Started at `date`" >> $LOGFILE
 
 if [ "`hostname`" = "atlas" ]; then
     bwlimit=15
@@ -13,11 +15,11 @@ else
     bwlimit=1000
 fi
 
-echo "Bandwidth limit set to ${bwlimit}k"
+echo "Bandwidth limit set to ${bwlimit}k" >> $LOGFILE
 
 # see man lockfile-create
 
-LOCKFILE=/var/tmp/sync-update
+LOCKFILE=/var/tmp/sync-update.lock
 
 lockfile-create --retry 0 --verbose $LOCKFILE
 if [ $? -ne 0 ]; then
@@ -26,8 +28,13 @@ fi
 lockfile-touch $LOCKFILE &
 # Save the PID of the lockfile-touch process
 BADGER="$!"
-rsync rsync://mc/music/ $HOME/Music/ --archive --verbose --delete-during --bwlimit=${bwlimit}
+rsync rsync://mc/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
 kill "${BADGER}"
 lockfile-remove $LOCKFILE
 
-echo "Finished at `date`"
+echo "Finished at `date`" >> $LOGFILE
+
+egrep '^Number of files transferred: (0|1)$' $LOGFILE &> /dev/null
+if [ $? -ne 0 ]; then
+    cat $LOGFILE
+fi
