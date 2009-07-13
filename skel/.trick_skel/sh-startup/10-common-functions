@@ -54,4 +54,10 @@ up () {
     done
 }
 
+# If this looks like a Mintel host, returns true
+trick_skel_mintel () {
+    hostname | egrep "(mintel.ad|mintel.co.uk|usdmm.com)$" &> /dev/null
+    return $?
+}
+
 # vim:filetype=sh
