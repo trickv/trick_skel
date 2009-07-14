@@ -1,3 +1,13 @@
+# Helps to see if we're on a dumb terminal or not
+trick_skel_terminal_interactive () {
+    if [ "$TERM" == "xterm" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+
 # Keychain automagicalness
 trick_skel_start_keychain () {
     TRICK_KEYCHAIN=`which keychain 2> /dev/null`
@@ -7,7 +17,7 @@ trick_skel_start_keychain () {
         # quick check to ensure we're not already starting keychain
         egrep '^keychain' $HOME/.bash_profile &> /dev/null
         if [ $? -ne 1 ]; then
-            echo "Refusing to run keychain as it seems to be in this bash_profile already."
+            trick_skel_notice "Refusing to run keychain as it seems to be in this bash_profile already."
             return
         fi
 
@@ -19,8 +29,10 @@ trick_skel_start_keychain () {
             done
             . $HOME/.keychain/`hostname`-sh
         else
-            echo "No keys!"
+            trick_skel_notice "No keys!"
         fi
+    else
+        trick_skel_notice "Keychain is not installed on this host."
     fi
     unset TRICK_KEYCHAIN TRICK_KEYS cur
 }
@@ -31,10 +43,17 @@ trick_skel_first_ssh_run () {
     ssh $@
 }
 
+# echo's out information to the terminal if it's proper to do so
+trick_skel_notice () {
+    if trick_skel_terminal_interactive; then
+        echo $@
+    fi
+}
+
 trick_skel_verify_ssh_agent () {
     ps auxwww | grep ^$USER | grep -v grep | grep ssh-agent &> /dev/null
     if [ $? -ne 0 ]; then
-        echo "Notice: ssh-agent not running yet."
+        trick_skel_notice "Notice: ssh-agent not running yet.";
         alias ssh=trick_skel_first_ssh_run
     else
         trick_skel_start_keychain
