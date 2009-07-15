@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # trickv's bash_profile skeleton
 # $Id$
 
 # Should run on any sh-compatible shell if I weren't such a hack, but I am.
 
-TRICK_SKEL_START_TIME=`date -u +%s`
+TRICK_SKEL_START_TIME=$SECONDS
 
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 
@@ -17,8 +17,8 @@ if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
 fi
 
-TRICK_HOSTNAME=`hostname | cut -d. -f1`
-TRICK_FULL_HOSTNAME=`hostname`
+TRICK_HOSTNAME=${HOSTNAME%%.*}
+TRICK_FULL_HOSTNAME=$HOSTNAME
 
 # Handy environment variables that make me happy
 export PAGER=less
@@ -44,7 +44,7 @@ case $UID in
 esac
 
 # If this is a FreeBSD jail host, try and determine the jail host name
-if [ "`uname`" = "FreeBSD" ]; then
+if trick_skel_is_freebsd; then
     dbg "Trying to detrmine jail host name..."
     JAIL_HOST=`jailhost`
     dbg "Jail host is '${JAIL_HOST}'"

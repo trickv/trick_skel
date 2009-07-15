@@ -3,11 +3,11 @@
 source $HOME/.trick_skel/sh-startup/10-common-functions
 
 trick_skel_timing_finish () {
-    TRICK_SKEL_FINISH_TIME=`date -u +%s`
+    TRICK_SKEL_FINISH_TIME=$SECONDS
     let TRICK_SKEL_RUN_TIME=$TRICK_SKEL_FINISH_TIME-$TRICK_SKEL_START_TIME
 
     if [ $TRICK_SKEL_RUN_TIME -gt 2 ]; then
-        trick_skel_notice "skel took $TRICK_SKEL_RUN_TIME seconds to init."
+        trick_skel_notice "skel took $TRICK_SKEL_RUN_TIME seconds to init; shell total of ${TRICK_SKEL_FINISH_TIME}"
     fi
     unset TRICK_SKEL_RUN_TIME TRICK_SKEL_FINISH_TIME TRICK_SKEL_START_TIME
 }

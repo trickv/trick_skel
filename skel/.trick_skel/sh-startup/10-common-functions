@@ -79,4 +79,13 @@ trick_skel_mintel () {
     return $?
 }
 
+# If this is freebsd, return [shell] true
+trick_skel_is_freebsd () {
+    if [ "${OSTYPE/?.?/}" == "freebsd" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # vim:filetype=sh
