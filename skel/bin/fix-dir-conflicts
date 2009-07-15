@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+$input = 'dir_conflicts.prej';
+$regex = "/(?s)Trying to change property '(?<property>.*)' from '(?<from>.*)' to '(?<to>.*)',\nbut property already exists with value '(?<exists>.*)'\./";
+
+if (($conflicts = file_get_contents($input)) === false)
+    die("Failed to get contents of $input, fail!\n");
+
+if (!preg_match($regex, $conflicts, $matches))
+    die("dir_conflicts.prej does not match regular expression, fail!\n");
+
+$property = $matches['property'];
+
+list($fromFile, $toFile, $existsFile, $newFile) = array(mktemp(), mktemp(), mktemp(), mktemp());
+
+file_put_contents($fromFile, $matches['from']);
+file_put_contents($toFile, $matches['to']);
+file_put_contents($existsFile, $matches['exists']);
+
+exec("diff3 -m $existsFile $fromFile $toFile | tee $newFile", $output, $return);
+if ($ret != 0)
+    die("diff3 returned an error: $ret.  Fail!\n");
+
+$newValue = implode("\n", $output);
+
+`svn propset $property -F $newFile .`;
+
+echo "  Property set to:\n  =============\n{$newValue}\n  =============\n";
+
+unlink($fromFile);
+unlink($toFile);
+unlink($existsFile);
+unlink($newFile);
+
+function mktemp() {
+    return tempnam('/var/tmp', 'fix-dir-conflicts');
+}
+
+?>
