@@ -9,9 +9,8 @@ TRICK_SKEL_START_TIME=$SECONDS
 
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 
-for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp`; do
-    source $cur
-done
+# source all the sh-startup scripts (handled by a previously generated script, initialize)
+source $HOME/.trick_skel/initialize
 
 if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
