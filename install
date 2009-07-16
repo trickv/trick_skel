@@ -34,11 +34,6 @@ find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 rm -rf $HOME/.trick_skel
 cp -R skel/.trick_skel $HOME
 
-# Generate a script which will source all the files in .trick_skel/sh-startup
-for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp | sort`; do
-    echo "source ${cur}" >> $HOME/.trick_skel/initialize
-done
-
 # Install .dotfiles
 echo -n "Installing: "
 for cur in $INSTALL_DOTFILES; do
@@ -120,11 +115,17 @@ if [ "`uname`" = "Linux" ]; then
     cp optional/lside $HOME/bin/trick_skel/
 fi
 
+# Run any scripts in install.d
 for cur in `ls install.d`; do
     if [ -x install.d/$cur ]; then
         echo Running install.d/$cur
         install.d/$cur
     fi
+done
+
+# Generate a script which will source all the files in .trick_skel/sh-startup
+for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp | sort`; do
+    echo "source ${cur}" >> $HOME/.trick_skel/initialize
 done
 
 # Viola!
