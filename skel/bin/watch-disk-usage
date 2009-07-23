@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+while [ true ]; do
+    df -h /data | tail -n 1 | mail -s "du `hostname -s`" 7735747582@tmomail.net
+    sleep 1800
+done
