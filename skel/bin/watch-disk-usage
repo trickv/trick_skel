@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
+if [ "${1}" == "" ]; then
+    echo "You must specify a volume."
+    exit 1
+fi
+
+volume=$1
+
+df -h $volume
+
 while [ true ]; do
-    df -h /data | tail -n 1 | mail -s "du `hostname -s`" 7735747582@tmomail.net
+    df -h $volume | mail -s "df `hostname -s`" 7735747582@tmomail.net
+    date
+    df -h $volume
     sleep 1800
 done
