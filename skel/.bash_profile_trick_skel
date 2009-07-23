@@ -96,6 +96,8 @@ if [ "${UNAME}" = "FreeBSD" ]; then
     trick_skel_if_exists_then_alias gtail tail
     trick_skel_if_exists_then_alias gls ls
     trick_skel_if_exists_then_alias grm rm
+    trick_skel_if_exists_then_alias gsleep sleep
+    trick_skel_if_exists_then_alias gsort sort
     
     export SHELL=/usr/local/bin/bash
     
