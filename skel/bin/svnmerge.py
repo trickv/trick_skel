@@ -31,9 +31,9 @@
 #     location identifier formats
 #
 # $HeadURL: http://svn.collab.net/repos/svn/trunk/contrib/client-side/svnmerge/svnmerge.py $
-# $LastChangedDate: 2009-03-25 10:53:24 -0500 (Wed, 25 Mar 2009) $
+# $LastChangedDate: 2009-05-12 12:25:35 -0500 (Tue, 12 May 2009) $
 # $LastChangedBy: blair $
-# $LastChangedRevision: 36769 $
+# $LastChangedRevision: 37715 $
 #
 # Requisites:
 # svnmerge.py has been tested with all SVN major versions since 1.1 (both
@@ -158,8 +158,8 @@ def kwextract(s):
     except IndexError:
         return "<unknown>"
 
-__revision__ = kwextract('$Rev: 36769 $')
-__date__ = kwextract('$Date: 2009-03-25 10:53:24 -0500 (Wed, 25 Mar 2009) $')
+__revision__ = kwextract('$Rev: 37715 $')
+__date__ = kwextract('$Date: 2009-05-12 12:25:35 -0500 (Tue, 12 May 2009) $')
 
 # Additional options, not (yet?) mapped to command line flags
 default_opts = {
@@ -352,7 +352,7 @@ class PathIdentifier:
     about it before we know the form that it takes in the properties (its
     external_form).  Objects are referenced in the class variable 'locobjs',
     keyed by all known forms."""
-    
+
     # a map of UUID (or None) to repository root URL.
     repo_hints = {}
 
@@ -366,7 +366,7 @@ class PathIdentifier:
         self.external_form = external_form
 
     def __repr__(self):
-        return "<PathIdentifier " + ', '.join('%s=%r' % i for i in self.__dict__.items()) + '>'
+        return "<PathIdentifier " + ', '.join(['%s=%r' % i for i in self.__dict__.items()]) + '>'
 
     def __str__(self):
         """Return a printable string representation"""
