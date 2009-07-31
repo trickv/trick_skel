@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#$Id$
+# $Id$
 
 outstanding_changes=`svn st | egrep '^M|^C|^R|^A' | wc -l`
 
