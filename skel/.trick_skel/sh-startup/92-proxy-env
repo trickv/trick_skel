@@ -1,19 +1,21 @@
 # functions for setting env vars for mintel proxy
 
 trick_skel_proxy () {
-    # if it looks like we're in chicago...
-    hostname | egrep "(atlas|usdmm.com)" &> /dev/null
-    if [ $? -eq 0 ]; then
-        trick_skel_mintel_proxy us
-    fi
+    if [ $TRICK_SKEL_MINTEL_HOST ]; then
+        # if it looks like we're in chicago...
+        hostname | egrep "(atlas|usdmm.com)" &> /dev/null
+        if [ $? -eq 0 ]; then
+            trick_skel_mintel_proxy us
+        fi
 
-    # if this is on mintel.co.uk, it's london or vital
-    hostname | egrep "mintel.co.uk" &> /dev/null
-    if [ $? -eq 0 ]; then
-        # if it's vital, don't set proxy
-        host `hostname` | grep '172.31' &> /dev/null
-        if [ $? -ne 0 ]; then
-            trick_skel_mintel_proxy uk
+        # if this is on mintel.co.uk, it's london or vital
+        hostname | egrep "mintel.co.uk" &> /dev/null
+        if [ $? -eq 0 ]; then
+            # if it's vital, don't set proxy
+            host `hostname` | grep '172.31' &> /dev/null
+            if [ $? -ne 0 ]; then
+                trick_skel_mintel_proxy uk
+            fi
         fi
     fi
 }

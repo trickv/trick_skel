@@ -1,9 +1,7 @@
 # If this is a mintel box and the local home dir hasn't been created, do so
 
-. $HOME/.trick_skel/sh-startup/10-common-functions
-
 trick_skel_mintel_home () {
-    if trick_skel_mintel; then
+    if [[ ($TRICK_SKEL_MINTEL_HOST) && ($TRICK_SKEL_IS_FREEBSD) ]]; then
         if [ ! -d $HOME/local/ ]; then
             echo "Creating local data directory (mk_local_home)"
             sudo /usr/local/mintel/shared/utils/mk_local_home

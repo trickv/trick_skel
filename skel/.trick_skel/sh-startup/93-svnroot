@@ -1,5 +1,4 @@
-hostname | egrep "(atlas|usdmm.com|mintel.co.uk|mintel.ad)" &> /dev/null
-if [ $? -eq 0 ]; then
+if [ $TRICK_SKEL_MINTEL_HOST ]; then
     export SVNROOT=http://svn.mintel.co.uk/
 fi
 

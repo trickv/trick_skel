@@ -40,8 +40,23 @@ case $UID in
     *) TRICK_USERNAME_COLOR="01;37m";;
 esac
 
+# set a common variable to be used to detect if this is a Mintel host
+# TODO: figure out how to do this in pure bash?
+echo $TRICK_FULL_HOSTNAME | egrep "(atlas|usdmm.com|mintel.co.uk|mintel.ad)" &> /dev/null
+if [ $? -eq 0 ]; then
+    TRICK_SKEL_MINTEL_HOST=0
+else
+    TRICK_SKEL_MINTEL_HOST=""
+fi
+
+if [ "${OSTYPE/?.?/}" == "freebsd" ]; then
+    TRICK_SKEL_IS_FREEBSD=0
+else
+    TRICK_SKEL_IS_FREEBSD=""
+fi
+
 # FreeBSD-specific stuff goes here!
-if trick_skel_is_freebsd; then
+if [ $TRICK_SKEL_IS_FREEBSD ]; then
     # If this is a FreeBSD jail host, try and determine the jail host name
     dbg "Trying to detrmine jail host name..."
     JAIL_HOST=`jailhost`
