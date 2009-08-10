@@ -73,12 +73,6 @@ trick_skel_aliases
 # TODO: nested if required because sh whines...wtf?!
 if [ -d $HOME/man ]; then if [ "${MANPATH}" != "" ]; then export MANPATH=$MANPATH:$HOME/man; fi; fi
 
-mysql --version 2>&1 | egrep 'Distrib 5' &> /dev/null
-if [ $? -eq 0 ]; then
-    # this is MySQL 5, use --show-warnings
-    alias mysql='mysql --show-warnings'
-fi
-
 trick_append_motd () {
     TRICK_MOTD="${TRICK_MOTD}${1}
 "
