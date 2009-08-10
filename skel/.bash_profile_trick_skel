@@ -3,8 +3,6 @@
 # trickv's bash_profile skeleton
 # $Id$
 
-# Should run on any sh-compatible shell if I weren't such a hack, but I am.
-
 TRICK_SKEL_START_TIME=$SECONDS
 
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
