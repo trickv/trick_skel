@@ -51,13 +51,7 @@ trick_skel_notice () {
 }
 
 trick_skel_verify_ssh_agent () {
-    ps auxwww | grep ^$USER | grep -v grep | grep ssh-agent &> /dev/null
-    if [ $? -ne 0 ]; then
-        trick_skel_notice "Notice: ssh-agent not running yet.";
-        alias ssh=trick_skel_first_ssh_run
-    else
-        trick_skel_start_keychain
-    fi
+    alias ssh=trick_skel_first_ssh_run
 }
 
 # change up a bunch of directories at once
