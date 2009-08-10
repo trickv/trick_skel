@@ -55,6 +55,9 @@ else
     TRICK_SKEL_IS_FREEBSD=""
 fi
 
+# set aliases
+trick_skel_aliases
+
 # FreeBSD-specific stuff goes here!
 if [ $TRICK_SKEL_IS_FREEBSD ]; then
     # If this is a FreeBSD jail host, try and determine the jail host name
@@ -95,9 +98,6 @@ fi
 export PS1="\[\033[${TRICK_USERNAME_COLOR}\]\u\[\033[1;33m\]@\[\033[${TRICK_HOSTNAME_COLOR}\]\h${JAIL_HOST_INSERT}\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[1;31m\]/\[\033[00m\] "
 export PS2='>'
 unset TRICK_HOSTNAME_COLOR TRICK_USERNAME_COLOR
-
-# set aliases
-trick_skel_aliases
 
 # Conditional stuff
 # TODO: nested if required because sh whines...wtf?!
