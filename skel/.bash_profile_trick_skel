@@ -42,8 +42,9 @@ case $UID in
     *) TRICK_USERNAME_COLOR="01;37m";;
 esac
 
-# If this is a FreeBSD jail host, try and determine the jail host name
+# FreeBSD-specific stuff goes here!
 if trick_skel_is_freebsd; then
+    # If this is a FreeBSD jail host, try and determine the jail host name
     dbg "Trying to detrmine jail host name..."
     JAIL_HOST=`jailhost`
     dbg "Jail host is '${JAIL_HOST}'"
@@ -60,6 +61,22 @@ if trick_skel_is_freebsd; then
         jls
         uptime
     fi
+
+    trick_skel_if_exists_then_alias gmake make
+    trick_skel_if_exists_then_alias ghead head
+    trick_skel_if_exists_then_alias gtail tail
+    trick_skel_if_exists_then_alias gls ls
+    trick_skel_if_exists_then_alias grm rm
+    trick_skel_if_exists_then_alias gsleep sleep
+    trick_skel_if_exists_then_alias gsort sort
+    
+    export SHELL=/usr/local/bin/bash
+    
+    # This enables colors with ``ls''
+    export CLICOLOR=1
+
+    # w -i sorts by idle time
+    alias w='w -i'
 fi
 
 export PS1="\[\033[${TRICK_USERNAME_COLOR}\]\u\[\033[1;33m\]@\[\033[${TRICK_HOSTNAME_COLOR}\]\h${JAIL_HOST_INSERT}\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[1;31m\]/\[\033[00m\] "
@@ -82,27 +99,7 @@ trick_motd () {
     echo -n "$TRICK_MOTD"
 }
 
-UNAME=`uname`
-if [ "${UNAME}" = "FreeBSD" ]; then
-    # FreeBSD-specific stuff goes here!
-    trick_skel_if_exists_then_alias gmake make
-    trick_skel_if_exists_then_alias ghead head
-    trick_skel_if_exists_then_alias gtail tail
-    trick_skel_if_exists_then_alias gls ls
-    trick_skel_if_exists_then_alias grm rm
-    trick_skel_if_exists_then_alias gsleep sleep
-    trick_skel_if_exists_then_alias gsort sort
-    
-    export SHELL=/usr/local/bin/bash
-    
-    # This enables colors with ``ls''
-    export CLICOLOR=1
-
-    # w -i sorts by idle time
-    alias w='w -i'
-fi
-
-if [ "${UNAME}" = "Linux" ]; then
+if [ "${OSTYPE}" = "linux-gnu" ]; then
     # Linux-specific stuff goes here
     # FreeBSD lameness: doesn't support --show-progress.  Perhaps fbsd 7 will have bzip 1.0.4?
     alias bzip2='bzip2 --show-progress'
