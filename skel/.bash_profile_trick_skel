@@ -88,15 +88,6 @@ trick_skel_aliases
 # TODO: nested if required because sh whines...wtf?!
 if [ -d $HOME/man ]; then if [ "${MANPATH}" != "" ]; then export MANPATH=$MANPATH:$HOME/man; fi; fi
 
-trick_append_motd () {
-    TRICK_MOTD="${TRICK_MOTD}${1}
-"
-}
-
-trick_motd () {
-    echo -n "$TRICK_MOTD"
-}
-
 if [ "${OSTYPE}" = "linux-gnu" ]; then
     # Linux-specific stuff goes here
     # FreeBSD lameness: doesn't support --show-progress.  Perhaps fbsd 7 will have bzip 1.0.4?
@@ -137,13 +128,6 @@ skelup () {
     echo "skelup'd from $OLD_REV to $TRICK_SKEL_ENV_REVISION :)"
     unset OLD_REV
 }
-
-export TRICK_SKEL_ENV_REVISION=`cat $HOME/.trick_skel/info/txt | grep '^Last Changed Rev' | cut -d\  -f4`
-
-trick_append_motd "`uptime`"
-#trick_motd
-
-#cat $HOME/.trick_skel/motd/*
 
 unset TRICK_HOSTNAME TRICK_FULL_HOSTNAME TRICK_MOTD
 
