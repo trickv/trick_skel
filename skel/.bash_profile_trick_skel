@@ -7,15 +7,30 @@ TRICK_SKEL_START_TIME=$SECONDS
 
 export PATH=$HOME/bin:$HOME/bin/trick_skel:$PATH
 
+TRICK_HOSTNAME=${HOSTNAME%%.*}
+TRICK_FULL_HOSTNAME=$HOSTNAME
+
+# set a common variable to be used to detect if this is a Mintel host
+# TODO: figure out how to do this in pure bash?
+echo $TRICK_FULL_HOSTNAME | egrep "(atlas|usdmm.com|mintel.co.uk|mintel.ad)" &> /dev/null
+if [ $? -eq 0 ]; then
+    TRICK_SKEL_MINTEL_HOST=0
+else
+    TRICK_SKEL_MINTEL_HOST=""
+fi
+
+if [ "${OSTYPE/?.?/}" == "freebsd" ]; then
+    TRICK_SKEL_IS_FREEBSD=0
+else
+    TRICK_SKEL_IS_FREEBSD=""
+fi
+
 # source all the sh-startup scripts (handled by a previously generated script, initialize)
 source $HOME/.trick_skel/initialize
 
 if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
 fi
-
-TRICK_HOSTNAME=${HOSTNAME%%.*}
-TRICK_FULL_HOSTNAME=$HOSTNAME
 
 # Handy environment variables that make me happy
 export PAGER=less
@@ -39,21 +54,6 @@ case $UID in
     0) TRICK_USERNAME_COLOR="01;31m";;
     *) TRICK_USERNAME_COLOR="01;37m";;
 esac
-
-# set a common variable to be used to detect if this is a Mintel host
-# TODO: figure out how to do this in pure bash?
-echo $TRICK_FULL_HOSTNAME | egrep "(atlas|usdmm.com|mintel.co.uk|mintel.ad)" &> /dev/null
-if [ $? -eq 0 ]; then
-    TRICK_SKEL_MINTEL_HOST=0
-else
-    TRICK_SKEL_MINTEL_HOST=""
-fi
-
-if [ "${OSTYPE/?.?/}" == "freebsd" ]; then
-    TRICK_SKEL_IS_FREEBSD=0
-else
-    TRICK_SKEL_IS_FREEBSD=""
-fi
 
 # set aliases
 trick_skel_aliases
