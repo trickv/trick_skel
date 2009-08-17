@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+last | awk '{print $1}' | sort | uniq -c
