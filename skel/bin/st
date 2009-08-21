@@ -1,0 +1,1 @@
+svn st | egrep -v ^$ | grep -v ^Performing | egrep -v ^X | egrep -v "\.orig$"
