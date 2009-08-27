@@ -20,3 +20,5 @@ gmake lint
 
 echo
 svn diff | diffstat
+
+cat svnmerge-commit-message.txt
