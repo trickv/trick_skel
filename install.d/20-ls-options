@@ -11,3 +11,10 @@ which dircolors &> /dev/null
 if [ $? -eq 0 ]; then
     dircolors >> $DEST
 fi
+
+which gdircolors &> /dev/null
+if [ $? -eq 0 ]; then
+    gdircolors >> $DEST
+fi
+
+# vim:ft=sh
