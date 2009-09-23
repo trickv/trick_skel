@@ -9,12 +9,12 @@ fi
 
 which dircolors &> /dev/null
 if [ $? -eq 0 ]; then
-    dircolors >> $DEST
+    dircolors | grep '^LS_COLORS' >> $DEST
 fi
 
 which gdircolors &> /dev/null
 if [ $? -eq 0 ]; then
-    gdircolors >> $DEST
+    gdircolors | grep '^LS_COLORS' >> $DEST
 fi
 
 # vim:ft=sh
