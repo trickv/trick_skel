@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+dryrun="--dry-run"
+
+if [ "$1" = "--real" ]; then
+    echo "Actually committing changes!"
+    sleep 5
+    dryrun=""
+else
+    echo "Dry run..."
+fi
+
+rsync --bwlimit 50 -av --progress $dryrun $HOME/Music/ rsync://mc/music/
