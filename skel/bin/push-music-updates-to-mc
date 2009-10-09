@@ -10,4 +10,4 @@ else
     echo "Dry run..."
 fi
 
-rsync --bwlimit 50 -av --progress $dryrun $HOME/Music/ rsync://mc/music/
+rsync --bwlimit 50 -av --delete-after --progress $dryrun $HOME/Music/ rsync://mc/music/
