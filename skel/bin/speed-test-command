@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+command="$*"
+
+logfile=/tmp/speed-test
+echo -n > $logfile
+
+for a in {0..30}; do
+    /usr/bin/time --format=%e --output=/tmp/timeoutput $command
+    cat /tmp/timeoutput >> $logfile
+    sleep 0.2s
+done
