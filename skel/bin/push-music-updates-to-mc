@@ -10,4 +10,4 @@ else
     echo "Dry run..."
 fi
 
-rsync --bwlimit 50 -av --delete-after --progress $dryrun $HOME/Music/ rsync://mc/music/
+rsync --exclude=".timestamp-hourly" --bwlimit 50 -av --delete-after --progress $dryrun $HOME/Music/ rsync://mc/music/
