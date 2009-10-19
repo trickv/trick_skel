@@ -54,6 +54,7 @@ trick_skel_aliases () {
     if [ "$USER" = "root" ]; then
         alias iptl='iptables -L -n -v'
         alias iptln='iptables -L -n -v -t nat'
+        alias iptlm='iptables -L -n -v -t mangle'
     fi
 
     # `date` wrappers for timezones
