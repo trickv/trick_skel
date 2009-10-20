@@ -82,7 +82,7 @@ trick_skel_dmesg_tail () {
 }
 
 trick_skel_psg () {
-    ps auxwww | egrep -v 'grep|ps auxwww' | grep $*
+    ps auxwww | egrep -iv 'grep|ps auxwww' | grep $*
 }
 
 # vim:filetype=sh
