@@ -1,0 +1,5 @@
+android_tools=$HOME/src/android/latest/tools
+if [ -d $android_tools ]; then
+    export PATH=$PATH:$android_tools
+fi
+# vim:ft=sh
