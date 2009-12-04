@@ -7,3 +7,4 @@ pager=less --quit-if-one-screen --no-init --quit-at-eof --chop-long-lines
 prompt="\\u@\\h:\\d> "
 skip-auto-rehash
 show-warnings
+sigint-ignore
