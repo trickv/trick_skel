@@ -74,7 +74,7 @@ if [ $? -eq 0 ]; then
     # we have svn and it can read the properties
     svn info --xml > $HOME/.trick_skel/info/xml
     svn info > $HOME/.trick_skel/info/txt
-    if [ "`hostname -s`" = "atlas" ]; then
+    if [ "$HOSTNAME" = "atlas" ]; then
         rm -rf svn-info
         mkdir -p svn-info
         cp $HOME/.trick_skel/info/* svn-info/

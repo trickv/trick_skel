@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
     exit
 fi
 
-TRICK_HOSTNAME=`hostname -s`
+TRICK_HOSTNAME=${HOSTNAME%%.*}
 
 if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
     source $HOME/.proxy_auth
@@ -16,7 +16,7 @@ fi
 
 case $TRICK_HOSTNAME in
     sting|mc|sam|atlas|vanstaveren|ed|ss)
-        . $HOME/.keychain/`hostname`-sh
+        . $HOME/.keychain/$HOSTNAME-sh
         svn up > /dev/null
         SVN_STAT=`svn stat`
         if [ "$SVN_STAT" != "" ]; then
