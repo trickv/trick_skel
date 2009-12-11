@@ -26,13 +26,23 @@ alias gv-ps='trick_skel_graphviz_dot ps'
 trick_skel_graphviz_preview () {
     eog --fullscreen *.{svg,png}
 }
+trick_skel_graphviz_preview_regular_window () {
+    eog *.{svg,png}
+}
 alias gv-prev=trick_skel_graphviz_preview
+alias gv-preview-regular-window=trick_skel_graphviz_preview_regular_window
 
 trick_skel_graphviz_default () {
     gv-svg
     gv-prev
 }
+
+trick_skel_graphviz_default_regular_window () {
+    gv-svg
+    gv-preview-regular-window
+}
 alias gv=trick_skel_graphviz_default
+alias gv-regular=trick_skel_graphviz_default_regular_window
 
 trick_skel_graphviz_infinite_preview () {
     while [ true ]; do
