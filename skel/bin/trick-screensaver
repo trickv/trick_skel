@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# this is ``mk'' from trick_skel $Id$
+
+if [ "$1" == "false" ]; then
+    trueOrFalse=false
+    dpmsMode=on
+else
+    trueOrFalse=true
+    dpmsMode=off
+fi
+
+dbus-send --session --dest=org.gnome.ScreenSaver --type=method_call /org/gnome/ScreenSaver org.gnome.ScreenSaver.SetActive boolean:$trueOrFalse
+
+xset dpms force $dpmsMode
