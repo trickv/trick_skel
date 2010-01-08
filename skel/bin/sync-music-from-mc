@@ -10,7 +10,7 @@ echo 'Script ID: $Id$' > $LOGFILE
 echo "Started at `date`" >> $LOGFILE
 
 if [ "`hostname`" = "atlas" ]; then
-    bwlimit=15
+    bwlimit=200
 else
     bwlimit=1000
 fi
