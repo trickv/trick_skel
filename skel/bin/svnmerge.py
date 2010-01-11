@@ -30,10 +30,10 @@
 #   Dustin J. Mitchell <dustin at zmanda dot com> - support for multiple
 #     location identifier formats
 #
-# $HeadURL: http://svn.collab.net/repos/svn/trunk/contrib/client-side/svnmerge/svnmerge.py $
-# $LastChangedDate: 2009-05-12 12:25:35 -0500 (Tue, 12 May 2009) $
-# $LastChangedBy: blair $
-# $LastChangedRevision: 37715 $
+# $HeadURL$
+# $LastChangedDate$
+# $LastChangedBy$
+# $LastChangedRevision$
 #
 # Requisites:
 # svnmerge.py has been tested with all SVN major versions since 1.1 (both
@@ -158,8 +158,8 @@ def kwextract(s):
     except IndexError:
         return "<unknown>"
 
-__revision__ = kwextract('$Rev: 37715 $')
-__date__ = kwextract('$Date: 2009-05-12 12:25:35 -0500 (Tue, 12 May 2009) $')
+__revision__ = kwextract('$Rev$')
+__date__ = kwextract('$Date$')
 
 # Additional options, not (yet?) mapped to command line flags
 default_opts = {
@@ -399,8 +399,11 @@ class PathIdentifier:
                 # we can only cache this by repo-relative path
                 PathIdentifier.locobjs[pathid_str] = pathid
             else:
-                error("Invalid path identifier '%s'" % pathid_str)
-        return PathIdentifier.locobjs[pathid_str]
+                if not opts["ignore-invalid-entries"]:
+                    error("Invalid path identifier '%s'" % pathid_str)
+        if PathIdentifier.locobjs.has_key(pathid_str):
+            return PathIdentifier.locobjs[pathid_str]
+        return None
     from_pathid = staticmethod(from_pathid)
 
     def from_target(target):
@@ -838,9 +841,9 @@ def dict_from_revlist_prop(propvalue):
         pathid = PathIdentifier.from_pathid(pathid_str)
 
         # cache the "external" form we saw
-        pathid.external_form = pathid_str
-
-        prop[pathid] = revs
+        if pathid:
+            pathid.external_form = pathid_str
+            prop[pathid] = revs
     return prop
 
 def get_revlist_prop(url_or_dir, propname, rev=None):
@@ -2027,6 +2030,8 @@ global_opts = [
                 "implies --show-changes"),
     Option("-s", "--show-changes",
            help="show subversion commands that make changes"),
+    Option("-i", "--ignore-invalid-entries",
+           help="ignore invalid svnmerge indexes"),
     Option("-v", "--verbose",
            help="verbose mode: output more information about progress"),
     OptionArg("-u", "--username",
