@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# this should be moved to trick_skel
+
+outstanding_changes=`svn st | egrep '^M|^C|^R|^A' | wc -l`
+
+if [ $outstanding_changes -ne 0 ]; then
+    echo "There are outstanding changes here, so I'm refusing to operate."
+    exit 1
+fi
+
+svn up --ignore-externals --quiet
+
+revision_list=${@/./}
+
+svnmerge.py merge -M -r $revision_list
+
+cat svnmerge-commit-message.txt
+
+svn diff
