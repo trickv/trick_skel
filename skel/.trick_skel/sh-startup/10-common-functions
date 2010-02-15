@@ -40,9 +40,19 @@ trick_skel_start_keychain () {
 trick_skel_first_ssh_run () {
     trick_skel_start_keychain
     unalias ssh
-    unalias scp
-    unalias rsync
     ssh $@
+}
+
+trick_skel_first_scp_run () {
+    trick_skel_start_keychain
+    unalias scp
+    scp $@
+}
+
+trick_skel_first_rsync_run () {
+    trick_skel_start_keychain
+    unalias rsync
+    rsync $@
 }
 
 # echo's out information to the terminal if it's proper to do so
@@ -54,8 +64,8 @@ trick_skel_notice () {
 
 trick_skel_verify_ssh_agent () {
     alias ssh=trick_skel_first_ssh_run
-    alias scp=trick_skel_first_ssh_run
-    alias rsync=trick_skel_first_ssh_run
+    alias scp=trick_skel_first_scp_run
+    alias rsync=trick_skel_first_rsync_run
 }
 
 # change up a bunch of directories at once
