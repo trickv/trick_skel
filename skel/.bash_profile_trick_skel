@@ -68,7 +68,7 @@ if [ $TRICK_SKEL_IS_FREEBSD ]; then
         dbg "We're inside a jail, so setting prompt"
         JAIL_HOST_INSERT="[${JAIL_HOST}]"
         case $JAIL_HOST in
-            mustang|camaro|roadrunner)
+            mustang|camaro|roadrunner|willow|anya)
                 TRICK_HOSTNAME_COLOR="1;33m";;
         esac
     else
