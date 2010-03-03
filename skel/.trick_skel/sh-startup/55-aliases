@@ -30,6 +30,7 @@ trick_skel_aliases () {
 
     # Mintel sudo usernames
     alias sudocs='sudo -H -u custom-services bash --login'
+    alias sudocs='sudo -H -u developer-svc bash --login'
     alias sudoreplicate='sudo -H -u replicate bash --login'
     alias sudoroot='sudo -H bash --login'
     alias sudomysql='sudo -u mysql bash'
