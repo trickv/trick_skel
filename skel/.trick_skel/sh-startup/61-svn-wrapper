@@ -18,6 +18,9 @@ trick_skel_svn_wrapper () {
         diff)
             $TRICK_SVN $* | colordiff
         ;;
+        vimdiff)
+            $TRICK_SVN diff | vim -R -
+        ;;
         diffstat)
             $TRICK_SVN diff | diffstat
         ;;
