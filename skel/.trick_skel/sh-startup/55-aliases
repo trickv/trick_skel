@@ -27,6 +27,7 @@ trick_skel_aliases () {
     alias psg=trick_skel_psg
     alias vimp="vim -c 'set paste'"
     alias rehash='hash -r'
+    alias screen='screen -U'
 
     # Mintel sudo usernames
     alias sudocs='sudo -H -u custom-services bash --login'
