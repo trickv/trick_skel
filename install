@@ -13,8 +13,8 @@ echo "Installing in `whoami`@`hostname`..."
 # On a fresh home dir, ~/bin does not exist
 mkdir -p $HOME/bin/trick_skel $ARCHIVE_DIR
 
-# Archive old files
-# First stuff them into a temp dir
+# Archive/backup old files
+# Put them all in a temporary directory for later tar'ing
 mkdir -p $HOME/tmp/trick_skel_backup
 echo -n "Archiving "
 for cur in $INSTALL_DOTFILES; do
@@ -24,11 +24,6 @@ for cur in $INSTALL_DOTFILES; do
     popd > /dev/null
 done
 echo
-# Then tar 'em up
-tar cfj $ARCHIVE_DIR/archive-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
-rm -r $HOME/tmp/trick_skel_backup
-# Finally, delete old archives
-find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 
 # Install ~/.trick_skel directory
 rm -rf $HOME/.trick_skel
@@ -133,6 +128,12 @@ done
 for cur in `find $HOME/.trick_skel/sh-local/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp | sort`; do
     echo "source ${cur}" >> $HOME/.trick_skel/initialize
 done
+
+# Archive and delete the backup files
+tar cfj $ARCHIVE_DIR/archive-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
+rm -r $HOME/tmp/trick_skel_backup
+# delete old archives
+find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 
 # Viola!
 echo "Done."

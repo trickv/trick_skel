@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Installing ~/.vim directory:"
+echo " * Backing up..."
+if [ -d $HOME/.vim ]; then
+    cp -R $HOME/.vim $HOME/tmp/trick_skel_backup/
+fi
+echo " * Installing..."
+rm -rf $HOME/.vim
+cp -Rv skel/.vim $HOME
