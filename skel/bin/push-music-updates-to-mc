@@ -11,8 +11,8 @@ else
 fi
 
 if [ "$HOSTNAME" == "atlas" ]; then
-    echo "Limiting bandwidth to 200 kb/sec because this is atlas"
-    bwlimit="--bwlimit 200"
+    echo "Limiting bandwidth to 1000 kb/sec because this is atlas"
+    bwlimit="--bwlimit 1000"
 fi
 
 rsync --exclude=".timestamp-hourly" $bwlimit --archive --verbose  --partial --delete-after --progress $dryrun $HOME/Music/ rsync://mc/music/
