@@ -131,7 +131,7 @@ done
 
 # Archive and delete the backup files
 tar cfj $ARCHIVE_DIR/archive-`date -u "+%Y%m%d-%H%M%S"`.tar.bz2 $HOME/tmp/trick_skel_backup > /dev/null 2>&1 | egrep 'Removing leading'
-rm -r $HOME/tmp/trick_skel_backup
+rm -rf $HOME/tmp/trick_skel_backup
 # delete old archives
 find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 
