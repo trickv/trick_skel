@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+exec("ls", $output, $return);
+if ($return != 0)
+    throw new Exception("Epic fail");
+
+$files = array();
+
+foreach ($output as $line) {
+    $date = strtotime(trim(`svn info --xml $line | grep date | cut -d\> -f2 | cut -d\< -f1`));
+    $files[$line] = $date;
+}
+
+asort($files);
+
+$maxLength = 0;
+foreach ($files as $name => $null) {
+    $maxLength = strlen($name) > $maxLength ? strlen($name) : $maxLength;
+}
+
+foreach ($files as $name => $lastChanged) {
+    $name = str_pad($name, $maxLength);
+    $lastChanged = str_replace("T", " ", date('c', $lastChanged));
+    echo "$name    $lastChanged\n";
+}
+
+?>
