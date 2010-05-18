@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+svn revert . -R
+svn status --ignore-externals | egrep '^\?' | awk '{print $2}' | xargs rm -rf
+svn update --ignore-externals
+svn status --ignore-externals
