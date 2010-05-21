@@ -54,13 +54,17 @@ trick_skel_svn_wrapper () {
         sti|stie)
             svn stat --ignore-externals
         ;;
+        touch)
+            touch $2
+            svn add $2
+        ;;
         upi)
             svn up --ignore-externals
         ;;
         *)
             OLD_IFS=$IFS
             IFS=$'\n'
-            $TRICK_SVN $*
+            $TRICK_SVN "$@"
             IFS=$OLD_IFS
         ;;
     esac
