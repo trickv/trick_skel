@@ -1,0 +1,6 @@
+#!/usr/bin/perl -pi
+
+# unix2dos from trick_skel
+# $Id$
+
+s/\n/\r\n/;
