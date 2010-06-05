@@ -60,6 +60,8 @@ if ($hostname =~ /(?:mc|ed).home.vanstaveren.us/ or $hostname =~ /^ss$/) {
         'User' => 'pv' };
     $hosts{'atlas.home.vanstaveren.us'} = {
         'User' => 'pv' };
+    $hosts{'survey-utils'} = {
+        'User' => 'pv' };
 }
 
 # special cases for atlas
