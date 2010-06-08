@@ -21,7 +21,7 @@ trick_skel_aliases () {
     alias 'du.'='du -hs .'
     alias duh='du -hs'
     alias ping1='ping -c 1'
-    alias sudol='sudo -ll'
+    alias sudol='sudo -l'
     alias dmesgt=trick_skel_dmesg_tail
     alias crontabl='crontab -l'
     alias psg=trick_skel_psg
