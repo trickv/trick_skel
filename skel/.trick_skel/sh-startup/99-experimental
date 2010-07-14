@@ -1,6 +1,6 @@
 trick_skel_screen_relay () {
     MONITOR_HOST=sting.vanstaveren.us
-    ssh $MONITOR_HOST "mkdir -p /home/trick/public_html/monitor/`hostname -s`"
+    ssh $MONITOR_HOST "mkdir -p /home/trick/public_html/monitor/$SHORT_HOSTNAME"
 
     if [ "$1" = "" ]; then
         SLEEP_LENGTH=60
@@ -12,7 +12,7 @@ trick_skel_screen_relay () {
         date
         xwd -root > /tmp/trick_skel_screenshot
         convert /tmp/trick_skel_screenshot /tmp/trick_skel_screenshot.png
-        scp /tmp/trick_skel_screenshot.png $MONITOR_HOST:/home/trick/public_html/monitor/`hostname -s`/cur.png
+        scp /tmp/trick_skel_screenshot.png $MONITOR_HOST:/home/trick/public_html/monitor/$SHORT_HOSTNAME/cur.png
         sleep $SLEEP_LENGTH
     done
 }
