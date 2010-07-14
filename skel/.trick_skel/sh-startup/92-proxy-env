@@ -29,11 +29,11 @@ trick_skel_mintel_proxy () {
     case "$1" in
         us)
             export HTTP_PROXY=http://atlas.usdmm.com:3128/
-            dbg Proxy: Chicago (atlas)
+            dbg "Proxy: Chicago (atlas)"
         ;;
         uk)
             export HTTP_PROXY=http://proxy.mintel.co.uk:3128/
-            dbg Proxy: London
+            dbg "Proxy: London"
         ;;
     esac
     
