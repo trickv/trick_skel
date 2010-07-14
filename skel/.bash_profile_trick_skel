@@ -110,8 +110,6 @@ if [ -d $HOME/man ]; then if [ "${MANPATH}" != "" ]; then export MANPATH=$MANPAT
 
 if [ "${OSTYPE}" = "linux-gnu" ]; then
     # Linux-specific stuff goes here
-    # FreeBSD lameness: doesn't support --show-progress.  Perhaps fbsd 7 will have bzip 1.0.4?
-    alias bzip2='bzip2 --show-progress'
     alias w='w -f'
 fi
 unset $UNAME
