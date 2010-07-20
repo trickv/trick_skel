@@ -30,12 +30,12 @@ trick_skel_aliases () {
     alias screen='screen -U'
 
     # Mintel sudo usernames
-    alias sudocs='sudo -H -u custom-services bash --login'
-    alias sudods='sudo -H -u developer-svc bash --login'
-    alias sudoreplicate='sudo -H -u replicate bash --login'
-    alias sudoroot='sudo -H bash --login'
-    alias sudomysql='sudo -u mysql bash'
-    alias sudopg='sudo -H -u `pguser` bash'
+    alias sudocs='trick_skel_sudo custom-services bash --login'
+    alias sudods='trick_skel_sudo developer-svc bash --login'
+    alias sudoreplicate='trick_skel_sudo replicate bash --login'
+    alias sudoroot='trick_skel_sudo root bash --login'
+    alias sudomysql='trick_skel_sudo mysql bash'
+    alias sudopg='trick_skel_sudo `pguser` bash'
     
     # Application-specific aliases
     alias pico='nano -w'
@@ -78,6 +78,11 @@ trick_skel_aliases () {
         alias w='w -i'
     fi
 
+}
+
+trick_skel_sudo () {
+    echo -ne "\033]0;sudoooo $1@$HOSTNAME\007"
+    sudo -H -u $*
 }
 
 trick_skel_if_exists_then_alias () {
