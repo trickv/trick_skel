@@ -52,7 +52,7 @@ trick_skel_svn_wrapper () {
             svn stat -u --ignore-externals
         ;;
         sti|stie)
-            svn stat --ignore-externals
+            svn stat --ignore-externals | egrep -v "^X"
         ;;
         touch)
             touch $2
