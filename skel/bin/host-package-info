@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pkg_info > $HOME/pkg_info.$HOSTNAME
