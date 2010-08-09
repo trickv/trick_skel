@@ -36,6 +36,7 @@ trick_skel_aliases () {
     alias sudoroot='trick_skel_sudo root bash --login'
     alias sudomysql='trick_skel_sudo mysql bash'
     alias sudopg='trick_skel_sudo `pguser` bash'
+    alias sudoxls='trick_skel_sudo xls-svc bash --login'
     
     # Application-specific aliases
     alias pico='nano -w'
