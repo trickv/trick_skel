@@ -1,6 +1,7 @@
 trick_skel_aliases () {
     # Core shell workflow aliases
     alias 'ls.'='ls -d .*'
+    alias 'lsl.'='ls -l -d .*'
     alias l='ls'
     alias ll='ls -l'
     alias ls="ls $LS_OPTIONS"
