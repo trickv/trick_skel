@@ -13,7 +13,15 @@ my %hosts = (
         'User' => 'trickv'},
     'lish' => {
         'HostName' => 'lish.v9n.us',
-        'User' => 'trickv'}
+        'User' => 'trickv'},
+    'relay1.us.mintel.com' => { 'User' => 'pv' },
+    'relay2.us.mintel.com' => { 'User' => 'pv' },
+    'relay1.uk.mintel.com' => { 'User' => 'pv' },
+    'relay2.uk.mintel.com' => { 'User' => 'pv' },
+    'relay1.us' => {
+        'HostName' => 'relay1.us.mintel.com',
+        'User' => 'pv',
+    },
 );
 
 open (FILE, "optional/mintel_hosts") or die("Failed to open optional/mintel_hosts");
