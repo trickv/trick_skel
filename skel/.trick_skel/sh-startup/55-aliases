@@ -75,6 +75,7 @@ trick_skel_aliases () {
         trick_skel_if_exists_then_alias grm rm
         trick_skel_if_exists_then_alias gsleep sleep
         trick_skel_if_exists_then_alias gsort sort
+        trick_skel_if_exists_then_alias gmd5sum md5sum
 
         # w -i sorts by idle time. sadly not available on gnu.
         alias w='w -i'
