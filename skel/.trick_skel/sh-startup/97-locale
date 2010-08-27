@@ -1,0 +1,4 @@
+if [ "$LANG" == "" ]; then
+    # assume the below, as it's my most common
+    LANG='en_US.utf8'
+fi
