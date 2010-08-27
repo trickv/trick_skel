@@ -8,4 +8,3 @@ prompt="\\u@\\h:\\d> "
 skip-auto-rehash
 show-warnings
 sigint-ignore
-set names 'utf8'
