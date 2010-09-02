@@ -6,6 +6,7 @@ outstanding_changes=`svn st | egrep '^M|^C|^R|^A' | wc -l`
 
 if [ $outstanding_changes -ne 0 ]; then
     echo "There are outstanding changes here, so I'm refusing to operate."
+    svn st --ignore-externals
     exit 1
 fi
 
