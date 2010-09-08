@@ -9,7 +9,7 @@ fi
 
 which dircolors &> /dev/null
 if [ $? -eq 0 ]; then
-    dircolors --sh | grep '^LS_COLORS' >> $DEST
+    dircolors -b | grep '^LS_COLORS' >> $DEST
 fi
 
 which gdircolors &> /dev/null
