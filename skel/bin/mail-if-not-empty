@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# For systems like sting (Slackware 10.2) where mail doesn't have a -e / -E flag
+# from trick_skel
+
+if [ "$2" = "" ]; then
+    echo "Usage: $0 \"<subject>\" <to address>"
+    exit 1
+fi
+
+temp_output=`mktemp /tmp/mail-if-not-empty.XXXXXX`
+
+while read line; do
+    echo $line >> $temp_output
+done
+
+if [ -s $temp_output ]; then
+    date=`date`
+    subject=$1
+    to=$2
+    echo >> $temp_output
+    echo "---------" >> $temp_output
+    echo "Delivered via ${0}: subject=${subject} to=${to} at ${date} on ${HOSTNAME}" >> $temp_output
+    cat $temp_output | mail -s "${subject}" $to
+fi
+
+rm $temp_output
