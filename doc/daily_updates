@@ -1,5 +1,7 @@
 add a line to user crontab:
 30 4 * * * $HOME/src/trick_skel/cron-daily 2>&1
+For modern systems add this environment variable to help mail filtering:
+X_TRICK_FILTER_TO_SYSTEMS=1
 
 time allocation (ideal)
 boxes following this documentation have an * next to them
