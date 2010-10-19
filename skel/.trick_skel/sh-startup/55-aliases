@@ -5,6 +5,7 @@ trick_skel_aliases () {
     alias l='ls'
     alias ll='ls -l'
     alias ls="ls $LS_OPTIONS"
+    alias sl=ls
     alias lst='ls -ltrh'
     alias lss='ls -lSrh'
     alias lsh='ls -lh'
