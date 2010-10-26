@@ -22,6 +22,7 @@ my %hosts = (
         'HostName' => 'relay1.us.mintel.com',
         'User' => 'pv',
     },
+    'g1' => { 'User' => 'root' },
 );
 
 open (FILE, "optional/mintel_hosts") or die("Failed to open optional/mintel_hosts");
