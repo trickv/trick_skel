@@ -16,3 +16,7 @@ if [ "$HOSTNAME" == "atlas" ]; then
 fi
 
 rsync --exclude=".timestamp-hourly" $bwlimit --archive --verbose  --partial --delete-after --progress $dryrun $HOME/Music/ rsync://mc/music/
+if [ "$dryrun" == "" ]; then
+    echo "Signaling mpd database update"
+    ssh mc "mpc update"
+fi
