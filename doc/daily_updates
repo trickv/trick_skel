@@ -1,10 +1,9 @@
-add a line to user crontab:
+Add a line to user crontab like below.
+For modern systems, the environment variable helps with mail filtering.
 30 4 * * * $HOME/src/trick_skel/cron-daily 2>&1
-For modern systems add this environment variable to help mail filtering:
 X_TRICK_FILTER_TO_SYSTEMS=1
 
-time allocation (ideal)
-boxes following this documentation have an * next to them
+Boxes following this documentation have an * next to them
 
 Mintel block:
 02:00 [local TZ] svn block (CDT=>8AM UTC,CST=>7AM UTC)
@@ -25,6 +24,8 @@ Mintel block:
     3:44 root@ss *
     3:46 root@ro *
     3:48 trick@ro *
+    3:50 root@tc
+    3:52 trick@tc *
 
 10:00 UTC Personal boxes:
     4:00 trick@sam *
