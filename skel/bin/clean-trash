@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+delete="-delete"
+
+find $HOME/Downloads/* -mtime +7 -print $delete
+find $HOME/.local/share/Trash/* -mtime +7 -print $delete
