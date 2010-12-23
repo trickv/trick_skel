@@ -1,11 +1,18 @@
 # sets PACKAGESITE as well as we can determine
 
 # example: PACKAGESITE=http://nfs-server/packages/amd64/7.1-MySQL-5.0.51/Latest
+# the format changed with 8; it's now like:
+# example: PACKAGESITE=http://nfs-server/packages/amd64/8.1/Latest
 
 if [[ ($TRICK_SKEL_MINTEL_HOST) && ($TRICK_SKEL_IS_FREEBSD) ]]; then
     arch=`uname -m`
     freebsd_version=`uname -r | gcut --bytes=1-3`
-    export PACKAGESITE="http://nfs-server/packages/${arch}/${freebsd_version}-MySQL-5.0.51/Latest/"
+    freebsd_major_version=`uname -r | gcut --bytes=1`
+    if [ "$freebsd_major_version" -lt 8 ]; then
+        export PACKAGESITE="http://nfs-server/packages/${arch}/${freebsd_version}-MySQL-5.0.51/Latest/"
+    else
+        export PACKAGESITE="http://nfs-server/packages/${arch}/${freebsd_version}/Latest/"
+    fi
 fi
 
 # vim:ft=sh
