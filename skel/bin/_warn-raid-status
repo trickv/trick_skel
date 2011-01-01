@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+devices=`cat /proc/mdstat | grep ^md | awk '{print $1}'`
+
+for device in $devices; do
+    count=`cat /sys/block/${device}/md/mismatch_cnt`
+    if [ $count -ne 0 ]; then
+        echo "Device $device has $count mismatches."
+    fi
+done
