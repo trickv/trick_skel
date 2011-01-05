@@ -20,8 +20,6 @@ Mintel block:
     3:32 root@mc *
     3:34 trick@sting *
     3:36 root@sting *
-    3:42 trick@ss *
-    3:44 root@ss *
     3:46 root@ro *
     3:48 trick@ro *
     3:50 root@tc
@@ -30,3 +28,9 @@ Mintel block:
 10:00 UTC Personal boxes:
     4:00 trick@sam *
     4:02 root@sam *
+
+12:00 [local TZ] Roaming boxes:
+    12:00 trick@ss *
+    12:05 root@ss *
+    3:42 trick@ss *
+    3:44 root@ss *
