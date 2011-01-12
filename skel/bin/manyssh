@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+count=0
+
+while [ true ]; do
+    ssh -o ConnectTimeout=5 $*
+    if [ $? -eq 0 ]; then
+        exit
+    fi
+    let count=$count+1
+    if [ $count -gt 1000 ]; then
+        echo "manyssh: exiting with excessive retries"
+        exit 1
+    fi
+    echo "manyssh: retrying ($count)..."
+    sleep 1
+done
