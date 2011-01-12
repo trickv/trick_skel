@@ -9,9 +9,9 @@ while [ true ]; do
     fi
     let count=$count+1
     if [ $count -gt 1000 ]; then
-        echo "manyssh: exiting with excessive retries"
+        echo "pssh: exiting with excessive retries"
         exit 1
     fi
-    echo "manyssh: retrying ($count)..."
+    echo "pssh: retrying ($count)..."
     sleep 1
 done
