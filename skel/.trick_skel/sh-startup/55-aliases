@@ -30,6 +30,7 @@ trick_skel_aliases () {
     alias vimp="vim -c 'set paste'"
     alias rehash='hash -r'
     alias screen='screen -U'
+    alias proxyenv='env | grep -i proxy'
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
