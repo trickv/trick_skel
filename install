@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .gdbinit .toprc .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc"
+INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .gdbinit .toprc .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf"
 
 #####
 
