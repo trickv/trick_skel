@@ -70,7 +70,6 @@ trick_skel_aliases () {
 
     # freebsd-specific aliases
     if [ $TRICK_SKEL_IS_FREEBSD ]; then
-        trick_skel_if_exists_then_alias gmake make
         trick_skel_if_exists_then_alias ghead head
         trick_skel_if_exists_then_alias gtail tail
         trick_skel_if_exists_then_alias gls ls
