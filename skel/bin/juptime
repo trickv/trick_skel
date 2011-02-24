@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import os
+import datetime
+
+sshd_pid_stat = os.stat('/var/run/sshd.pid')
+boot_time = sshd_pid_stat.st_mtime
+uptime = datetime.datetime.now() - datetime.datetime.fromtimestamp(boot_time)
+
+fd = os.popen('uptime')
+print "Host: %s" % fd.read().rstrip('\n')
+fd.close()
+print "Jail:          up %s" % uptime
