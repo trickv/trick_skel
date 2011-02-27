@@ -82,11 +82,6 @@ if [ "${OSTYPE}" = "linux-gnu" ]; then
     alias w='w -f'
 fi
 
-# If we're in a screen session, alias over screen so that we don't end up with a Screen Within A Screen (think: Edgar Allen Poe)
-if [ "${TERM}" == "screen" ]; then
-    alias 'screen'='echo It appears that you are a masochist. Do not run screen within screen.  It causes cancer.'
-fi
-
 trick_skel_verify_ssh_agent
 
 # set up proxy as necessary
