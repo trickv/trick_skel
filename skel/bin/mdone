@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "$HOSTNAME finished at `date`" | mail -s "done on $HOSTNAME" pvanstaveren@mintel.com
