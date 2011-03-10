@@ -63,9 +63,13 @@ trick_skel_notice () {
 }
 
 trick_skel_verify_ssh_agent () {
-    alias ssh=trick_skel_first_ssh_run
-    alias scp=trick_skel_first_scp_run
-    alias rsync=trick_skel_first_rsync_run
+    if [ -e $HOME/.ssh/auto_keychain ]; then
+        trick_skel_start_keychain
+    else
+        alias ssh=trick_skel_first_ssh_run
+        alias scp=trick_skel_first_scp_run
+        alias rsync=trick_skel_first_rsync_run
+    fi
 }
 
 # change up a bunch of directories at once
