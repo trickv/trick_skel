@@ -1,4 +1,4 @@
-if [ "$TERM" != "screen" ]; then
+if [ "$TERM" != "screen" -a "$TERM" != "" ]; then
     if [ -d /tmp/uscreens/S-$USER ]; then
         screens_directory=/tmp/uscreens/S-$USER
     fi
