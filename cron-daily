@@ -25,7 +25,7 @@ case $TRICK_HOSTNAME in
             echo
         fi
         ;;
-    survey-app01|dev-survey-app07|dev-survey-app04|futurebase-img01|svn-mirror07)
+    survey-app01|dev-survey-app07|dev-survey-app04|futurebase-img01|svn-mirror07|ratchet)
         ./update-mintel-rsync.sh
         ;;
     *)
