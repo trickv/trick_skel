@@ -3,7 +3,7 @@ import os
 import readline
 import rlcompleter
  
-historyPath = os.path.expanduser("~/.pyhistory")
+historyPath = os.path.expanduser("~/.python_history")
 readline.parse_and_bind('tab: complete')
  
 def save_history(historyPath=historyPath):
