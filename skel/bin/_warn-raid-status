@@ -2,9 +2,15 @@
 
 devices=`cat /proc/mdstat | grep ^md | awk '{print $1}'`
 
+if [ "$HOSNAME" = "atlas" ]; then
+    mismatch_maximum = 1024
+else
+    mismatch_maximum = 0
+fi
+
 for device in $devices; do
     count=`cat /sys/block/${device}/md/mismatch_cnt`
-    if [ $count -ne 0 ]; then
+    if [ $count -gt $mismatch_maximum ]; then
         echo "Device $device has $count mismatches."
     fi
 done
