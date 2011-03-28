@@ -3,9 +3,9 @@
 devices=`cat /proc/mdstat | grep ^md | awk '{print $1}'`
 
 if [ "$HOSNAME" = "atlas" ]; then
-    mismatch_maximum = 1024
+    mismatch_maximum=1024
 else
-    mismatch_maximum = 0
+    mismatch_maximum=0
 fi
 
 for device in $devices; do
