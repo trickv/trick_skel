@@ -2,7 +2,7 @@
 
 devices=`cat /proc/mdstat | grep ^md | awk '{print $1}'`
 
-if [ "$HOSNAME" = "atlas" ]; then
+if [ "$HOSTNAME" = "atlas" ]; then
     mismatch_maximum=1024
 else
     mismatch_maximum=0
