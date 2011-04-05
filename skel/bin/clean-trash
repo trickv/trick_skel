@@ -2,5 +2,5 @@
 
 delete="-delete"
 
-find $HOME/Downloads/ -mtime +7 -type f -print $delete
-find $HOME/.local/share/Trash/ -mtime +7 -type f -print $delete
+find $HOME/Downloads/ -mtime +14 -type f -print $delete
+find $HOME/.local/share/Trash/ -mtime +60 -type f -print $delete
