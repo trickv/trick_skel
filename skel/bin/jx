@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# $Id$
+
+if [ $# != 1 ]; then
+    echo "enter a jail id"
+    exit 1
+fi
+
+export PS1='$ '
+sudo jexec $1 /bin/sh
