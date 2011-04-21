@@ -19,6 +19,13 @@ else
     TRICK_SKEL_MINTEL_HOST=""
 fi
 
+
+if [ "${OSTYPE/??.?/}" == "darwin" ]; then
+    TRICK_SKEL_IS_OSX=0
+else
+    TRICK_SKEL_IS_OSX=""
+fi
+
 if [ "${OSTYPE/?.?/}" == "freebsd" ]; then
     TRICK_SKEL_IS_FREEBSD=0
 else

@@ -4,7 +4,15 @@ else
     trick_skel_stat=stat
 fi
 
-install_date_stamp=`$trick_skel_stat --format "%Y"  $HOME/.trick_skel/info/install_date`
+install_date_file=$HOME/.trick_skel/info/install_date
+
+if [ $TRICK_SKEL_IS_OSX ]; then
+    eval `stat -s $install_date_file`
+    install_date_stamp=$st_ctime
+else
+    install_date_stamp=`$trick_skel_stat --format "%Y"  $HOME/.trick_skel/info/install_date`
+fi
+
 let two_days_ago=$(date +%s)-172800
 
 if [ $install_date_stamp -lt $two_days_ago ]; then

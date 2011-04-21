@@ -1,11 +1,8 @@
 DEST=$HOME/.trick_skel/sh-startup/40-ls-options
 
 uname -a | egrep 'FreeBSD 4.11' 2>&1 > /dev/null
-if [ $? -eq 0 ]; then
-    echo "export LS_OPTIONS='-F'" > $DEST
-else
-    echo "export LS_OPTIONS='--color=auto -F'" > $DEST
-fi
+echo "export LS_OPTIONS='-F'" > $DEST
+echo "export CLICOLOR=1" > $DEST
 
 which dircolors &> /dev/null
 if [ $? -eq 0 ]; then
