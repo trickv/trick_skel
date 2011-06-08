@@ -5,7 +5,7 @@ X_TRICK_FILTER_TO_SYSTEMS=1
 
 Boxes following this documentation have an * next to them
 
-Mintel block:
+Mintel block: THIS IS ALL BROKEN.
 02:00 [local TZ] svn block (CDT=>8AM UTC,CST=>7AM UTC)
     2:00 pv@atlas *
     2:05 root@atlas *
@@ -18,14 +18,10 @@ Mintel block:
     09:25 pv@ratchet.sydney (backup server) *
 
 03:15 [local TZ] Home boxes:
-    3:30 trick@mc *
-    3:32 root@mc *
     3:34 trick@sting *
     3:36 root@sting *
     3:46 root@ro *
     3:48 trick@ro *
-    3:50 root@tc
-    3:52 trick@tc *
 
 10:00 UTC Personal boxes:
     4:00 trick@sam *
