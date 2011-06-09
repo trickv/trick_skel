@@ -15,7 +15,7 @@ if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
 fi
 
 case $TRICK_HOSTNAME in
-    sting|mc|sam|vanstaveren|ed|ss|ro|daredevil)
+    sting|mc|sam|vanstaveren|ed|ss|ro|elecktra)
         . $HOME/.keychain/$HOSTNAME-sh
         svn up > /dev/null
         SVN_STAT=`svn stat`
@@ -26,7 +26,7 @@ case $TRICK_HOSTNAME in
         fi
         ;;
     survey-app01|dev-survey-app07|dev-survey-app04|futurebase-img01|atlas|ratchet)
-        ./update-mintel-rsync.sh
+        ./mintel/update-rsync.sh
         ;;
     *)
         echo "no update location set in cron-daily for hostname=${TRICK_HOSTNAME}, help me."

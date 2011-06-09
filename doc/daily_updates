@@ -7,7 +7,7 @@ Boxes following this documentation have an * next to them
 
 Mintel block:
 08:30 UTC daredevil.shanghai pulls from svn.vanstaveren.us:
-    08:00 pv@daredevil.shanghai
+    08:30 pv@daredevil.shanghai
 09:00 UTC boxes rsync'ing from daredevil.shanghai:49876:
     09:00 pv@survey-app01 (camaro)
     09:05 pv@dev-survey-app07 (fender)
@@ -15,7 +15,7 @@ Mintel block:
     09:15 pv@futurebase-img01.chi-dc
     09:17 pv@atlas.usdmm.com
     09:19 root@atlas.usdmm.com
-    09:25 pv@ratchet.sydney (backup server)
+    09:25 pv@ratchet.sydney (backup server) *
 
 03:15 [local TZ] Home boxes:
     3:34 trick@sting *
