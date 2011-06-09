@@ -10,10 +10,6 @@ fi
 
 TRICK_HOSTNAME=${HOSTNAME%%.*}
 
-if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
-    source $HOME/.proxy_auth
-fi
-
 case $TRICK_HOSTNAME in
     sting|mc|sam|vanstaveren|ed|ss|ro|elecktra)
         . $HOME/.keychain/$HOSTNAME-sh
