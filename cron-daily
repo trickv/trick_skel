@@ -15,7 +15,7 @@ if [ "${TRICK_HOSTNAME}" = "atlas" ]; then
 fi
 
 case $TRICK_HOSTNAME in
-    sting|mc|sam|atlas|vanstaveren|ed|ss|ro)
+    sting|mc|sam|vanstaveren|ed|ss|ro|daredevil)
         . $HOME/.keychain/$HOSTNAME-sh
         svn up > /dev/null
         SVN_STAT=`svn stat`
@@ -25,7 +25,7 @@ case $TRICK_HOSTNAME in
             echo
         fi
         ;;
-    survey-app01|dev-survey-app07|dev-survey-app04|futurebase-img01|svn-mirror07|ratchet)
+    survey-app01|dev-survey-app07|dev-survey-app04|futurebase-img01|atlas|ratchet)
         ./update-mintel-rsync.sh
         ;;
     *)
