@@ -1,3 +1,4 @@
 PATH=/home/chicago/pv/bin:/home/chicago/pv/bin/trick_skel:/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/X11R6/bin:/home/chicago/pv/bin
 
 30 8 * * * $HOME/src/trick_skel/cron-daily 2>&1
+@reboot $HOME/src/trick_skel/mintel/start-mirror-daemon
