@@ -5,17 +5,17 @@ X_TRICK_FILTER_TO_SYSTEMS=1
 
 Boxes following this documentation have an * next to them
 
-Mintel block: THIS IS ALL BROKEN.
-02:00 [local TZ] svn block (CDT=>8AM UTC,CST=>7AM UTC)
-    2:00 pv@atlas *
-    2:05 root@atlas *
-09:00 UTC boxes rsync'ing from atlas:
-    09:00 pv@survey-app01 (camaro) *
-    09:05 pv@dev-survey-app07 (fender) *
-    09:10 pv@dev-survey-app04 (raquel) *
-    09:15 pv@futurebase-img01.chi-dc *
-    09:20 pv@svn-mirror07.shanghai (jester) *
-    09:25 pv@ratchet.sydney (backup server) *
+Mintel block:
+08:30 UTC daredevil.shanghai pulls from svn.vanstaveren.us:
+    08:00 pv@daredevil.shanghai
+09:00 UTC boxes rsync'ing from daredevil.shanghai:49876:
+    09:00 pv@survey-app01 (camaro)
+    09:05 pv@dev-survey-app07 (fender)
+    09:10 pv@dev-survey-app04 (raquel)
+    09:15 pv@futurebase-img01.chi-dc
+    09:17 pv@atlas.usdmm.com
+    09:19 root@atlas.usdmm.com
+    09:25 pv@ratchet.sydney (backup server)
 
 03:15 [local TZ] Home boxes:
     3:34 trick@sting *
