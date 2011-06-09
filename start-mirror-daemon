@@ -1,0 +1,3 @@
+#!/usr/local/bin/bash
+
+/usr/local/bin/rsync --daemon --config=/home/chicago/pv/src/trick_skel/mintel-rsyncd.conf

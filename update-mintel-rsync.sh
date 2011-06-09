@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rsync rsync://atlas.usdmm.com/trick_skel/ "$HOME/src/trick_skel" -a --delete
+rsync rsync://daredevil.shanghai.mintel.ad:49876/trick_skel/ "$HOME/src/trick_skel" -a --delete
