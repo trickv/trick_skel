@@ -21,6 +21,12 @@ trick_skel_proxy () {
         if [ $? -eq 0 ]; then
             trick_skel_mintel_proxy uk
         fi
+        
+        # Shanghai
+        echo $HOSTNAME | egrep "shanghai.mintel.ad" &> /dev/null
+        if [ $? -eq 0 ]; then
+            trick_skel_mintel_proxy cn
+        fi
     fi
 }
 
@@ -28,12 +34,16 @@ trick_skel_mintel_proxy () {
     # $1 should be either 'us' or 'uk'
     case "$1" in
         us)
-            export HTTP_PROXY=http://atlas.usdmm.com:3128/
-            dbg "Proxy: Chicago (atlas)"
+            export HTTP_PROXY=http://proxy.chicago.mintel.ad:3128/
+            dbg "Proxy: Chicago"
         ;;
         uk)
-            export HTTP_PROXY=http://proxy.mintel.co.uk:3128/
+            export HTTP_PROXY=http://proxy.london.mintel.ad:3128/
             dbg "Proxy: London"
+        ;;
+        cn)
+            export HTTP_PROXY=http://proxy.shanghai.mintel.ad:3128/
+            dbg "Proxy: Shanghai"
         ;;
     esac
     
