@@ -14,7 +14,7 @@ trick_skel_aliases () {
     alias jobs='jobs -l'
     alias f=fg
     alias u=uptime
-    alias t=tree
+    alias t=trick_skel_tree
     alias diff='diff -Nru'
     alias nl='nl -ba'
     alias nicey='nice -n 19'
@@ -64,6 +64,10 @@ trick_skel_aliases () {
         alias iptlm='iptables -L -n -v -t mangle'
     fi
 
+    alias t=trick_skel_tree
+    alias ptree=trick_skel_ptree
+    alias tree=trick_skel_tree
+
     # `date` wrappers for timezones
     alias chicagotime='TZ=America/Chicago date'
     alias londontime='TZ=Europe/London date'
@@ -83,6 +87,20 @@ trick_skel_aliases () {
         alias w='w -i'
     fi
 
+}
+
+# "Poor Man's Version" of tree:
+trick_skel_ptree () {
+    ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+}
+
+trick_skel_tree () {
+    which tree &> /dev/null
+    if [ $? -ne 0 ]; then
+        trick_skel_ptree
+    else
+        tree $*
+    fi
 }
 
 trick_skel_sudo () {
