@@ -12,7 +12,9 @@ TRICK_HOSTNAME=${HOSTNAME%%.*}
 
 case $TRICK_HOSTNAME in
     sting|mc|sam|vanstaveren|ed|ss|ro|elecktra|shn-xp-l-169|ll)
-        . $HOME/.keychain/$HOSTNAME-sh
+        if [ -e $HOME/.keychain/$HOSTNAME-sh ]; then
+            . $HOME/.keychain/$HOSTNAME-sh
+        fi
         svn up > /dev/null
         SVN_STAT=`svn stat`
         if [ "$SVN_STAT" != "" ]; then
