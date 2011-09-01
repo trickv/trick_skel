@@ -2,5 +2,9 @@
 
 delete="-delete"
 
-find $HOME/Downloads/ -mtime +14 -type f -print $delete
-find $HOME/.local/share/Trash/ -mtime +60 -type f -print $delete
+if [ "$OSTYPE" == "cygwin" ]; then
+    find "$HOMEPATH\Downloads\\" -mtime +14 -type f -print $delete
+else
+    find $HOME/Downloads/ -mtime +14 -type f -print $delete
+    find $HOME/.local/share/Trash/ -mtime +60 -type f -print $delete
+fi
