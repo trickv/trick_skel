@@ -28,6 +28,7 @@ trick_skel_aliases () {
     alias crontabl='crontab -l'
     alias psg=trick_skel_psg
     alias vimp="vim -c 'set paste'"
+    alias vimm=vim
     alias rehash='hash -r'
     alias screen='screen -U'
     alias proxyenv='env | grep -i proxy'
