@@ -3,6 +3,6 @@
 w
 
 for cur in `jls | grep -v JID | awk '{print $3}' | cut -d. -f1`; do
-    echo "Jail $cur"
+    echo "** $cur"
     ssh $cur "w | tail -n+3"
 done
