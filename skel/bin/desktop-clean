@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ "$OSTYPE" != "cygwin" ]; then
+    echo "This is meant to run on Windows! :P"
+    exit 1
+fi
+
+which find &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "GNU find is not installed."
+    exit 1
+fi
+
+set -e
+set -u
+
+cd "$USERPROFILE"
+cd Desktop
+mkdir -p archive
+find . ! -path "*archive*" -and ! -path "." -and ! -name "desktop.ini" -and ! -name "*.lnk" -and -atime +7 -print0 | xargs -0 -n 1 -I % mv "%" archive/
