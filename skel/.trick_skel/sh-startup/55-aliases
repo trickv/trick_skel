@@ -52,6 +52,7 @@ trick_skel_aliases () {
     alias svn_id='svn propset svn:keywords Id'
     alias svnmerge='svnmerge.py'
     alias jpsql='psql -U `pguser` postgres'
+    alias carps='ifconfig | grep ^carp -A 2'
 
     # git aliases
     alias 'git-st'='git-status'
