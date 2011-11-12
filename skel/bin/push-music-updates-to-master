@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+dryrun="--dry-run"
+
+if [ "$1" = "--real" ]; then
+    echo "Actually committing changes!"
+    sleep 5
+    dryrun=""
+else
+    echo "Dry run..."
+fi
+
+if [ "$HOSTNAME" == "atlas" ]; then
+    echo "Limiting bandwidth to 1000 kb/sec because this is atlas"
+    bwlimit="--bwlimit 1000"
+fi
+
+rsync --exclude=".timestamp-hourly" $bwlimit --archive --verbose  --partial --delete-after --progress $dryrun $HOME/Music/ rsync://sting/music/
+#if [ "$dryrun" == "" ]; then
+#    which mpc &> /dev/null
+#    if [ $? -eq 0 ]; then
+#        echo "Signaling mpd database update"
+#        mpc -h mc update
+#    fi
+#fi

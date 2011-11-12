@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sync-music-from-mc from trick_skel
+# sync-music-from-master from trick_skel
 # $Id$
 
 LOGFILE=/var/tmp/sync-update.log
@@ -28,7 +28,7 @@ fi
 lockfile-touch $LOCKFILE &
 # Save the PID of the lockfile-touch process
 BADGER="$!"
-rsync rsync://mc/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
+rsync rsync://sting/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
 kill "${BADGER}"
 lockfile-remove $LOCKFILE
 
