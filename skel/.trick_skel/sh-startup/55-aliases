@@ -32,6 +32,7 @@ trick_skel_aliases () {
     alias rehash='hash -r'
     alias screen='screen -U'
     alias proxyenv='env | grep -i proxy'
+    alias noproxy=trick_skel_noproxy
     alias findbymac='arp -a -n | grep -i'
 
     # Mintel sudo usernames
@@ -130,6 +131,17 @@ trick_skel_dmesg_tail () {
 
 trick_skel_psg () {
     ps auxwww | egrep -iv 'grep|ps auxwww' | grep -i $*
+}
+
+trick_skel_noproxy () {
+    unset NO_PROXY
+    unset http_proxy
+    unset ftp_proxy
+    unset FTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset no_proxy
+    unset HTTP_PROXY
 }
 
 # vim:filetype=sh
