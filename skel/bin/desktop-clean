@@ -14,7 +14,7 @@ fi
 set -e
 set -u
 
-cd "$USERPROFILE"
+cd $HOME/windows/
 cd Desktop
 mkdir -p archive
 find . ! -path "*archive*" -and ! -path "." -and ! -name "desktop.ini" -and ! -name "*.lnk" -and -atime +7 -print0 | xargs -0 -n 1 -I % mv "%" archive/
