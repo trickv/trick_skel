@@ -34,6 +34,7 @@ trick_skel_aliases () {
     alias proxyenv='env | grep -i proxy'
     alias noproxy=trick_skel_noproxy
     alias findbymac='arp -a -n | grep -i'
+    alias grep='grep --color=auto'
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
