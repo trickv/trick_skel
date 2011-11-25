@@ -4,14 +4,12 @@ METHOD=org.freedesktop.DBus.Introspectable.Introspect
 DEST=$1
 OBJECT=/`echo $1 | sed "s:\.:/:g"`
 
-source $HOME/.trick_skel/sh-startup/color-functions
-
 cmd="dbus-send --print-reply=literal \
     --dest=$DEST \
     $OBJECT \
     $METHOD"
 
-echo_white Running $cmd
+echowhite Running $cmd
 echo
 
 $cmd
