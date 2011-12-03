@@ -1,0 +1,15 @@
+snmp-ifstatus() {
+    trick_skel_snmp $1 .1.3.6.1.2.1.31.1.1
+}
+
+snmp-switchportstatus() {
+    trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifOperStatus
+}
+
+snmp-sysdesc() {
+    trick_skel_snmp $1 SNMPv2-MIB::sysDescr
+}
+
+trick_skel_snmp() {
+    snmpwalk -v2c -c public $*
+}
