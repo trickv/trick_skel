@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ifconfig bce1 | grep inet
