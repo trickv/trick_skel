@@ -35,6 +35,7 @@ trick_skel_aliases () {
     alias noproxy=trick_skel_noproxy
     alias findbymac='arp -a -n | grep -i'
     alias grep='grep --color=auto'
+    alias timezones='find /usr/share/zoneinfo/ | cut -d/ -f5-'
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
