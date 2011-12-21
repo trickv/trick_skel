@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+echo "Sydney"
+TZ='Australia/Sydney' date
+echo
+
+echo "Tokyo"
+TZ='Asia/Tokyo' date
+echo
+
+echo "Shanghai; Kuala Lumpur"
+TZ='Asia/Shanghai' date
+echo
+
+echo "Mumbai, India"
+TZ='Asia/Kolkata' date
+echo
+
+echo "London"
+TZ='Europe/London' date
+echo
+
+echo "Chicago"
+TZ='America/Chicago' date
