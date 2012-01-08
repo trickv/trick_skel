@@ -6,9 +6,9 @@ X_TRICK_FILTER_TO_SYSTEMS=1
 Boxes following this documentation have an * next to them
 
 Mintel block:
-08:30 UTC elecktra.shanghai pulls from svn.vanstaveren.us:
-    08:30 pv@elecktra.shanghai *
-09:00 UTC boxes rsync'ing from elecktra.shanghai:49876:
+08:30 UTC huangniu.shanghai pulls from svn.vanstaveren.us:
+    08:30 pv@huangniu.shanghai
+09:00 UTC boxes rsync'ing from huangniu.shanghai:49876:
     09:00 pv@survey-app01 (camaro) *
     09:05 pv@dev-survey-app07 (fender) *
     09:10 pv@troy *
@@ -16,6 +16,8 @@ Mintel block:
     09:25 pv@ratchet.sydney (backup server) *
 04:00 Chicago Time:
     04:21 pv@atlas.usdmm.com *
+04:00 China Time:
+    04:21 pv@salta *
 
 03:15 [local TZ] Home boxes:
     3:34 trick@sting *
