@@ -6,6 +6,26 @@ snmp-switchportstatus() {
     trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifOperStatus
 }
 
+snmp-switchportdescription() {
+    trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifDescr
+}
+
+snmp-nice-switchport-display() {
+    IFS=$'\n'
+    for port in `trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifIndex`; do
+        index=`echo $port | awk '{print $4}'`
+        echo -n "$index  "
+        echo -n `trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifDescr.$index | awk '{print $4}'`
+        echo -n ":  "
+        echo -n `trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifOperStatus.$index | awk '{print $4}'`
+        echo
+    done
+}
+
+snmp-full-switch-status() {
+    trick_skel_snmp $1 interfaces.ifTable.ifEntry
+}
+
 snmp-sysdesc() {
     trick_skel_snmp $1 SNMPv2-MIB::sysDescr
 }
@@ -13,3 +33,4 @@ snmp-sysdesc() {
 trick_skel_snmp() {
     snmpwalk -v2c -c public $*
 }
+
