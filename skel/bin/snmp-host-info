@@ -1,1 +1,0 @@
-snmpwalk -v2c -c public $1 SNMPv2-MIB::sysDescr
