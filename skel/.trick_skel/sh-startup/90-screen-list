@@ -1,16 +1,16 @@
 if [ "$TERM" != "screen" -a "$TERM" != "" ]; then
     if [ -d "/tmp/uscreens/S-$USER" ]; then
-        screens_directory=/tmp/uscreens/S-$USER
+        screens_directory="/tmp/uscreens/S-$USER"
     fi
     if [ -d "/tmp/screens/S-$USER" ]; then
-        screens_directory=/tmp/screens/S-$USER
+        screens_directory="/tmp/screens/S-$USER"
     fi
     if [ -d "/var/run/screen/S-$USER" ]; then
-        screens_directory=/var/run/screen/S-$USER
+        screens_directory="/var/run/screen/S-$USER"
     fi
 
     if [ ! -z "$screens_directory" ]; then
-        if [ ! -z "$(ls $screens_directory)" ]; then
+        if [ ! -z "`ls \"$screens_directory\"`" ]; then
             screen -ls
         fi
     fi
