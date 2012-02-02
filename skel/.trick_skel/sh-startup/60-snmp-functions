@@ -31,10 +31,31 @@ snmp-full-switch-status() {
 }
 
 snmp-sysdesc() {
-    trick_skel_snmp $1 SNMPv2-MIB::sysDescr
+    for cur in sysDescr sysObjectID sysUpTime sysContact sysName sysLocation sysServices; do
+        trick_skel_snmp $1 SNMPv2-MIB::$cur
+    done
 }
+
+snmp-set-host() {
+    if [ "$1" == "" ]; then
+        echo "You must specify a host."
+        return
+    fi
+    trick_skel_snmp_host=$1
+    echo "SNMP host seet to $1"
+}
+
+snmp-walk() {
+    if [ "$trick_skel_snmp_host" == "" ]; then
+        echo "You must set a host first with snmp-set-host"
+        return
+    fi
+    snmpwalk -v2c -c public $trick_skel_snmp_host $1
+}
+
 
 trick_skel_snmp() {
     snmpwalk -v2c -c public $*
 }
 
+# vim:ft=sh
