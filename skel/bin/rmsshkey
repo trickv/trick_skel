@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-if [ $1 = "" ]; then
+if [ $# -ne 1 ]; then
     echo "Usage: $0 <hostname or IP address>"
+    echo
     echo "Removes the hostname or IP address from SSH known hosts."
     echo "If it is a hostname, attempts to remove the IP as well."
     exit 1;
