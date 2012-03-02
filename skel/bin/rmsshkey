@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ $? = "" ]; then
+    echo "Usage: $0 <hostname or IP address>"
+    echo "Removes the hostname or IP address from SSH known hosts."
+    echo "If it is a hostname, attempts to remove the IP as well."
+    exit 1;
+fi
+
+target=$1
+
+function rmssh() {
+    ssh-keygen -f "$HOME/.ssh/known_hosts" -R $1
+}
+
+host=`host $target 2>/dev/null`
+if [ $? -eq 0 ]; then
+    ip=`echo $host | awk '{print $4}'`
+    echo "Removing host key for IP $ip"
+    rmssh $ip
+fi
+
+rmssh $target
