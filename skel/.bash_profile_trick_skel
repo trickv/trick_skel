@@ -39,6 +39,7 @@ fi
 # Handy environment variables that make me happy
 export PAGER=less
 export EDITOR=vim
+export VTYSH_PAGER="less --quit-if-one-screen --no-init --quit-at-eof --chop-long-lines --quit-on-intr"
 export MONO_THEME=clearlooks
 # TODO: this is not true on all boxen
 export MOZILLA_FIVE_HOME=/usr/lib/seamonkey/
