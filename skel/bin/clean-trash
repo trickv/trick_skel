@@ -4,6 +4,9 @@ delete="-delete"
 
 if [ "$OSTYPE" == "cygwin" ]; then
     find "$HOMEPATH\Downloads\\" -mtime +14 -type f -print $delete
+    touch "$HOMEPATH\Downloads\\.temp"
+    find "$HOMEPATH\Downloads\\" -type d -empty -print $delete
+    rm "$HOMEPATH\Downloads\\.temp"
 elif [ "$OSTYPE" == "darwin10.0" ]; then
     find "$HOME/Downloads" -mtime +14 -type f $delete
     touch "$HOME/Downloads/.temp"
