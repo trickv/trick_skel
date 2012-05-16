@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# todo: add handling for stdin?
+
+cat $1 \
+    | egrep -v '^#' \
+    | egrep -v '^$'
