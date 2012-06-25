@@ -146,6 +146,10 @@ trick_skel_noproxy () {
     unset HTTPS_PROXY
     unset no_proxy
     unset HTTP_PROXY
+    unset SOCKS_PROXY
+    unset socks_proxy
+    unset proxy
+    unset PROXY
 }
 
 # vim:filetype=sh
