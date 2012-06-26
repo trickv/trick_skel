@@ -20,7 +20,7 @@ else
 fi
 
 
-if [ "${OSTYPE/??.?/}" == "darwin" ]; then
+if [ "${OSTYPE/??.?/}" == "darwin"  -o "$OSTYPE" == "darwin11" ]; then
     TRICK_SKEL_IS_OSX=0
 else
     TRICK_SKEL_IS_OSX=""
