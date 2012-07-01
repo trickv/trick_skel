@@ -1,13 +1,8 @@
 #!/bin/sh
 
-if [ "`hostname`" = "mc.home.vanstaveren.us" -a "`whoami`" = "trick" ]; then
-    optional/ssh-config > $HOME/.ssh/config
-fi
-
-if [ "`hostname`" = "ss" -a "`whoami`" = "trick" ]; then
-    optional/ssh-config > $HOME/.ssh/config
-fi
-
-if [ "`hostname`" = "ed.home.vanstaveren.us" -a "`whoami`" = "trick" ]; then
-    optional/ssh-config > $HOME/.ssh/config
+if [ "$USER" = "trick" ]; then
+    case $SHORT_HOSTNAME in ss|ll)
+            optional/ssh-config > $HOME/.ssh/config
+        ;;
+    esac
 fi

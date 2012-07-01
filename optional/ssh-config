@@ -14,15 +14,8 @@ my %hosts = (
     'lish' => {
         'HostName' => 'lish.v9n.us',
         'User' => 'trickv'},
-    'relay1.us.mintel.com' => { 'User' => 'pv' },
-    'relay2.us.mintel.com' => { 'User' => 'pv' },
-    'relay1.uk.mintel.com' => { 'User' => 'pv' },
-    'relay2.uk.mintel.com' => { 'User' => 'pv' },
-    'relay1.us' => {
-        'HostName' => 'relay1.us.mintel.com',
-        'User' => 'pv',
-    },
     'g1' => { 'User' => 'root' },
+    'ci' => { 'User' => 'root' },
 );
 
 open (FILE, "optional/mintel_hosts") or die("Failed to open optional/mintel_hosts");
@@ -30,21 +23,14 @@ my @mintelHosts = <FILE>;
 close (FILE);
 chomp @mintelHosts;
 
-# Now for the fun stuff:
-# Take every possible jail name that I might want to SSH to...
-# And add a host line for it :)
-my @mintelHostPrefixes = ( "dev-", "test-", "" );
-my @mintelHostNames = ( "survey", "fedex", "pepsi", "iron" );
-my @mintelHostSuffixes = ( "db", "app", "analysis" );
-for ($i = 1; $i < 20; $i++) {
-    foreach $prefix (@mintelHostPrefixes) {
-        foreach $name (@mintelHostNames) {
-            foreach $suffix (@mintelHostSuffixes) {
-                $host = sprintf("%s%s-%s%02d", $prefix, $name, $suffix, $i);
-                push @mintelHosts, $host;
-            }
-        }
-    }
+my @mintelDotComHosts = qw(relay1.cn relay2.cn relay3.cn relay4.cn relay5.cn relay6.cn relay1.us relay2.us relay1.uk relay2.uk);
+foreach $cur (@mintelDotComHosts) {
+    push(@mintelHosts, "$cur.mintel.com");
+}
+
+my @shanghaiMintelHosts = qw(salta sentinel home elecktra daredevil huangniu);
+foreach $cur (@shanghaiMintelHosts) {
+    push(@mintelHosts, "$cur.shanghai.mintel.ad");
 }
 
 $hostname = `hostname`;
@@ -82,7 +68,10 @@ if ($hostname =~ /atlas/) {
 
 # Read the hosts hash and output in a somewhat-standard format
 print "# per-host settings\n";
-while ( my ($hostname, $properties) = each(%hosts) ) {
+@sortedHosts = sort keys %hosts;
+foreach $hostname (@sortedHosts) {
+    $properties = $hosts{$hostname};
+#while ( my ($hostname, $properties) = each(%hosts) ) {
     if ($hostname =~ /^$/) {
         $hostname = 'ERROR';
     }
