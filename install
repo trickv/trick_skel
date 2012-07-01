@@ -8,43 +8,32 @@ ARCHIVE_DIR=$HOME/tmp/trick_skel_archive
 
 ####
 
-echo "Installing in `whoami`@`hostname`..."
-
 # On a fresh home dir, ~/bin does not exist
 mkdir -p $HOME/bin/trick_skel $ARCHIVE_DIR
 
 # Archive/backup old files
 # Put them all in a temporary directory for later tar'ing
 mkdir -p $HOME/tmp/trick_skel_backup
-echo -n "Archiving "
 for cur in $INSTALL_DOTFILES; do
     pushd $HOME > /dev/null
-    echo -n "$cur, "
     cp $cur $HOME/tmp/trick_skel_backup
     popd > /dev/null
 done
-echo
 
 # Install ~/.trick_skel directory
 rm -rf $HOME/.trick_skel
 cp -R skel/.trick_skel $HOME
 
 # Install .dotfiles
-echo -n "Installing: "
 for cur in $INSTALL_DOTFILES; do
-    echo -n "$cur, "
     cp skel/$cur $HOME/$cur
 done
-echo
 
 # Install scripts into ~/bin
-echo -n "Installing bin files ~/bin/trick_skel: "
 rm -f $HOME/bin/trick_skel/*
 for cur in `ls skel/bin/`; do
-    echo -n "$cur, "
     cp skel/bin/$cur $HOME/bin/trick_skel/$cur
 done
-echo
 
 # If this is a new installation, add a call to the bash_profile
 grep bash_profile_trick_skel $HOME/.bash_profile &> /dev/null
@@ -111,7 +100,6 @@ fi
 # Run any scripts in install.d
 for cur in `ls install.d`; do
     if [ -x install.d/$cur ]; then
-        echo Running install.d/$cur
         install.d/$cur
     fi
 done
@@ -132,4 +120,3 @@ rm -rf $HOME/tmp/trick_skel_backup
 find $ARCHIVE_DIR -name "archive*" -ctime +10 | xargs -n 10 rm -f
 
 # Viola!
-echo "Done."
