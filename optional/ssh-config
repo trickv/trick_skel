@@ -16,6 +16,10 @@ my %hosts = (
         'User' => 'trickv'},
     'g1' => { 'User' => 'root' },
     'ci' => { 'User' => 'root' },
+    'hg-lish' => {
+        'User' => 'linode102280',
+        'Hostname' => 'fremont398.linode.com',
+    },
 );
 
 open (FILE, "optional/mintel_hosts") or die("Failed to open optional/mintel_hosts");
