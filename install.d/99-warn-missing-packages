@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-which less &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "MISSING PACKAGE: less"
-fi
+commands="less svn"
+
+for command in $commands; do
+    which $command &> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "MISSING PACKAGE: $command"
+    fi
+done
