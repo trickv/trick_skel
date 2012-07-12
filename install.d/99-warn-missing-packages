@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+which less &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "MISSING PACKAGE: less"
+fi
