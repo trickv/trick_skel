@@ -29,7 +29,7 @@ trick_skel_start_keychain () {
             done
             . $HOME/.keychain/$HOSTNAME-sh
         else
-            trick_skel_notice "No keys!"
+            trick_skel_notice "trick_skel keychain: No keys!"
         fi
     else
         trick_skel_notice "Keychain is not installed on this host."
