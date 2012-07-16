@@ -37,7 +37,9 @@ trick_skel_aliases () {
     alias grep='grep --color=auto'
     alias timezones='find /usr/share/zoneinfo/ | cut -d/ -f5-'
     export wimi_automation_url=http://automation.whatismyip.com/n09230945.asp
-    alias wimi="echo \"Fetching $wimi_automation_url\"; curl $wimi_automation_url; echo"
+    export wimi_my=http://ip.v9n.us/auto/
+    alias wimi="echo \"Fetching $wimi_my\" >> /dev/stderr; curl $wimi_my; echo"
+    alias wimi_real="echo \"Fetching $wimi_automation_url\" >> /dev/stderr; curl $wimi_automation_url; echo"
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
