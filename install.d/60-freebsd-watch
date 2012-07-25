@@ -1,6 +1,5 @@
 #!/bin/sh
 
 if [ "`uname`" = "FreeBSD" ]; then
-    echo "Installing statically compiled watch for FreeBSD..."
     cp optional/watch $HOME/bin/trick_skel/
 fi
