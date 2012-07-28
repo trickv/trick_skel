@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ ! -f "$1" -o "$2" = "" ]; then
+    echo "Usage: $0 <pub key file> <remote host spec>"
+    exit 1
+fi
+
+key=`cat $1`
+
+ssh $2 "mkdir -pv ~/.ssh; echo '$key' >> ~/.ssh/authorized_keys"
+#ssh $2 "mkdir -p $HOME/.ssh && echo '$key' >> $HOME/.ssh/authorized_keys"
