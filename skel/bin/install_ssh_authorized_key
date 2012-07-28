@@ -7,5 +7,4 @@ fi
 
 key=`cat $1`
 
-ssh $2 "mkdir -pv ~/.ssh; echo '$key' >> ~/.ssh/authorized_keys"
-#ssh $2 "mkdir -p $HOME/.ssh && echo '$key' >> $HOME/.ssh/authorized_keys"
+ssh $2 "mkdir -p ~/.ssh; echo '$key' >> ~/.ssh/authorized_keys"
