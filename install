@@ -80,8 +80,9 @@ hostname &> $HOME/.trick_skel/info/install_hostname
 hostname -s &> $HOME/.trick_skel/info/install_hostname_short
 env &> $HOME/.trick_skel/info/install_env
 
-# install optional scripts depending on conditionals
-case "`hostname`" in atlas.usdmm.com|atlas|mc.home.vanstaveren.us|ss)
+if [ "`uname`" = "Linux" ]; then
+    rm -f $HOME/bin/lside
+    cp optional/lside $HOME/bin/trick_skel/
     cp optional/view $HOME/bin/trick_skel/
     ln -s $HOME/bin/trick_skel/view $HOME/bin/trick_skel/remote_view
 
@@ -90,11 +91,6 @@ case "`hostname`" in atlas.usdmm.com|atlas|mc.home.vanstaveren.us|ss)
     cp optional/select-{color,font} $HOME/bin/trick_skel/
 
     ln -s /bin/true $HOME/bin/trick_skel/gnome-help
-esac
-
-if [ "`uname`" = "Linux" ]; then
-    rm -f $HOME/bin/lside
-    cp optional/lside $HOME/bin/trick_skel/
 fi
 
 # Run any scripts in install.d
