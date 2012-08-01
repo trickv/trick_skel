@@ -40,6 +40,7 @@ trick_skel_aliases () {
     export wimi_my=http://ip.v9n.us/auto/
     alias wimi="echo \"Fetching $wimi_my\" >> /dev/stderr; curl $wimi_my; echo"
     alias wimi_real="echo \"Fetching $wimi_automation_url\" >> /dev/stderr; curl $wimi_automation_url; echo"
+    alias copypaste=trick_skel_copypaste
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
