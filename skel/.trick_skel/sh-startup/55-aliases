@@ -38,7 +38,10 @@ trick_skel_aliases () {
     alias timezones='find /usr/share/zoneinfo/ | cut -d/ -f5-'
     export wimi_automation_url=http://automation.whatismyip.com/n09230945.asp
     export wimi_my=http://ip.v9n.us/auto/
+    export wimi_my_verbose=http://ip.v9n.us/auto/verbose/
     alias wimi="echo \"Fetching $wimi_my\" >> /dev/stderr; curl $wimi_my; echo"
+    alias wimi_verbose="echo \"Fetching $wimi_my_verbose\" >> /dev/stderr; curl $wimi_my_verbose; echo"
+    alias wimiv=wimi_verbose
     alias wimi_real="echo \"Fetching $wimi_automation_url\" >> /dev/stderr; curl $wimi_automation_url; echo"
     alias copypaste=trick_skel_copypaste
 
