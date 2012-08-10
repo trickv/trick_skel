@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-interfaces="bce1 bce0 vlan2"
+interfaces="bce1 bce0 vlan2 vlan5"
 for interface in $interfaces; do
     ifconfig $interface 2> /dev/null | grep inet &> /dev/null
     if [ $? -eq 0 ]; then
