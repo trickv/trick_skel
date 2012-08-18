@@ -1,0 +1,11 @@
+function trick_skel_novim_you_goon() {
+    echoyellow "Hey, you don't have VIM installed! :( This is vi."
+    echo
+    echored "That sucks!"
+    echo
+    echogreen "Really, you don't want to live like this, do you?"
+    echo
+    vi $*
+}
+
+alias vim=trick_skel_novim_you_goon

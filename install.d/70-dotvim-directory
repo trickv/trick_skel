@@ -1,7 +1,15 @@
 #!/bin/sh
 
-if [ -d $HOME/.vim ]; then
-    cp -R $HOME/.vim $HOME/tmp/trick_skel_backup/
+which vim &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "Package vim is missing! You should install it. I'm not installing vimrc."
+    rm -rf $HOME/.vimrc $HOME/.vim
+    cp optional/missing-vim $HOME/.trick_skel/sh-local/
+    cat skel/.vimrc | grep -v mouse > $HOME/.vimrc
+else
+    if [ -d $HOME/.vim ]; then
+        cp -R $HOME/.vim $HOME/tmp/trick_skel_backup/
+    fi
+    rm -rf $HOME/.vim
+    cp -R skel/.vim $HOME
 fi
-rm -rf $HOME/.vim
-cp -R skel/.vim $HOME
