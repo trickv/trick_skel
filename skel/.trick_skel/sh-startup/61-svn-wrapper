@@ -61,6 +61,12 @@ trick_skel_svn_wrapper () {
         upi)
             svn up --ignore-externals
         ;;
+        "")
+            svn --version | head -n 2
+            echo
+            svn status
+            $TRICK_SVN
+        ;;
         *)
             OLD_IFS=$IFS
             IFS=$'\n'
