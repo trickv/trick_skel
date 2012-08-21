@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ssh=/usr/bin/ssh
+
+terminal-title ssh $*
+$ssh $*
