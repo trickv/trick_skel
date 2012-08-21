@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-ssh=/usr/bin/ssh
-
 terminal-title ssh $*
+
+PATH=/usr/local/bin:/usr/bin:/bin
+ssh=`which ssh`
 $ssh $*
