@@ -3,6 +3,7 @@
 count=0
 
 while [ true ]; do
+    terminal-title PSSH: reconnecting
     ssh -o ConnectTimeout=5 $*
     if [ $? -eq 0 ]; then
         exit
@@ -13,5 +14,6 @@ while [ true ]; do
         exit 1
     fi
     echo "pssh: retrying ($count)..."
+    terminal-title "pssh: retrying ($count)..."
     sleep 1
 done
