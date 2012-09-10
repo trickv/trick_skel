@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+while [ true ]; do
+    terminal-title PRDP: reconnecting
+    /cygdrive/c/Windows/System32/ping.exe -n 5 $1 
+    if [ $? -eq 0 ]; then
+        rdp $1
+        return_code=$?
+        echo "Return code: $return_code"
+        terminal-title RDP exited: code $return_code
+        sleep 5
+    fi
+    sleep 1
+done
