@@ -10,10 +10,10 @@ while [ true ]; do
     fi
     let count=$count+1
     if [ $count -gt 1000 ]; then
-        echo "pssh: exiting with excessive retries"
+        echo "PSSH: exiting with excessive retries"
         exit 1
     fi
-    echo "pssh: retrying ($count)..."
-    terminal-title "pssh: retrying ($count)..."
+    echo "PSSH: retrying ($count)..."
+    terminal-title "PSSH: retrying ($count)..."
     sleep 1
 done
