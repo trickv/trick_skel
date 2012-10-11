@@ -98,7 +98,7 @@ trick_skel_proxy
 # If we have a hostname specific script in ~/.${host}.sh, run it
 if [ -f ${HOME}/.${HOSTNAME}.sh ]; then
     if [ "`head -n 1 ${HOME}/.${HOSTNAME}.sh`" != "# quiet!" ]; then
-        echo "Executing .${HOSTNAME}.sh"
+        echo "Executing .${HOSTNAME}.sh (add '# quiet!' to hide this)"
     fi
     . ${HOME}/.${HOSTNAME}.sh
 fi
