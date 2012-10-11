@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+tmp=/tmp/remote-shell-clean-test.pv
+
+ssh $1 true > $tmp
+
+if [ ! -s $tmp ]; then
+    echo "Remote shell looks clean."
+else
+    echo "Remote shell is DIRTY. Raw output follows:"
+    od -c $tmp
+    echo -e "Displayed content is between the dashes:\n-----"
+    cat $tmp
+    echo "-----"
+fi
+
+rm $tmp
