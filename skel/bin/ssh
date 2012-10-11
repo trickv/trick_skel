@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-terminal-title ssh $*
+if [ ! -z $PS1 ]; then
+    terminal-title ssh $*
+fi
 
 PATH=/usr/local/bin:/usr/bin:/bin
 ssh=`which ssh`
