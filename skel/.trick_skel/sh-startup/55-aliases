@@ -154,6 +154,8 @@ trick_skel_noproxy () {
     unset HTTP_PROXY
     unset SOCKS_PROXY
     unset socks_proxy
+    unset ALL_PROXY
+    unset all_proxy
     unset proxy
     unset PROXY
 }
