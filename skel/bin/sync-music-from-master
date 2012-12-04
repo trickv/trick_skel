@@ -28,7 +28,7 @@ fi
 lockfile-touch $LOCKFILE &
 # Save the PID of the lockfile-touch process
 BADGER="$!"
-rsync rsync://sting/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
+rsync rsync://ss/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
 kill "${BADGER}"
 lockfile-remove $LOCKFILE
 

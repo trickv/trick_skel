@@ -15,7 +15,7 @@ if [ "$HOSTNAME" == "atlas" ]; then
     bwlimit="--bwlimit 1000"
 fi
 
-rsync --exclude=".timestamp-hourly" $bwlimit --archive --verbose  --partial --delete-after --progress $dryrun $HOME/Music/ rsync://sting/music/
+rsync --exclude=".timestamp-hourly" $bwlimit --archive --verbose  --partial --delete-after --progress $dryrun $HOME/Music/ rsync://ss/music/
 #if [ "$dryrun" == "" ]; then
 #    which mpc &> /dev/null
 #    if [ $? -eq 0 ]; then
