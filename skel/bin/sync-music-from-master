@@ -3,13 +3,17 @@
 # sync-music-from-master from trick_skel
 # $Id$
 
+if [ "$source_server" = "" ]; then
+    source_server=ss
+fi
+
 LOGFILE=/var/tmp/sync-update.log
 
 echo 'Script ID: $Id$' > $LOGFILE
 
 echo "Started at `date`" >> $LOGFILE
 
-if [ "`hostname`" = "atlas" ]; then
+if [ "`hostname`" = "salta" ]; then
     bwlimit=200
 else
     bwlimit=1000
@@ -28,7 +32,7 @@ fi
 lockfile-touch $LOCKFILE &
 # Save the PID of the lockfile-touch process
 BADGER="$!"
-rsync rsync://ss/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
+rsync rsync://$source_server/music/ $HOME/Music/ --stats --archive --verbose --delete-during --bwlimit=${bwlimit} 2>&1 >> $LOGFILE
 kill "${BADGER}"
 lockfile-remove $LOCKFILE
 
