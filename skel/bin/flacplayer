@@ -1,1 +1,2 @@
-flac -sdc "$1" | sox -t wav - -t alsa
+echo $1
+flac -sdc "$1" | sox -q -t wav - -t alsa
