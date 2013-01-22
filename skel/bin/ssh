@@ -4,6 +4,12 @@ if [ ! -z $PS1 ]; then
     terminal-title ssh $*
 fi
 
+echo $* | fgrep mintel &> /dev/null
+if [ $USER != "pv" -a $? -eq 0 ]; then
+    echo "Magically changing user to pv for mintel box"
+    extra_args="-l pv"
+fi
+
 PATH=/usr/local/bin:/usr/bin:/bin
 ssh=`which ssh`
-$ssh $*
+$ssh $extra_args $*
