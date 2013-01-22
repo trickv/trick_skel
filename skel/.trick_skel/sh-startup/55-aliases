@@ -44,6 +44,7 @@ trick_skel_aliases () {
     alias wimiv=wimi_verbose
     alias wimi_real="echo \"Fetching $wimi_automation_url\" >> /dev/stderr; curl $wimi_automation_url; echo"
     alias copypaste=trick_skel_copypaste
+    alias 'json-pprint'="python -mjson.tool"
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
