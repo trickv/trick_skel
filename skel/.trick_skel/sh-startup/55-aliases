@@ -24,7 +24,6 @@ trick_skel_aliases () {
     alias duh='du -hs'
     alias ping1='ping -c 1'
     alias sudol='sudo -l'
-    alias dmesgt=trick_skel_dmesg_tail
     alias crontabl='crontab -l'
     alias psg=trick_skel_psg
     alias vimp="vim -c 'set paste'"
@@ -101,6 +100,10 @@ trick_skel_aliases () {
         alias w='w -i'
     fi
 
+    alias dmesgt=trick_skel_dmesg_tail
+    if [ "$OSTYPE" = "darwin11" ]; then
+        alias dmesg='sudo dmesg'
+    fi
 }
 
 # "Poor Man's Version" of tree:
@@ -137,7 +140,11 @@ trick_skel_if_exists_then_alias () {
 }
 
 trick_skel_dmesg_tail () {
-    dmesg | tail
+    sudo=""
+    if [ "$OSTYPE" = "darwin11" ]; then
+        sudo=sudo
+    fi
+    $sudo dmesg | tail
 }
 
 trick_skel_psg () {
