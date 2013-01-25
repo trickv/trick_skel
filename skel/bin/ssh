@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+# References:
+# http://tldp.org/LDP/abs/html/intandnonint.html
+# http://serverfault.com/questions/146745/how-can-i-check-in-bash-if-a-shell-is-running-in-interactive-mode
 fd=0
-
 if [[ -t "$fd" ]]; then
     terminal-title ssh $*
 fi
