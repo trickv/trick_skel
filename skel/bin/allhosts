@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cat /var/named/etc/namedb/s/*.bak | egrep $'\tA\t'\|$'\tCNAME\t'
