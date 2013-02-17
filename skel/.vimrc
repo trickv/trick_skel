@@ -30,3 +30,6 @@ autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \     exe "normal g'\"" |
       \ endif | 
+
+execute pathogen#infect()
+map <C-n> :NERDTreeToggle<CR>
