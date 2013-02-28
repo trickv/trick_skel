@@ -70,6 +70,7 @@ trick_skel_aliases () {
     # Cygwin
     if [ $OSTYPE == "cygwin" ]; then
         alias ping='/cygdrive/c/Windows/system32/ping -t'
+        alias traceroute=tracert
     fi
 
     # git aliases
