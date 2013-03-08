@@ -22,6 +22,8 @@ snmp-nice-switchport-display() {
         echo -n `trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifDescr.$index | awk '{print $4}'`
         echo -n ":  "
         echo -n `trick_skel_snmp $1 interfaces.ifTable.ifEntry.ifOperStatus.$index | awk '{print $4}'`
+        echo -n " - "
+        echo -n `trick_skel_snmp $1 IF-MIB::ifAlias.$index | cut -d\  -f4-`
         echo
     done
 }
