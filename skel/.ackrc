@@ -1,4 +1,5 @@
 --type-set=cf=.cf
+--type-set=cf3=.cf3
 --type-set=conf=.conf
 --type-set=cfg=.cfg
 --type-set=tpl=.tpl
