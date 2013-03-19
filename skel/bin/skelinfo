@@ -6,13 +6,16 @@ SVN_REVISION=`cat $INFO/txt | grep '^Last Changed Rev:' | cut -d\  -f4`
 LAST_UPDATED=`cat $INFO/txt | grep '^Last Changed Date:' | cut -d\  -f4-`
 INSTALL_DATE=`cat $INFO/install_date`
 
-echo \
-"Is this thang on?  Yeah, it is.  This is trick_skel.
-====================================================
-Last updated: $LAST_UPDATED
+echo "Last updated: $LAST_UPDATED
 SVN Revision: $SVN_REVISION
 Installed: $INSTALL_DATE"
 
 if [ $TRICK_SKEL_ENV_REVISION -lt $SVN_REVISION ]; then
     echo "This env r${TRICK_SKEL_ENV_REVISION} is behind the installed env, r${SVN_REVISION}."
+fi
+
+SERVER_SVN_REVISION=`svn info $HOME/src/trick_skel/ -rHEAD | grep '^Last Changed Rev:' | cut -d\  -f4`
+if [ "$SVN_REVISION" -lt "$SERVER_SVN_REVISION" ]; then
+    echo "The svn checkout at ~/src/trick_skel is out of date. Server shows $SERVER_SVN_REVISION"
+    exit 1
 fi
