@@ -11,7 +11,7 @@ fi
 TRICK_HOSTNAME=${HOSTNAME%%.*}
 
 case $TRICK_HOSTNAME in
-    sting|sam|ss|ro|huangniu|ll|SHN-7-L-170|salta|hg)
+    sting|sam|ss|ro|huangniu|ll|SHN-7-L-208|salta|hg)
         if [ -e $HOME/.keychain/$HOSTNAME-sh ]; then
             . $HOME/.keychain/$HOSTNAME-sh
         fi
