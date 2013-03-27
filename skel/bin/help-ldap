@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+Basic Windows example:
+ldapsearch -W -H ldap://mintel.ad -D cn="Patrick Van Staveren,ou=IT,dc=shanghai,dc=mintel,dc=ad" -b "CN=Inter-Site Transports,CN=Sites,CN=Configuration,DC=mintel,DC=ad"
+
+-W: Prompt for password
+-b: search base
+
+More advanced, show just two attributes:
+ldapsearch -L -L -W -H ldap://mintel.ad -D cn="Patrick Van Staveren,ou=IT,dc=shanghai,dc=mintel,dc=ad" -b "CN=IP,CN=Inter-Site Transports,CN=Sites,CN=Configuration,DC=mintel,DC=ad" name cost
+-L -L: disable comments
+name, cost: two attributes in this search result
+
+
+
+
+
+
+
+EOF
+
