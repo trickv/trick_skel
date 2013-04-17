@@ -6,4 +6,4 @@ export ftp_proxy=$1
 export HTTP_PROXY=$1
 export HTTPS_PROXY=$1
 export FTP_PROXY=$1
-export no_proxy="localhost,127.0.0.1,.mintel.ad,.mintel.co.uk,.usdmm.com"
+export no_proxy="localhost,127.0.0.1,.mintel.ad,.mintel.co.uk,.usdmm.com,nfs-server,ldap-server1,ldap-server2"
