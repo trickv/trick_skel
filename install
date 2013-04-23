@@ -101,11 +101,11 @@ for cur in `ls install.d`; do
 done
 
 # Generate a script which will source all the files in .trick_skel/sh-startup
-for cur in `find $HOME/.trick_skel/sh-startup/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp | sort`; do
+for cur in `find $HOME/.trick_skel/sh-startup/ -type f | egrep -v "\.svn" | grep -v swp | sort`; do
     echo "source ${cur}" >> $HOME/.trick_skel/initialize
 done
 # same for sh-local
-for cur in `find $HOME/.trick_skel/sh-local/ -type f -perm +7 | egrep -v "\.svn" | grep -v swp | sort`; do
+for cur in `find $HOME/.trick_skel/sh-local/ -type f | egrep -v "\.svn" | grep -v swp | sort`; do
     echo "source ${cur}" >> $HOME/.trick_skel/initialize
 done
 
