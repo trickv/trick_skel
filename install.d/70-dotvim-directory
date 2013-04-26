@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 which vim &> /dev/null
 if [ $? -ne 0 ]; then
