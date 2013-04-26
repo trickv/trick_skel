@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+plans=install.d/plans
+projects=install.d/projects
+
+if [ ! -e $HOME/.plan ]; then
+    head -$((${RANDOM} % `wc -l < $plans` + 1)) $plans | tail -1 > $HOME/.plan
+fi
+if [ ! -e $HOME/.project ]; then
+    head -$((${RANDOM} % `wc -l < $projects` + 1)) $projects | tail -1 > $HOME/.project
+fi
