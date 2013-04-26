@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .gdbinit .toprc .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf .ackrc .python_startup.py"
+INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .my.cnf.5 .my.cnf.4 .gdbinit .toprc .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf .ackrc .python_startup.py"
 
 #####
 
@@ -16,7 +16,7 @@ mkdir -p $HOME/bin/trick_skel $ARCHIVE_DIR
 mkdir -p $HOME/tmp/trick_skel_backup
 for cur in $INSTALL_DOTFILES; do
     pushd $HOME > /dev/null
-    cp $cur $HOME/tmp/trick_skel_backup
+    cp $cur $HOME/tmp/trick_skel_backup &> /dev/null
     popd > /dev/null
 done
 

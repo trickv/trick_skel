@@ -1,0 +1,9 @@
+
+# Handle mysql 4 vs 5 client differences
+trick_skel_mysql () {
+    major_version=`$real_mysql --version | awk '{print $5}' | cut -d. -f1`
+    $real_mysql --defaults-extra-file=$HOME/.my.cnf.$major_version $*
+}
+
+real_mysql=`which mysql`
+alias mysql=trick_skel_mysql
