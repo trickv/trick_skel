@@ -23,11 +23,12 @@ case $TRICK_HOSTNAME in
             echo
         fi
         ;;
-    survey-app01|dev-survey-app07|troy|futurebase-img01|atlas|ratchet)
+    skywalker|dev-survey-app07|troy|futurebase-img01|atlas|ratchet)
         ./mintel/update-rsync.sh
         ;;
     *)
         echo "no update location set in cron-daily for hostname=${TRICK_HOSTNAME}, help me."
+        exit 1
         ;;
 esac
 
