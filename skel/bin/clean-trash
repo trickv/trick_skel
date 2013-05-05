@@ -7,12 +7,10 @@ if [ "$OSTYPE" == "cygwin" ]; then
     touch "$HOMEPATH\Downloads\\.temp"
     find "$HOMEPATH\Downloads\\" -type d -empty $delete
     rm "$HOMEPATH\Downloads\\.temp"
-elif [ "$OSTYPE" == "darwin11" ]; then
-    find "$HOME/Downloads" -mtime +14 -type f $delete
+elif [ "${OSTYPE%%[1-9]*}" == "darwin" ]; then
+    find "$HOME/Downloads" -mtime +14 -type f -and -not -path "*.app" $delete
     touch "$HOME/Downloads/.temp"
-    find "$HOME/Downloads" -type d -empty $delete
-    find "$HOME/Downloads" -type d -empty $delete
-    find "$HOME/Downloads" -type d -empty $delete
+    find "$HOME/Downloads" -type d -name "*.app" -mtime +180 -print0 | xargs -n 1 -0 rm -rf
     find "$HOME/Downloads" -type d -empty $delete
     rm "$HOME/Downloads/.temp"
 elif [ "$OSTYPE" == "linux-gnu" ]; then
