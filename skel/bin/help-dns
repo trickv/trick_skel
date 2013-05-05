@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+dig -t txt o-o.myaddr.l.google.com [@8.8.8.8]
+dig whoami.akamai.net [@8.8.8.8]
+
+use drill for dnssec verification
+
+
+
+
+EOF
+
