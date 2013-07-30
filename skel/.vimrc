@@ -32,4 +32,3 @@ autocmd BufReadPost *
       \ endif | 
 
 execute pathogen#infect()
-map <C-n> :NERDTreeToggle<CR>
