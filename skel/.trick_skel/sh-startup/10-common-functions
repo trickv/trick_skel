@@ -86,7 +86,7 @@ up () {
 }
 
 trick_skel_copypaste() {
-    export PS1="[\u@\h \W]\$ "
+    export PS1="[\u@\h \w]\$ "
 }
 
 # vim:filetype=sh
