@@ -32,3 +32,5 @@ autocmd BufReadPost *
       \ endif | 
 
 execute pathogen#infect()
+
+au BufNewFile,BufRead *.ad set filetype=text
