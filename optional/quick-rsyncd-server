@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cat quick-rsyncd-server.conf.template \
+    | sed s:HOME:$HOME:g \
+    > $HOME/tmp/quick-rsyncd-server.conf
+
+rsync --daemon --no-detach --config=$HOME/tmp/quick-rsyncd-server.conf

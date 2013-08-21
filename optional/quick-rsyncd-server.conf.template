@@ -1,0 +1,10 @@
+read only = no
+port = 39999
+use chroot = no
+pid file = HOME/tmp/quick-rsyncd.pid
+lock file = HOME/tmp/quick-rsyncd.lock
+
+[quick_tmp]
+    path = HOME/tmp/
+    comment = quick rsync tmp writable
+    read only = false
