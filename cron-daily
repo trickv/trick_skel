@@ -11,10 +11,10 @@ fi
 TRICK_HOSTNAME=${HOSTNAME%%.*}
 
 case $TRICK_HOSTNAME in
-    sting|sam|ss|ro|huangniu|ll|SHN-7-L-208|salta|hg|trogdor)
-        if [ -e $HOME/.keychain/$HOSTNAME-sh ]; then
-            . $HOME/.keychain/$HOSTNAME-sh
-        fi
+    skywalker|dev-survey-app07|troy|futurebase-img01|atlas)
+        ./mintel/update-rsync.sh
+        ;;
+    *)
         svn up > /dev/null
         SVN_STAT=`svn stat`
         if [ "$SVN_STAT" != "" ]; then
@@ -22,13 +22,6 @@ case $TRICK_HOSTNAME in
             echo $SVN_STAT
             echo
         fi
-        ;;
-    skywalker|dev-survey-app07|troy|futurebase-img01|atlas)
-        ./mintel/update-rsync.sh
-        ;;
-    *)
-        echo "no update location set in cron-daily for hostname=${TRICK_HOSTNAME}, help me."
-        exit 1
         ;;
 esac
 
