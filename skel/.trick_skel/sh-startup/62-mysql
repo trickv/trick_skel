@@ -1,9 +1,10 @@
-
+real_mysql=`which mysql 2>&1`
+if [ $? -eq 0 ]; then
 # Handle mysql 4 vs 5 client differences
-trick_skel_mysql () {
-    major_version=`$real_mysql --version | awk '{print $5}' | cut -d. -f1`
-    $real_mysql --defaults-extra-file=$HOME/.my.cnf.$major_version $*
-}
+    trick_skel_mysql () {
+        major_version=`$real_mysql --version | awk '{print $5}' | cut -d. -f1`
+        $real_mysql --defaults-extra-file=$HOME/.my.cnf.$major_version $*
+    }
 
-real_mysql=`which mysql`
-alias mysql=trick_skel_mysql
+    alias mysql=trick_skel_mysql
+fi
