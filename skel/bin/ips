@@ -11,7 +11,7 @@ if [ "$OSTYPE" = "cygwin" ]; then
     exit
 fi
 
-interfaces="bce1 bce0 vlan2 vlan5"
+interfaces="bce1 bce0 vlan11 vlan2 vlan5"
 for interface in $interfaces; do
     ifconfig $interface 2> /dev/null | grep inet &> /dev/null
     if [ $? -eq 0 ]; then
