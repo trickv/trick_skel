@@ -33,12 +33,14 @@ snmp-full-switch-status() {
 }
 
 snmp-sysdesc() {
+    set -e
     for cur in sysDescr sysObjectID sysUpTime sysContact sysName sysLocation sysServices; do
         trick_skel_snmp $1 SNMPv2-MIB::$cur
         if [ $? -ne 0 ]; then
             break
         fi
     done
+    set +e
 }
 
 snmp-set-host() {
