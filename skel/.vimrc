@@ -34,3 +34,6 @@ autocmd BufReadPost *
 execute pathogen#infect()
 
 au BufNewFile,BufRead *.ad set filetype=text
+
+" Preserve screen contents when CTRL+Z'ing out of vim
+set t_ti= t_te=
