@@ -1,0 +1,6 @@
+delay=120
+
+while [ true ]; do
+    printf "%s %s" `strdate` `wimi 2>/dev/null`
+    sleep $delay
+done
