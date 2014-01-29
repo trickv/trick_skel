@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+My commands:
+* snmp-set-host <hostname> # sets host name for v2c walking
+* snmp-walk <oid> # walks it with the pre-set hostname
+
+MIBs go into: ~/.snmp/mibs/
+
+Walking a special MIB in local dir:
+* snmpwalk -v2c -c public -m +PowerNet-MIB ups4 PowerNet-MIB::apc
+The file name / extension doesn't need to match the +PowerNet-MIB name.
+
+Translate names into IDs:
+* snmpwalk -v2c -c public -On -m +PowerNet-MIB ups4 PowerNet-MIB::apc
+
+
+
+EOF
+
