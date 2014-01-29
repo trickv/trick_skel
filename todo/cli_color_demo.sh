@@ -28,3 +28,6 @@ for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
   echo;
 done
 echo
+
+echo "To use a color in echo, do it like:"
+echo "echo -e \"\E[01;41mWarning text\E[m: regular text.\""
