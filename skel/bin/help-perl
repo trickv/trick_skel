@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+Inline perl filtering:
+    [pv@trogdor ~]$ echo "1.22.3.4/24" | perl -lpe 's/\d{2}/x/g'
+    1.x.3.4/x
+
+https://blogs.oracle.com/ksplice/entry/the_top_10_tricks_of
+
+
+
+EOF
+
