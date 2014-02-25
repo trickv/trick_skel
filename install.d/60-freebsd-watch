@@ -1,5 +1,5 @@
 #!/bin/sh
 
 if [ "`uname`" = "FreeBSD" ]; then
-    cp optional/watch $HOME/bin/trick_skel/
+    cp optional/freebsd-watch $HOME/bin/trick_skel/
 fi
