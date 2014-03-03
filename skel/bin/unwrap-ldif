@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Code source: http://richmegginson.livejournal.com/18726.html
+
+sed -n '1 {h; $ !d}; $ {x; s/\n //g; p}; /^ / {H; d}; /^ /! {x; s/\n //g; p}' $@
