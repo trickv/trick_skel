@@ -15,8 +15,11 @@ name, cost: two attributes in this search result
 Filter out the annoying dn lines:
 ldapsearch -L -L -W -H ldap://mintel.ad -D cn="Patrick Van Staveren,ou=IT,dc=shanghai,dc=mintel,dc=ad" -b "CN=IP,CN=Inter-Site Transports,CN=Sites,CN=Configuration,DC=mintel,DC=ad" name cost  | egrep "^(cost|name|\$)"
 
+On our main LDAP tree:
+ldapsearch -LLL -W -H ldap://ldap-server1/ -D "cn=Patrick Van Staveren,ou=China,ou=People,o=Mintel" -b "ou=Mail,ou=Services,o=Mintel" maildrop=*@domain.com
 
 
+To grep with the results of ldapsearch, use the unwrap-ldif script.
 
 
 
