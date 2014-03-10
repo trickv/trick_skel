@@ -10,7 +10,9 @@ fi
 
 echo $* | fgrep mintel &> /dev/null
 if [ $USER != "pv" -a $? -eq 0 ]; then
-    echo "Magically changing user to pv for mintel box"
+    # Mention user change on stderr
+    # From ABS: http://www.tldp.org/LDP/abs/html/ioredirintro.html
+    echo "Magically changing user to pv for mintel box" >&2
     extra_args="-l pv"
 fi
 
