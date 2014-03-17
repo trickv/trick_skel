@@ -1,37 +1,7 @@
 Add a line to user crontab like below.
 For modern systems, the environment variable helps with mail filtering.
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 30 4 * * * $HOME/src/trick_skel/cron-daily 2>&1
 X_TRICK_FILTER_TO_SYSTEMS=1
 
-Boxes following this documentation have an * next to them
-
-Mintel block:
-08:30 UTC huangniu.shanghai pulls from svn.vanstaveren.us:
-    08:30 pv@huangniu.shanghai
-09:00 UTC boxes rsync'ing from huangniu.shanghai:49876:
-    09:00 pv@survey-app01 (camaro) *
-    09:05 pv@dev-survey-app07 (fender) *
-    09:10 pv@troy *
-    09:15 pv@futurebase-img01.chi-dc *
-    09:25 pv@ratchet.sydney (backup server) *
-04:00 Chicago Time:
-    04:21 pv@atlas.usdmm.com *
-04:00 China Time:
-    04:21 pv@salta *
-
-03:15 [local TZ] Home boxes:
-    3:34 trick@sting *
-    3:36 root@sting *
-    3:46 root@ro *
-    3:48 trick@ro *
-
-10:00 UTC Personal boxes:
-    4:00 trick@sam *
-    4:02 root@sam *
-    4:04 trick@hg *
-    4:06 root@hg *
-
-12:00 [local TZ] Roaming boxes:
-    12:00 trick@ss *
-    12:05 root@ss *
-    12:10 trick@ll *
+All hosts update directly from public subversion at 4:30 on their local clock.

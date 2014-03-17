@@ -12,7 +12,8 @@ TRICK_HOSTNAME=${HOSTNAME%%.*}
 
 case $TRICK_HOSTNAME in
     skywalker|dev-survey-app07|troy|futurebase-img01|atlas)
-        ./mintel/update-rsync.sh
+        echo "fixme: host is using old update method"
+        # 2014-03-14
         ;;
     *)
         svn up > /dev/null
