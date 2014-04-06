@@ -1,0 +1,13 @@
+if [ "$TERM" != "screen" ]; then
+    which tmux &> /dev/null
+    if [ $? -eq 0 ]; then
+        session_count=`tmux list-sessions | wc -l`
+        if [ $session_count -gt 0 ]; then
+            echo "$session_count active tmux sessions:"
+            tmux list-sessions
+            echo
+        fi
+    fi
+fi
+
+# vim:ft=sh
