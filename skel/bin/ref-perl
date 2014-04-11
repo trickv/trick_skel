@@ -2,13 +2,17 @@
 
 cat <<EOF
 
-Inline perl filtering:
+Inline perl regex replace:
     [pv@trogdor ~]$ echo "1.22.3.4/24" | perl -lpe 's/\d{2}/x/g'
     1.x.3.4/x
 
 https://blogs.oracle.com/ksplice/entry/the_top_10_tricks_of
 
+Inline "grep" with perl: print only login shells on pts/3, 5, and 7:
+    [pv@trogdor ~]$ w | perl -ne '/pts\/[3,5,7]\s/ && print'
+    pv       pts/3     06:06   23:10   0.05s  0.00s bash /home/pv/foo
+    pv       pts/7     10:39    1:07m  0.54s  0.54s -bash
 
+http://www.catonmat.net/download/perl1line.txt
 
 EOF
-
