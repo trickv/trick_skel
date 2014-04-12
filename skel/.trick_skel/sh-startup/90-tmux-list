@@ -3,13 +3,12 @@ if [ "$TERM" != "screen" ]; then
     if [ $? -eq 0 ]; then
         tmux list-sessions &> /dev/null
         if [ $? -eq 0 ]; then
-            break; # there are no tmux sessions
-        fi
-        session_count=`tmux list-sessions | wc -l`
-        if [ $session_count -gt 0 ]; then
-            echo "$session_count active tmux sessions:"
-            tmux list-sessions
-            echo
+            session_count=`tmux list-sessions | wc -l`
+            if [ $session_count -gt 0 ]; then
+                echo "$session_count active tmux sessions:"
+                tmux list-sessions
+                echo
+            fi
         fi
     fi
 fi
