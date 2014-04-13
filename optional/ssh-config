@@ -45,7 +45,6 @@ printf "# ssh config generated for $hostname at %4d-%02d-%02d %02d:%02d:%02d\n\n
 
 # global stuff
 print "# global settings\n";
-print "EscapeChar ^s\n\n";
 print "StrictHostKeyChecking no\n\n";
 
 # special cases for home boxen
