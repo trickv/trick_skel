@@ -2,8 +2,9 @@
 # $Id$
 
 [user]
-	email = trick@vanstaveren.us
-	name = Patrick van Staveren
+    email = trick@vanstaveren.us
+    name = Patrick van Staveren
 
 [core]
     pager = less --quit-if-one-screen --no-init --quit-at-eof --chop-long-lines
+    autocrlf = input
