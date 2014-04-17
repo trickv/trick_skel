@@ -109,6 +109,8 @@ trick_skel_aliases () {
 
         # w -i sorts by idle time. sadly not available on gnu.
         alias w='w -i'
+    else
+        trick_skel_if_exists_then_alias md5sum md5
     fi
 
     alias dmesgt=trick_skel_dmesg_tail
