@@ -15,4 +15,6 @@ Inline "grep" with perl: print only login shells on pts/3, 5, and 7:
 
 http://www.catonmat.net/download/perl1line.txt
 
+perl-shell is a hack to open up a debug session where one can hack perl on the fly.
+
 EOF
