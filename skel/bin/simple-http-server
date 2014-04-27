@@ -1,1 +1,7 @@
-python -m SimpleHTTPServer 8000
+#!/usr/bin/env bash
+
+port=8000
+
+terminal-title HTTP:$port on `hostname -s` by $USER
+
+python -m SimpleHTTPServer $port
