@@ -15,7 +15,8 @@ The file name / extension doesn't need to match the +PowerNet-MIB name.
 Translate names into IDs:
 * snmpwalk -v2c -c public -On -m +PowerNet-MIB ups4 PowerNet-MIB::apc
 
-
+Useful tables:
+* LLDP: snmptable <args> lldpRemTable
 
 EOF
 
