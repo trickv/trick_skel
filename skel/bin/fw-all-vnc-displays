@@ -15,4 +15,4 @@ echo "SSH'ing to $host and Forwarding 50 ports ranging from ${base}00 to remote 
 
 echo $forwards
 
-ssh -C -c arcfour $forwards $host
+ssh -C -c arcfour $forwards $*
