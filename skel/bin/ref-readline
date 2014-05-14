@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+Ctrl+a: start of line
+Ctrl+e: end of line
+
+Alt+f: forward one word
+Alt+b: back one word
+
+Ctrl+w: erase last word
+Alt+d: erase next word
+
+http://www.bigsmoke.us/readline/shortcuts
+
+EOF
+
