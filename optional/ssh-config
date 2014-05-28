@@ -15,7 +15,7 @@ my %hosts = (
         'HostName' => 'lish.v9n.us',
         'User' => 'trickv'},
     'g1' => { 'User' => 'root' },
-    'ci' => { 'User' => 'root' },
+    'ci' => { 'User' => 'root', 'Hostname' => '172.16.7.1' },
     'hg-lish' => {
         'User' => 'linode102280',
         'Hostname' => 'fremont398.linode.com',
@@ -88,3 +88,6 @@ foreach $hostname (@sortedHosts) {
     }
 }
 
+if ($hostname =~ /ll.home.vanstaveren.us/) {
+    print "Host burninator\n    HostName 192.168.56.101\n";
+}
