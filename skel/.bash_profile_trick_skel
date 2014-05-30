@@ -37,7 +37,7 @@ if [ -d $HOME/local/bin ]; then
 fi
 
 # Handy environment variables that make me happy
-export PAGER=less
+export PAGER="less --quit-if-one-screen --chop-long-lines"
 export EDITOR=vim
 export VTYSH_PAGER="less --quit-if-one-screen --no-init --quit-at-eof --chop-long-lines --quit-on-intr"
 export MONO_THEME=clearlooks
