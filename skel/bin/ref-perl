@@ -15,6 +15,11 @@ Inline "grep" with perl: print only login shells on pts/3, 5, and 7:
 
 http://www.catonmat.net/download/perl1line.txt
 
+Perl Pie - inline replacement in files:
+    perl -pi -e "s:foo:bar:g" *.cfg
+
+http://technosophos.com/2009/05/21/perl-pie-if-you-only-learn-how-do-one-thing-perl-it.html
+
 perl-shell is a hack to open up a debug session where one can hack perl on the fly.
 
 EOF
