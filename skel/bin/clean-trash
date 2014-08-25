@@ -19,3 +19,8 @@ elif [ "$OSTYPE" == "linux-gnu" ]; then
 else
     echo "I don't know how to handle $OSTYPE"
 fi
+
+if [ "$HOSTNAME" == "trogdor" ]; then
+    touch $HOME/tmp
+    find $HOME/tmp -mtime +14 -print $delete
+fi
