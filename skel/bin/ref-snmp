@@ -18,5 +18,8 @@ Translate names into IDs:
 Useful tables:
 * LLDP: snmptable <args> lldpRemTable
 
+Quick snmpwalk to check if a host is alive at all:
+snmpwalk -v2c -c public target_host .1.3.6.1.2.1.1
+
 EOF
 
