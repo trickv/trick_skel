@@ -1,0 +1,7 @@
+if [ "$TRICK_SKEL_HAS_ALREADY_RUN" == "yes" -a "$TERM" != "screen" ]; then
+    echo "skel initialized twice?"
+fi
+
+export TRICK_SKEL_HAS_ALREADY_RUN="yes"
+
+# vim:ft=sh
