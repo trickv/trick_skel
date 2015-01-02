@@ -31,7 +31,9 @@ autocmd BufReadPost *
       \     exe "normal g'\"" |
       \ endif | 
 
-execute pathogen#infect()
+if v:version >= 700
+    execute pathogen#infect()
+endif
 
 au BufNewFile,BufRead *.ad set filetype=text
 
