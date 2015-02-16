@@ -16,7 +16,13 @@ fi
 let two_days_ago=$(date +%s)-172800
 
 if [ $install_date_stamp -lt $two_days_ago ]; then
-    echo "* Bash profile is more than two days out of date."
+    if [ $TRICK_SKEL_IS_LINUX ]; then
+        if [ "`cat /proc/uptime | cut -d.`" -lt 86400 ]; then
+            echo "* Remove this line: bash profile >2 days old but uptime <1"
+        else
+            echo "* Bash profile is more than two days out of date."
+        fi
+    fi
 fi
 
 # vim:ft=sh
