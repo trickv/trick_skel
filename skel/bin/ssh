@@ -5,7 +5,11 @@
 # http://serverfault.com/questions/146745/how-can-i-check-in-bash-if-a-shell-is-running-in-interactive-mode
 fd=0
 if [[ -t "$fd" ]]; then
-    terminal-title ssh $*
+    if [[ "$*" != *"mosh-server"* ]]; then
+        # We're not trying to start a mosh session
+        # so it's fine to change the terminal title
+        terminal-title ssh $*
+    fi
 fi
 
 echo $* | fgrep mintel &> /dev/null
@@ -18,4 +22,4 @@ fi
 
 PATH=/usr/local/bin:/usr/bin:/bin
 ssh=`which ssh`
-$ssh $extra_args $*
+$ssh $extra_args "${@}"
