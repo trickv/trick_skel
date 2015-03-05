@@ -40,19 +40,25 @@ trick_skel_start_keychain () {
 trick_skel_first_ssh_run () {
     trick_skel_start_keychain
     unalias ssh
-    ssh $@
+    ssh "${@}"
 }
 
 trick_skel_first_scp_run () {
     trick_skel_start_keychain
     unalias scp
-    scp $@
+    scp "${@}"
 }
 
 trick_skel_first_rsync_run () {
     trick_skel_start_keychain
     unalias rsync
-    rsync $@
+    rsync "${@}"
+}
+
+trick_skel_first_mosh_run () {
+    trick_skel_start_keychain
+    unalias mosh
+    mosh "${@}"
 }
 
 # echo's out information to the terminal if it's proper to do so
@@ -69,6 +75,7 @@ trick_skel_verify_ssh_agent () {
         alias ssh=trick_skel_first_ssh_run
         alias scp=trick_skel_first_scp_run
         alias rsync=trick_skel_first_rsync_run
+        alias mosh=trick_skel_first_mosh_run
     fi
 }
 
