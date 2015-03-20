@@ -17,4 +17,4 @@ set -u
 cd $HOME/Desktop/
 mkdir -p archive
 #find . ! -path "*archive*" -and ! -path "." -and ! -name "desktop.ini" -and ! -name "*.lnk" -and -atime +7 -print0 | xargs -0 -n 1 -I % mv "%" archive/
-find . ! -path "*archive*" -and ! -path "." -and ! -name "desktop.ini" -and ! -name "*.lnk" -and -atime +7 -print
+find . ! -path "*archive*" -and ! -path "." -and ! -name ".localized" -and -mtime +7 -print0 | xargs -0 -n 1 -I % mv "%" archive/
