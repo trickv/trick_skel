@@ -11,7 +11,6 @@ trick_skel_terminal_interactive () {
 # Keychain automagicalness
 trick_skel_start_keychain () {
     if [ "$SSH_AUTH_SOCK" != "" ]; then
-        echo "Debug: SSH agent already running"
         return
     fi
     TRICK_KEYCHAIN=`which keychain 2> /dev/null`
