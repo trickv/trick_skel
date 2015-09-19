@@ -39,3 +39,7 @@ au BufNewFile,BufRead *.ad set filetype=text
 
 " Preserve screen contents when CTRL+Z'ing out of vim
 set t_ti= t_te=
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+" http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+cmap w!! w !sudo tee > /dev/null %
