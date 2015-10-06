@@ -32,6 +32,12 @@ else
     TRICK_SKEL_IS_FREEBSD=""
 fi
 
+if [ "$OSTYPE" == "linux-gnu" ]; then
+    TRICK_SKEL_IS_LINUX="0"
+else
+    TRICK_SKEL_IS_LINUX=""
+fi
+
 if [ -d $HOME/local/bin ]; then
     export PATH=$HOME/local/bin:$PATH
 fi
