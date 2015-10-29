@@ -15,6 +15,7 @@ elif [ "${OSTYPE%%[1-9]*}" == "darwin" ]; then
     rm "$HOME/Downloads/.temp"
 elif [ "$OSTYPE" == "linux-gnu" ]; then
     find $HOME/Downloads/ -mtime +14 -type f -print $delete
+    find $HOME/Downloads/* -mtime +14 -type d -print $delete
     find $HOME/.local/share/Trash/ -mtime +60 -type f -print $delete
 else
     echo "I don't know how to handle $OSTYPE"
