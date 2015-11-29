@@ -25,12 +25,31 @@ if [ -f $HOME/.prompt_message ]; then
     unset prompt_message
 fi
 
+# This method is run whenever the DEBUG trap (set below) is hit.
+# It sets the titlebar to the running command name.
+# https://mg.pov.lt/blog/bash-prompt.html and
+# http://www.davidpashley.com/articles/xterm-titles-with-bash/
+trick_skel_show_command_in_title_bar() {
+    case "$BASH_COMMAND" in
+        *\033]0*)
+            # The command is trying to set the title bar as well;
+            # this is most likely the execution of $PROMPT_COMMAND.
+            # In any case nested escapes confuse the terminal, so don't
+            # output them.
+            ;;
+        *)
+            echo -ne "\033]0;${USER}@${HOSTNAME}: ${BASH_COMMAND}\007"
+            ;;
+    esac
+}
+
 if [ "$TERM" = "xterm" -o "$TERM" = "screen" -o "$TERM" = "xterm-color" -o "$TERM" = "xterm-256color" ]; then # we expect that this is a terminal that supports color and a titlebar
     export PS1="\`code=\$?; if [ \$code -ne 0 ]; then echo [\$code]\ ; fi\`${PROMPT_MESSAGE_INSERT}\[\033[1;33m\]\[\033[01;34m\]\w\[\033[1;31m\]/\[\033[00m\] "
     # On machines where the prompt command doesn't work, create .disable_prompt_command
     if [ ! -f $HOME/.disable_prompt_command ]; then
         # sets the terminal title after each command is executed
         export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}${JAIL_HOST_INSERT}:${PWD/$HOME/~}\007"'
+        trap trick_skel_show_command_in_title_bar DEBUG
     fi
 else
     export PS1="\u@\h${JAIL_HOST_INSERT}${PROMPT_MESSAGE_INSERT}:\w "
