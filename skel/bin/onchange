@@ -13,7 +13,7 @@ TEMP2=`mktemp /tmp/onchange.XXXXXXXX`
 while [ true ]; do
 
 	cp $TEMP1 $TEMP2
-	ls -lhR * --full-time | grep -v .dll | grep -v .svn > $TEMP1
+	ls -lhaR * --full-time | grep -v .dll | grep -v .svn | grep -v \.swp$ > $TEMP1
 	diff $TEMP1 $TEMP2 > /dev/null; A=$?
 	if [ $A -eq 1 ]; then
 		# run compile commands - it's changed!
