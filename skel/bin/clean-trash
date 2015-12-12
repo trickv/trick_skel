@@ -21,7 +21,7 @@ else
     echo "I don't know how to handle $OSTYPE"
 fi
 
-if [ "$HOSTNAME" == "trogdor" ]; then
+if [ "$HOSTNAME" == "trogdor" -o "$HOSTNAME" == "ll.local" ]; then
     touch $HOME/tmp
     find $HOME/tmp -mtime +14 -print $delete
 fi
