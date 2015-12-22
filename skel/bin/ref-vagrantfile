@@ -1,1 +1,7 @@
-cat /Applications/Vagrant/embedded/gems/gems/vagrant-1.2.2/templates/commands/init/Vagrantfile.erb
+if [ $TRICK_SKEL_IS_OSX ]; then
+    vagrant_docs_base=/Applications/Vagrant/embedded/gems/gems/vagrant-1.2.2
+else
+    vagrant_docs_base=/usr/share/vagrant
+fi
+
+cat ${vagrant_docs_base}/templates/commands/init/Vagrantfile.erb
