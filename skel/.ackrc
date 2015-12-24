@@ -3,3 +3,4 @@
 --type-set=conf=.conf
 --type-set=cfg=.cfg
 --type-set=tpl=.tpl
+--type-set=ps1=.ps1
