@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <file name>"
+    echo "  Where <file name> is a list of hosts."
+    exit 1
+fi
+
+for host in `cat $1 | sort`; do
+    short=${host%%.*}
+    echo $host
+    curl -s "http://racktables.mintel.co.uk/webservices/server_inventory/v1/search/$short/" > cur
+    if [ "`cat cur`" == "" -o "`cat cur`" == "[]" ]; then
+        # file is empty
+        a=1
+    elif [ "`cat cur | jq '.jail'`" == "null" ]; then
+        #echo "Not a jail"
+        a=1
+    else
+        cat cur | jq '.jail | keys[]' | cut -d\" -f2 | xargs -n 1  echo " *" 
+    fi
+done
+
