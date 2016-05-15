@@ -5,13 +5,13 @@ host=$1
 base=420
 
 forwards=""
-for i in $(seq -f "%02g" 00 49); do
+for i in $(seq -f "%02g" 00 99); do
     local="${base}${i}"
     remote="59${i}"
     forwards="$forwards -L $local:localhost:$remote"
 done
 
-echo "SSH'ing to $host and Forwarding 50 ports ranging from ${base}00 to remote localhost:5900 onwards."
+echo "SSH'ing to $host and Forwarding a bunch ports ranging from ${base}00 to remote localhost:5900 onwards."
 
 echo $forwards
 
