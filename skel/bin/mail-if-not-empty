@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# For systems like sting (Slackware 10.2) where mail doesn't have a -e / -E flag
+# For systems like sting (Slackware 10.2) or CentOS 5 where mail doesn't have a -e / -E flag
 # from trick_skel
 
 if [ "$2" = "" ]; then
