@@ -62,6 +62,8 @@ trick_skel_aliases () {
     alias nano='nano -w'
     alias 'ssh-keys'='ssh-add -l'
     alias cssh='trick_skel_cssh'
+    alias vssh='cssh -l vyos'
+    alias nosec-ssh='ssh -o StrictHostKeyChecking=no'
     alias clearenv='source _source_clearenv'
     alias svn_id='svn propset svn:keywords Id'
     alias svnmerge='svnmerge.py'
