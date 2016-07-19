@@ -52,23 +52,33 @@ snmp-set-host() {
     echo "SNMP host seet to $1"
 }
 
+trick_skel_snmp_community="public"
+snmp-set-community() {
+    if [ "$1" == "" ]; then
+        echo "You must specify a community."
+        return
+    fi
+    trick_skel_snmp_community=$1
+    echo "SNMP community set to $1"
+}
+
 snmp-walk() {
     if [ "$trick_skel_snmp_host" == "" ]; then
         echo "You must set a host first with snmp-set-host"
         return
     fi
-    snmpwalk -v2c -c public $trick_skel_snmp_host $1
+    snmpwalk -v2c -c $trick_skel_snmp_community $trick_skel_snmp_host $1
 }
 
 
 trick_skel_snmp() {
-    snmpwalk -v2c -c public $*
+    snmpwalk -v2c -c $trick_skel_snmp_community $*
 }
 
 snmp-ping() {
     trick_skel_snmp $1 SNMPv2-MIB::sysUpTime
     if [ $? -ne 0 ]; then
-        echo "SNMP uptime query failed. Make sure this host is accepting connections from this IP, and that the community is public."
+        echo "SNMP uptime query failed. Make sure this host is accepting connections from this IP, and that the community is $trick_skel_snmp_community."
     fi
 }
 
