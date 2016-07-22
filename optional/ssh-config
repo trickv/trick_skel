@@ -90,4 +90,5 @@ foreach $hostname (@sortedHosts) {
 
 if ($hostname =~ /ll.home.vanstaveren.us/) {
     print "Host burninator\n    HostName 192.168.56.101\n";
+    print "Host debian8\n    HostName 192.168.42.2\n";
 }
