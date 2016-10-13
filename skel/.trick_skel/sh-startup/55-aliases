@@ -97,6 +97,7 @@ trick_skel_aliases () {
     # `date` wrappers for timezones
     alias chicagotime='TZ=America/Chicago date'
     alias londontime='TZ=Europe/London date'
+    alias chinatime='TZ=Asia/Shanghai date'
     alias utctime='TZ=UTC date'
 
     # freebsd-specific aliases
