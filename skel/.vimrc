@@ -32,7 +32,7 @@ autocmd BufReadPost *
       \ endif | 
 
 if v:version >= 700
-    execute pathogen#infect()
+    silent! call pathogen#infect()
 endif
 
 au BufNewFile,BufRead *.ad set filetype=text
