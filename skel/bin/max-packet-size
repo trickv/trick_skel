@@ -29,8 +29,10 @@ while [ true ]; do
             let increment=$increment/10
             let size=$last_good_size
         else
-            echo -e "\nMax packet size: $last_good_size"
+            echo -e "\nMax ICMP packet size: $last_good_size"
             echo "This excludes IP and ICMP headers which are usually 20 and 8 respectively."
+            let ethernet_size=$last_good_size+20+8
+            echo -e "\nEthernet packet size: $ethernet_size"
             exit
         fi
     fi
