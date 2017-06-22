@@ -8,3 +8,4 @@
 [core]
     pager = less --quit-if-one-screen --no-init --quit-at-eof --chop-long-lines
     autocrlf = input
+    excludesfile = ~/.gitignore_global
