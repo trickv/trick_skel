@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+fps=20
+if [ "$2" != "" ]; then
+    fps=$2
+fi
+res=1980:1080
+if [ "$3" == "4k" ]; then
+    res=3840:2160
+    echo "Scaling to 4k: $res"
+fi
+
+frames="frames-$1.txt"
+
+find $1/ -iname "*.JPG"  | sort > $frames
+
+last_frame=`tail -n 1 frames.txt`
+
+for a in {1..200}; do
+    echo $last_frame >> $frames
+done
+
+mkdir -p output
+
+mencoder -nosound -ovc lavc -lavcopts \
+    vcodec=mpeg4:mbd=2:trell:autoaspect:vqscale=3 \
+    -vf scale=$res -mf type=jpeg:fps=$fps \
+    mf://@$frames -o output/time-lapse-$1-`strdate`.avi
