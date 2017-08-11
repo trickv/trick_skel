@@ -19,7 +19,7 @@ echo "export CLICOLOR=1" >> $DEST
 
 which dircolors &> /dev/null
 if [ $? -eq 0 ]; then
-    dircolors -b >> $DEST
+    echo 'eval "$(dircolors -b)"' >> $DEST
 fi
 
 which gdircolors &> /dev/null
