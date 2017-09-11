@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 fps=20
+ofps=""
 if [ "$2" != "" ]; then
     fps=$2
+    if [ $fps -gt 30 ]; then
+        ofps="-ofps 30"
+    fi
 fi
 if [ "$3" == "1080" ]; then
     res=1920:1080
@@ -32,4 +36,4 @@ fi
 mencoder -nosound -ovc lavc -lavcopts \
     vcodec=mpeg4:mbd=2:trell:autoaspect:vqscale=3 \
     $vf -mf type=jpeg:fps=$fps \
-    mf://@$frames -o output/time-lapse-$1-`strdate`.avi
+    mf://@$frames $ofps -o output/time-lapse-$1-`strdate`.avi
