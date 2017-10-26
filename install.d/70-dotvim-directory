@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-pathogenbundles[0]="https://github.com/airblade/vim-gitgutter.git"
-pathogenbundles[1]="https://github.com/tpope/vim-surround.git"
-pathogenbundles[2]="https://github.com/PProvost/vim-ps1"
+pathogenbundles=()
+
+pathogenbundles+=("https://github.com/airblade/vim-gitgutter.git")
+pathogenbundles+=("https://github.com/tpope/vim-surround.git")
+pathogenbundles+=("https://github.com/PProvost/vim-ps1")
 
 which vim &> /dev/null
 if [ $? -ne 0 ]; then
