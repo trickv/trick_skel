@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-terminal-title RDP: $1
-mstsc /v:$1
