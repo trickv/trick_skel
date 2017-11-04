@@ -38,3 +38,4 @@ Thumbs.db
 
 *.pyc
 .*.swp
+__pycache__/
