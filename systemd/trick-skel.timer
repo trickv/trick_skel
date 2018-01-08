@@ -1,0 +1,5 @@
+[Unit]
+Description=Run trick_skel job daily
+
+[Timer]
+OnCalendar=daily

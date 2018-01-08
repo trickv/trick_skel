@@ -1,0 +1,8 @@
+[Unit]
+Description=Run trick_skel job daily
+
+[Service]
+Type=oneshot
+ExecStart=/home/trick/src/trick_skel/cron-daily
+User=trick
+Group=trick
