@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+tmux cheat sheet:
+                            tmux                    screen
+create session "foo":       tmux new -s foo         screen -S foo
+
+
+EOF
