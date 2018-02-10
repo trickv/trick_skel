@@ -28,7 +28,7 @@ trick_skel_start_keychain () {
         fi
 
         # find keys and load them in
-        TRICK_KEYS=`find $HOME/.ssh/ -name "*id_?sa" | grep -v backup | grep -v old`
+        TRICK_KEYS=`find $HOME/.ssh/ -name "*id_rsa" -or -name "*id_ecdsa" -or -name "*id_ed25519" | grep -v backup | grep -v old`
         if [ "$TRICK_KEYS" != "" ]; then
             for cur in $TRICK_KEYS; do
                 $TRICK_KEYCHAIN -q --nogui $cur
