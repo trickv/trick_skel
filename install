@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .my.cnf.5 .my.cnf.4 .gdbinit .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf .ackrc .python_startup.py .gitignore_global .config/i3/config .config/i3status/config .gnupg/gpg.conf .gnupg/dirmngr.conf"
+INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .my.cnf.5 .my.cnf.4 .gdbinit .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf .ackrc .python_startup.py .gitignore_global .config/i3/config .config/i3status/config .gnupg/gpg.conf .gnupg/gpg-agent.conf .gnupg/0xAFDC58ED15CC26D4-opengpg.gpg .gnupg/0x01F8267F096D3F52-opengpg.gpg"
 
 #####
 

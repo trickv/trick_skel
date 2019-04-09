@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+keyid=$(gpg --card-status | grep ^sec | cut -d/ -f2 | awk '{print $1}')
+if [ "$keyid" == "" ]; then
+    echo "no key inserted?"
+    exit 1
+fi
+gpg -d $HOME/.gnupg/$keyid-opengpg.gpg
