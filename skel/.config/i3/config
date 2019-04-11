@@ -142,6 +142,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+b exec "google-chrome"
 bindsym $mod+l exec "xautolock -locknow"
 exec --no-startup-id "xautolock -locker i3lock"
+exec --no-startup-id "nm-applet"
 #exec --no-startup-id "xinput --set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1"
 
 # Screen brightness controls
