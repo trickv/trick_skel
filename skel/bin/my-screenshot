@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+sleep 0.2
+
+exec &>> /tmp/my-screenshot.log
+
+fn=$HOME/Pictures/screenshot-$(date -u +%Y%m%d-%H%M%S).png
+echo $fn
+
+scrot --select $fn && eog $fn
