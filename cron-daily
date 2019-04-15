@@ -8,22 +8,21 @@ if [ $? -ne 0 ]; then
     exit
 fi
 
-TRICK_HOSTNAME=${HOSTNAME%%.*}
-
-case $TRICK_HOSTNAME in
-    skywalker|dev-survey-app07|futurebase-img01|atlas)
-        echo "fixme: host is using old update method"
-        # 2014-03-14
-        ;;
-    *)
-        svn up > /dev/null
-        SVN_STAT=`svn stat`
-        if [ "$SVN_STAT" != "" ]; then
-            echo "Local modifications exist:"
-            echo $SVN_STAT
-            echo
-        fi
-        ;;
-esac
+if [ -d .git ]; then
+    git remote -v | grep ^readonly &> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "No readonly remote, fix this?"
+        exit 1
+    fi
+    git pull readonly > /dev/null
+else
+    svn up > /dev/null
+    SVN_STAT=`svn stat`
+    if [ "$SVN_STAT" != "" ]; then
+        echo "Local modifications exist:"
+        echo $SVN_STAT
+        echo
+    fi
+fi
 
 ./install > /dev/null
