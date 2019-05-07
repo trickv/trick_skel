@@ -61,7 +61,9 @@ if [ -d .svn ]; then
 fi
 if [ -d .git ]; then
     # looks like git instead
-    git rev-parse --short HEAD > $HOME/.trick_skel/info/txt
+    git log -1 > $HOME/.trick_skel/info/txt
+    git rev-parse --short HEAD > $HOME/.trick_skel/info/rev
+    VC_REVISION=$(cat $HOME/.trick_skel/info/rev)
     echo "fixme" > $HOME/.trick_skel/info/xml
 fi
 echo "export TRICK_SKEL_ENV_REVISION=${VC_REVISION}" > $HOME/.trick_skel/sh-local/skel-info

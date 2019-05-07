@@ -2,20 +2,22 @@
 
 INFO=$HOME/.trick_skel/info
 
-SVN_REVISION=`cat $INFO/txt | grep '^Last Changed Rev:' | cut -d\  -f4`
-LAST_UPDATED=`cat $INFO/txt | grep '^Last Changed Date:' | cut -d\  -f4-`
+cat $INFO/txt | head -n 1 | grep ^commit > /dev/null
+if [ $? -eq 0 ]; then
+    echo "looks like git"
+    VC_REVISION=$(cat $INFO/rev)
+    LAST_UPDATED=$(cat $INFO/txt | grep ^Date)
+else
+    echo "looks like subversion"
+    VC_REVISION=`cat $INFO/txt | grep '^Last Changed Rev:' | cut -d\  -f4`
+    LAST_UPDATED=`cat $INFO/txt | grep '^Last Changed Date:' | cut -d\  -f4-`
+fi
 INSTALL_DATE=`cat $INFO/install_date`
 
 echo "Last updated: $LAST_UPDATED
-SVN Revision: $SVN_REVISION
+VC Revision: $VC_REVISION
 Installed: $INSTALL_DATE"
 
-if [ $TRICK_SKEL_ENV_REVISION -lt $SVN_REVISION ]; then
-    echo "This env r${TRICK_SKEL_ENV_REVISION} is behind the installed env, r${SVN_REVISION}."
-fi
-
-SERVER_SVN_REVISION=`svn info $HOME/src/trick_skel/ -rHEAD | grep '^Last Changed Rev:' | cut -d\  -f4`
-if [ "$SVN_REVISION" -lt "$SERVER_SVN_REVISION" ]; then
-    echo "The svn checkout at ~/src/trick_skel is out of date. Server shows $SERVER_SVN_REVISION"
-    exit 1
+if [ "$TRICK_SKEL_ENV_REVISION" != "$VC_REVISION" ]; then
+    echo "This env ${TRICK_SKEL_ENV_REVISION} is behind the installed env, ${VC_REVISION}."
 fi
