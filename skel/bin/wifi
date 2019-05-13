@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+nmcli r wifi off
+nmcli r wifi on
