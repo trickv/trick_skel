@@ -1,7 +1,5 @@
 Add a line to user crontab like below.
 For modern systems, the environment variable helps with mail filtering.
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-30 4 * * * $HOME/src/trick_skel/cron-daily 2>&1
 X_TRICK_FILTER_TO_SYSTEMS=1
-
-All hosts update directly from public subversion at 4:30 on their local clock.
+30 12 * * * $HOME/src/trick_skel/cron-daily 2>&1
