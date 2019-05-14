@@ -14,7 +14,7 @@ if [ -d .git ]; then
         echo "No readonly remote, fix this?"
         exit 1
     fi
-    git pull readonly > /dev/null
+    git fetch readonly > /dev/null
 else
     svn up > /dev/null
     SVN_STAT=`svn stat`
