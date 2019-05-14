@@ -1,0 +1,16 @@
+version=v2.9.2
+retention=90d
+
+docker run --name=prometheus -p 9090:9090 \
+    -v /var/lib/prometheus/master/prometheus:/prometheus \
+    -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v /etc/prometheus/proxy_targets.yml:/etc/prometheus/proxy_targets.yml \
+    --restart unless-stopped \
+    --detach \
+    prom/prometheus:$version \
+	--config.file=/etc/prometheus/prometheus.yml \
+	--storage.tsdb.path=/prometheus \
+	--storage.tsdb.retention=$retention \
+    --web.enable-admin-api \
+	--web.console.libraries=/usr/share/prometheus/console_libraries \
+	--web.console.templates=/usr/share/prometheus/consoles
