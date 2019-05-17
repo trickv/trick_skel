@@ -6,7 +6,7 @@ confirm-close=false
 scrollback-unlimited=false
 audible-bell=false
 login-shell=true
-visible-name='Stabby'
+visible-name='trick_skel'
 
 [profiles:]
 default='b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
