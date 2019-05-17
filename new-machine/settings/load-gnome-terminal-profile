@@ -1,1 +1,1 @@
-dconf load /org/gnome/terminal/legacy/ < gnome-terminal.profile
+dconf load /org/gnome/terminal/legacy/ < gnome-terminal.dconf
