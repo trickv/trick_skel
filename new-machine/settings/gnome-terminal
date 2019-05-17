@@ -1,3 +1,0 @@
-# don't prompt when closing a terminal with a running process
-
-gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
