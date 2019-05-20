@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if [ -d $HOME/Templates ]; then
-    cp skel/Templates/* $HOME/Templates/
-fi

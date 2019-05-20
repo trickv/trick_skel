@@ -16,8 +16,6 @@ else
     if [ -d $HOME/.vim ]; then
         cp -R $HOME/.vim $HOME/tmp/trick_skel_backup/
     fi
-    rm -rf $HOME/.vim
-    cp -R skel/.vim $HOME
     mkdir -p $HOME/.vim/bundle
     for gitrepo in ${pathogenbundles[@]}; do
         echo "Cloning Git repo: "$gitrepo

@@ -1,1 +1,4 @@
-# placeholder for generated file!
+
+export LS_OPTIONS='-F --color=auto --time-style=long-iso'
+export CLICOLOR=1
+eval "$(dircolors -b)"
