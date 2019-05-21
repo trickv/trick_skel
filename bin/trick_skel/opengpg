@@ -2,6 +2,11 @@
 
 keyid=$(gpg --card-status | grep ^sec | cut -d/ -f2 | awk '{print $1}')
 if [ "$keyid" == "" ]; then
+    gpg --card-status &> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "Key inserted, but you might need to fetch it first?"
+        exit 2
+    fi
     echo "no key inserted?"
     exit 1
 fi
