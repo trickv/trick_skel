@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# I used to distribute a toprc which broke on some platforms.
-# remove it.
-rm -f $HOME/.toprc
