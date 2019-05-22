@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+bg=$(find $HOME/Pictures/bg/ -type f | grep png$ | shuf -n 1)
+
+if [ "$bg" == "" ]; then
+    imageflag=""
+else
+    imageflag="--image=$bg"
+fi
+
+i3lock $imageflag

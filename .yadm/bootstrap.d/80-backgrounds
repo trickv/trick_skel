@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+cd ~/Pictures/bg/
+
+for file in $(cat sources | grep -v "^#"); do
+    wget -q -N $file
+done
+
+rm -f *png # FIXME
+
+for file in $(find -type f | grep jpg); do # FIXME
+    convert $file $file.png
+done
