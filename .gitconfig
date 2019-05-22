@@ -11,3 +11,9 @@
     excludesfile = ~/.gitignore_global
 [commit]
 	gpgsign = true
+
+[includeIf "gitdir:~/src/gitlab.com/mintel/"]
+    path = ~/.gitconfig.mintel
+
+[includeIf "gitdir:~/src/gitlab.com/pvanstaveren/"]
+    path = ~/.gitconfig.mintel
