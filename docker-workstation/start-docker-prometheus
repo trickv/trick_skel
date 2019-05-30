@@ -1,10 +1,14 @@
 version=v2.9.2
 retention=90d
 
+if [ ! -d /var/lib/prometheus/master/prometheus ]; then
+    sudo mkdir -p /var/lib/prometheus/master/prometheus
+    sudo chown nobody:nogroup /var/lib/prometheus/master/prometheus
+fi
+
 docker run --name=prometheus -p 9090:9090 \
     -v /var/lib/prometheus/master/prometheus:/prometheus \
-    -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-    -v /etc/prometheus/proxy_targets.yml:/etc/prometheus/proxy_targets.yml \
+    -v $HOME/docker-workstation/prom/prometheus.yml:/etc/prometheus/prometheus.yml \
     --restart unless-stopped \
     --detach \
     prom/prometheus:$version \
