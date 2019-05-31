@@ -1,3 +1,30 @@
 #!/usr/bin/env bash
 
-sudo sh -c "echo -n $1 > /sys/class/backlight/intel_backlight/brightness"
+xbacklight -get &> /dev/null
+if [ $? -eq 0 ]; then
+    xbacklight $1 $2
+    exit
+fi
+
+sysfs_point=/sys/class/backlight/intel_backlight/brightness
+
+current_brightness=$(cat $sysfs_point)
+
+if [ "$1" == "" ]; then
+    echo $current_brightness
+    exit
+fi
+
+if [ "$2" != "" ]; then
+    let increment=$2*10
+fi
+
+if [ "$1" == "-inc" ]; then
+    let new=$current_brightness+$increment
+elif [ "$1" == "-dec" ]; then
+    let new=$current_brightness-$increment
+else
+    new=$1
+fi
+
+echo $new | sudo tee $sysfs_point
