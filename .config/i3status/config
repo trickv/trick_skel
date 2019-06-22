@@ -58,3 +58,7 @@ load {
 disk "/" {
         format = "%avail"
 }
+
+battery all {
+        format = "%status %remaining (%emptytime %consumption)"
+}
