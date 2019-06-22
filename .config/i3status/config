@@ -29,12 +29,14 @@ volume master {
 wireless _first_ {
         format_up = "W: (%quality at %essid %frequency) %ip"
         format_down = "W: down"
+        color_bad = "#1199ff"
 }
 
 ethernet _first_ {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip"
         format_down = "E: down"
+        color_bad = "#1199ff"
 }
 
 battery all {
