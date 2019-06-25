@@ -17,8 +17,10 @@ order += "volume master"
 order += "battery all"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "tztime local"
+#order += "tztime local"
+order += "tztime chicago"
 order += "tztime london"
+order += "tztime singapore"
 
 volume master {
         format = "♪ %volume"
@@ -51,6 +53,16 @@ tztime local {
 tztime london {
         format = "LON %H:%M:%S"
         timezone = "Europe/London"
+}
+
+tztime chicago {
+        format = "CHI %H:%M:%S"
+        timezone = "America/Chicago"
+}
+
+tztime singapore {
+        format = "SIN %H:%M:%S"
+        timezone = "Asia/Singapore"
 }
 
 load {
