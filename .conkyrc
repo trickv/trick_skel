@@ -7,11 +7,13 @@ conky.config = {
     minimum_height = 500,
     minimum_width = 365,
     no_buffers = true,
-    update_interval = 2,
+    update_interval = 1,
     use_xft = true,
 }
 
 conky.text = [[
+${font Open Sans Light:pixelsize=80}${time %H:%M:%S}${font}
+${font Open Sans Light:pixelsize=40}${time %Y-%m-%d %Z}${font}
 ${color #FF0000}$nodename - $sysname $kernel
 ${color #0000FF}Uptime: $uptime
 RAM: $memperc% ${membar 8}
