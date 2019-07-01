@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if [ "`uname`" = "FreeBSD" ]; then
-    cp optional/freebsd-watch $HOME/bin/trick_skel/
-fi
