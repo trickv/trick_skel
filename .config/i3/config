@@ -132,6 +132,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+< move workspace to output right
 bindsym $mod+> move workspace to output left
 
+# multi-monitor: change outputs
+bindsym $mod+Shift+n exec "/home/pv/.screenlayout/solo.sh"
+bindsym $mod+Shift+m exec "/home/pv/.screenlayout/displaylink1080.sh"
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
