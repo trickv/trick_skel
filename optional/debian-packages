@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+packages=$(cat debian-workstation-packages)
+
+if [ "$HOSTNAME" == "CHI-Linux-L-016" ]; then
+    packages+=" "
+    packages+=$(cat debian-workstation-packages-x11)
+fi
+
+echo $packages
+sudo apt install $packages
