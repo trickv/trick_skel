@@ -23,7 +23,7 @@ CPU Temp: ${acpitemp}C
 ${color #FFFF00}/       ${fs_used /}/${fs_size /}${alignr}${fs_used_perc /}%
 ${fs_bar 8 /}
 
-${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | wc -l}
+${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
 
 ${color #33FFFF}earlyoom:
 ${font Monospace:pixelsize=10}${execi 10 journalctl -u earlyoom | grep -e "Low Memory\|Killing" | cut -d\  -f1-3,6- | cut -b1-80}
