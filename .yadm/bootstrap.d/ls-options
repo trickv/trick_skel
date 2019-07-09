@@ -1,3 +1,5 @@
+echo "Bootstrap: $0"
+
 DEST=$HOME/.trick_skel/sh-startup/40-ls-options
 echo > $DEST
 

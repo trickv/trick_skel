@@ -2,5 +2,5 @@
 
 cd $HOME
 
-echo "Init submodules ($0)"
+echo "Bootstrap: Init submodules ($0)"
 yadm submodule update --recursive --init

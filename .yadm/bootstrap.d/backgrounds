@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Bootstrap: $0"
+
 set -u
 set -e
 
