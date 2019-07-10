@@ -102,6 +102,9 @@ up () {
 
 trick_skel_copypaste() {
     export PS1="[\u@\h \w]\$ "
+    if [ "$1" == "fake" ]; then
+        export PS1="[trick@here \w]\$ "
+    fi
 }
 
 # vim:filetype=sh
