@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "Bootstrap: $0"
-
 if [ "$USER" = "trick" ]; then
     case $SHORT_HOSTNAME in ss|ll)
             optional/ssh-config > $HOME/.ssh/config

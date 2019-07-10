@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Bootstrap: $0"
-
 DEST=$HOME/.trick_skel/sh-local/50-sh-local
 
 which sudo &> /dev/null

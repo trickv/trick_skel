@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Bootstrap: $0"
-
 plans=install.d/plans
 projects=install.d/projects
 
