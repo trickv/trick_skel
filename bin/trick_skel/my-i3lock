@@ -8,4 +8,4 @@ else
     imageflag="--image=$bg"
 fi
 
-i3lock $imageflag
+i3lock --color=000000 $imageflag
