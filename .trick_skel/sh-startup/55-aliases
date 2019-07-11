@@ -48,7 +48,7 @@ trick_skel_aliases () {
     alias strip_color="perl -pe 's/\e\[?.*?[\@-~]//g'"
     alias hn=hostname
     alias best_dstat='dstat --time --cpu --net --disk --sys --load --proc --top-cpu'
-    alias htop='htop -p PERCENT_MEM'
+    alias htop='htop -s PERCENT_MEM'
 
     # Mintel sudo usernames
     alias sudocs='trick_skel_sudo custom-services bash --login'
