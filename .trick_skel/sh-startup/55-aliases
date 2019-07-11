@@ -32,32 +32,15 @@ trick_skel_aliases () {
     alias screen='screen -U'
     alias proxyenv='env | grep -i proxy'
     alias noproxy=trick_skel_noproxy
-    alias findbymac='arp -a -n | grep -i'
     alias grep='grep --color=auto'
-    alias lbgrep='grep --line-buffered'
     alias timezones='find /usr/share/zoneinfo/ | cut -d/ -f5-'
-    export wimi_automation_url=http://automation.whatismyip.com/n09230945.asp
     export wimi_my=http://ip.v9n.us/auto/
-    export wimi_my_verbose=http://ip.v9n.us/auto/verbose/
     alias wimi="echo \"Fetching $wimi_my\" >> /dev/stderr; curl $wimi_my; echo"
-    alias wimi_verbose="echo \"Fetching $wimi_my_verbose\" >> /dev/stderr; curl $wimi_my_verbose; echo"
-    alias wimiv=wimi_verbose
-    alias wimi_real="echo \"Fetching $wimi_automation_url\" >> /dev/stderr; curl $wimi_automation_url; echo"
     alias copypaste=trick_skel_copypaste
     alias 'json-pprint'="python -mjson.tool"
     alias strip_color="perl -pe 's/\e\[?.*?[\@-~]//g'"
-    alias hn=hostname
     alias best_dstat='dstat --time --cpu --net --disk --sys --load --proc --top-cpu'
     alias htop='htop -s PERCENT_MEM'
-
-    # Mintel sudo usernames
-    alias sudocs='trick_skel_sudo custom-services bash --login'
-    alias sudods='trick_skel_sudo developer-svc bash --login'
-    alias sudoreplicate='trick_skel_sudo replicate bash --login'
-    alias sudoroot='trick_skel_sudo root bash --login'
-    alias sudomysql='trick_skel_sudo mysql HOME=/tmp/mysql bash'
-    alias sudopg='trick_skel_sudo `pguser` bash'
-    alias sudoxls='trick_skel_sudo xls-svc bash --login'
     
     # Application-specific aliases
     alias pico='nano -w'
