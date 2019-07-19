@@ -17,7 +17,7 @@ TRUST_LEVEL_MAP = {
 
 def main():
 
-    gpg = gnupg.GPG()
+    gpg = gnupg.GPG(gnupghome="~/.gnupg",keyring="~/.gnupg/pubring.kbx")
     gpg.encoding = 'utf-8'
 
     keys = gpg.list_keys()
