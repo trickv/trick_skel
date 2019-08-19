@@ -1,0 +1,9 @@
+docker run \
+    --name process-exporter \
+    -p 9256:9256 \
+    --detach \
+    --restart unless-stopped \
+    --privileged -v /proc:/host/proc \
+    -v `pwd`/process-exporter:/config ncabatoff/process-exporter \
+    --procfs /host/proc \
+    -config.path /config/config.yaml
