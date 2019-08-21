@@ -2,10 +2,16 @@
 
 packages=$(cat debian-workstation-packages)
 
-if [ "$HOSTNAME" == "CHI-Linux-L-016" ]; then
-    packages+=" "
-    packages+=$(cat debian-workstation-packages-x11)
-fi
+case "$HOSTNAME" in
+    "CHI-Linux-L-016" | "tink" )
+        packages+=" "
+        packages+=$(cat debian-workstation-packages-x11)
+        echo "Using x11 package set"
+    ;;
+    *)
+        echo "Using base package set"
+    ;;
+esac
 
 echo $packages
 sudo apt install $packages
