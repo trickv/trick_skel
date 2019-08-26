@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+docker stop grafana
+docker stop prometheus
+
+docker run \
+    --rm \
+    --volumes-from grafana \
+    -v ~/docker-workstation/backup/:/backup \
+    ubuntu \
+    bash -c "tar cvvfj /backup/grafana-`strdate`.tar.bz2 /var/lib/grafana"
+
+tar cvvf backup/prometheus-`strdate`.tar /var/lib/prometheus/master
+
+docker start prometheus
+docker start grafana
+
+bzip2 -9 backup/prometheus-*.tar
