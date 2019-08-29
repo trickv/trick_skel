@@ -14,9 +14,8 @@ conky.config = {
 conky.text = [[
 ${font Open Sans Light:pixelsize=80}${time %H:%M}${font}
 ${font Open Sans Light:pixelsize=40}${time %Y-%m-%d %Z}${font}
-${color #FF0000}$nodename - $sysname $kernel
-${color #0000FF}Uptime: $uptime
-RAM: $memperc% ${membar 8}
+${color #FF0000}Uptime: $uptime
+${color #0000FF}RAM: $memperc% ${membar 8}
 Swap:$swapperc% ${swapbar 8}
 CPU: $cpu% ${cpubar 8}
 CPU Temp: ${acpitemp}C
