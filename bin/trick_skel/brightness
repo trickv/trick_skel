@@ -16,7 +16,7 @@ if [ "$1" == "" ]; then
 fi
 
 if [ "$2" != "" ]; then
-    let increment=$2*10
+    let increment=$2*50
 fi
 
 if [ "$1" == "-inc" ]; then
