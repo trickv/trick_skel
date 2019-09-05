@@ -13,7 +13,8 @@ else
     install_date_stamp=`$trick_skel_stat --format "%Y"  $HOME/.trick_skel/info/install_date`
 fi
 
-let two_days_ago=$(date +%s)-172800
+# 30.4 days ago
+let old_age=$(date +%s)-2626560
 
 if [ $install_date_stamp -lt $two_days_ago ]; then
     if [ $TRICK_SKEL_IS_LINUX ]; then
@@ -21,7 +22,7 @@ if [ $install_date_stamp -lt $two_days_ago ]; then
             # this should be removed after 2015-10-15 when this code has gone out everywhere
             true
         else
-            echo "* Bash profile is more than two days out of date."
+            echo "* Bash profile is more than a month old"
         fi
     fi
 fi
