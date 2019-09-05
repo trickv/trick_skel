@@ -16,7 +16,7 @@ fi
 # 30.4 days ago
 let old_age=$(date +%s)-2626560
 
-if [ $install_date_stamp -lt $two_days_ago ]; then
+if [ $install_date_stamp -lt $old_age ]; then
     if [ $TRICK_SKEL_IS_LINUX ]; then
         if [ "`cat /proc/uptime | cut -d. -f1`" -lt 86400 ]; then
             # this should be removed after 2015-10-15 when this code has gone out everywhere
