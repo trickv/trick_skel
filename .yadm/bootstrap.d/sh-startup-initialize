@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+rm -f $HOME/.trick_skel/initialize
+
+# Generate a script which will source all the files in .trick_skel/sh-startup
+for cur in `find $HOME/.trick_skel/sh-startup/ -type f | egrep -v "\.svn" | grep -v swp | sort`; do
+    echo "source ${cur}" >> $HOME/.trick_skel/initialize
+done
