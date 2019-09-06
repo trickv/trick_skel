@@ -1,0 +1,3 @@
+date -u > $HOME/.trick_skel/info/install_date
+yadm log -1 > $HOME/.trick_skel/info/txt
+yadm rev-parse --short HEAD > $HOME/.trick_skel/info/rev

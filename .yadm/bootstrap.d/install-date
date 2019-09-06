@@ -1,1 +1,0 @@
-date -u > $HOME/.trick_skel/info/install_date
