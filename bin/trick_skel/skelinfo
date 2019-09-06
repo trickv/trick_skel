@@ -14,10 +14,6 @@ else
 fi
 INSTALL_DATE=`cat $INFO/install_date`
 
-echo "Last updated: $LAST_UPDATED
+echo "Last bootstrap: $LAST_UPDATED
 VC Revision: $VC_REVISION
 Installed: $INSTALL_DATE"
-
-if [ "$TRICK_SKEL_ENV_REVISION" != "$VC_REVISION" ]; then
-    echo "This env ${TRICK_SKEL_ENV_REVISION} is behind the installed env, ${VC_REVISION}."
-fi

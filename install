@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# 2019-summer: repo converted to yadm. legacy install script no longer used, but kept until I weed out any logic that was left in it.
+
 INSTALL_DOTFILES=".screenrc .vimrc .bash_profile_trick_skel .colordiffrc .my.cnf.trick_skel .my.cnf.5 .my.cnf.4 .gdbinit .signature-trick@v.us .colorizerc .cvsrc .gitconfig .discusrc .psqlrc .tmux.conf .ackrc .python_startup.py .gitignore_global .config/i3/config .config/i3status/config .gnupg/gpg.conf .gnupg/gpg-agent.conf .gnupg/0xAFDC58ED15CC26D4-opengpg.gpg .gnupg/0x01F8267F096D3F52-opengpg.gpg"
 
 #####
@@ -66,13 +68,10 @@ if [ -d .git ]; then
     VC_REVISION=$(cat $HOME/.trick_skel/info/rev)
     echo "fixme" > $HOME/.trick_skel/info/xml
 fi
-echo "export TRICK_SKEL_ENV_REVISION=${VC_REVISION}" > $HOME/.trick_skel/sh-local/skel-info
 
 date -u > $HOME/.trick_skel/info/install_date
-
 hostname &> $HOME/.trick_skel/info/install_hostname
 hostname -s &> $HOME/.trick_skel/info/install_hostname_short
-env &> $HOME/.trick_skel/info/install_env
 
 if [ "`uname`" = "Linux" ]; then
     rm -f $HOME/bin/lside

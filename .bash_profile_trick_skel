@@ -117,11 +117,4 @@ trick_h () {
     fi
 }
 
-skelup () {
-    OLD_REV=$TRICK_SKEL_ENV_REVISION
-    source ~/.bash_profile_trick_skel
-    echo "skelup'd from $OLD_REV to $TRICK_SKEL_ENV_REVISION :)"
-    unset OLD_REV
-}
-
 trick_skel_timing_finish
