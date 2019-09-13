@@ -24,7 +24,7 @@ ${fs_bar 8 /}
 
 ${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
 
-${font Monospace:pixelsize=18}${execi 3600 cal | cat}
+${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
 
 ${color #33FFFF}earlyoom:
 ${font Monospace:pixelsize=10}${execi 10 journalctl -b -0 -u earlyoom | grep -e "Low Memory\|Killing" | cut -d\  -f1-3,6- | cut -b1-80}
