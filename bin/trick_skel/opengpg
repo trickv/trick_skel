@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-keyid=$(gpg --card-status | grep ^sec | cut -d/ -f2 | awk '{print $1}')
-if [ "$keyid" == "" ]; then
-    gpg --card-status &> /dev/null
-    if [ $? -eq 0 ]; then
-        echo "Key inserted, but you might need to fetch it first?"
-        exit 2
-    fi
-    echo "no key inserted?"
+ssh-add -l | grep cardno > /dev/null
+if [ $? -ne 0 ]; then
+    echo "No cards inserted?"
     exit 1
 fi
-gpg -d $HOME/.gnupg/$keyid-opengpg.gpg
+
+for card in $(ssh-add -l | grep cardno | awk '{print $3}'); do
+    gpg -d $HOME/.gnupg/$card.gpg
+done
