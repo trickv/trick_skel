@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 set -u
-set -e
 
 ### Deal with scripts in bootstrap.d (used to be install.d)
 scriptdir=$HOME/.yadm/bootstrap.d/
 for script in $(find $scriptdir -type f -executable | sort); do
     echo "Bootstrap executing: $script"
-    $script
+    $script || echo "$script failed"
 done
