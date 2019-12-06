@@ -22,12 +22,12 @@ def find_fullscreen(con):
 
 def set_dpms(state):
     if state:
-        print('setting dpms on')
-        call(['xset', 's', 'on'])
+        print('setting dpms on and enabling xautolock')
+        call(['xautolock', '-enable'])
         call(['xset', '+dpms'])
     else:
-        print('setting dpms off')
-        call(['xset', 's', 'off'])
+        print('setting dpms off and disabling xautolock')
+        call(['xautolock', '-enable'])
         call(['xset', '-dpms'])
 
 
