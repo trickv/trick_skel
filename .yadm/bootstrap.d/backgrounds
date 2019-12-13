@@ -15,6 +15,6 @@ rm -rf hg.vanstaveren.us
 
 rm -f *png # FIXME
 
-for file in $(find -type f | grep jpg); do # FIXME
+for file in $(find -type f | grep -i -e "jpg\|jpeg"); do
     convert -scale 1920x1080 $file $file.png
 done
