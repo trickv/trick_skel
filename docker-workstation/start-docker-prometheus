@@ -1,5 +1,5 @@
 version=v2.12.0 # 2019-08-19
-retention=90d
+retention=365d
 
 if [ ! -d /var/lib/prometheus/master/prometheus ]; then
     sudo mkdir -p /var/lib/prometheus/master/prometheus
