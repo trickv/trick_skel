@@ -48,11 +48,6 @@ ethernet bnep0 {
         color_bad = "#1199ff"
 }
 
-battery all {
-        format = "🔋 %status %percentage %remaining"
-        status_full = "FULL"
-}
-
 tztime london {
         format = "LON %H:%M:%S"
         timezone = "Europe/London"
@@ -70,6 +65,7 @@ tztime singapore {
 
 battery all {
         format = "%status %percentage %remaining %consumption"
+        status_full = "FULL"
 }
 
 # things to add someday:
