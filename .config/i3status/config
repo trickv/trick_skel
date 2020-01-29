@@ -84,3 +84,7 @@ disk "/" {
 battery all {
         format = "%status %percentage %remaining %consumption"
 }
+
+# things to add someday:
+# wrapper around rfkill which shows, y'know, the rfkill state
+# gpg card status (inserted or not, unlocked or not)
