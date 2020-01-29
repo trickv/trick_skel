@@ -31,21 +31,21 @@ volume master {
 
 wireless _first_ {
         format_up = "W: (%quality at %essid %frequency) %ip"
-        format_down = "W: down"
+        format_down = "W"
         color_bad = "#1199ff"
 }
 
 ethernet _first_ {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip"
-        format_down = "E: down"
+        format_down = "E"
         color_bad = "#1199ff"
 }
 
 ethernet bnep0 {
         # if you use %speed, i3status requires root privileges
         format_up = "bt: %ip"
-        format_down = "bt: down"
+        format_down = "bt"
         color_bad = "#1199ff"
 }
 
