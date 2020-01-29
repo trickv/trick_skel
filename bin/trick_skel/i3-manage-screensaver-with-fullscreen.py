@@ -40,17 +40,15 @@ def set_dpms(new_state):
         call(['xset', '+dpms'])
     else:
         print('setting dpms off and disabling xautolock')
-        call(['xautolock', '-enable'])
+        call(['xautolock', '-disable'])
         call(['xset', '-dpms'])
 
 
 def on_fullscreen_mode(i3, e):
-    print("arr")
     set_dpms(not len(find_fullscreen(i3.get_tree())))
 
 
 def on_window_close(i3, e):
-    print("yarr")
     if not len(find_fullscreen(i3.get_tree())):
         set_dpms(True)
 
