@@ -14,6 +14,7 @@ general {
 }
 
 order += "my_thing_2"
+order += "headset_state"
 order += "volume master"
 order += "battery all"
 order += "wireless _first_"
