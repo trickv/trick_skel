@@ -3,6 +3,9 @@
 from argparse import ArgumentParser
 from subprocess import call
 import i3ipc
+import functools
+
+print = functools.partial(print, flush=True)
 
 i3 = i3ipc.Connection()
 
