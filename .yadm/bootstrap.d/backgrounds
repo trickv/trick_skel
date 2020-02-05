@@ -5,6 +5,8 @@ set -e
 
 cd ~/Pictures/bg/
 
+rm -f *png *jpg *jpeg # ugh this is getting stupid
+
 for file in $(cat sources | grep -v "^#"); do
     wget -q -N $file || echo "Failed to fetch $file"
 done
