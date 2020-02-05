@@ -6,6 +6,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-for card in $(ssh-add -l | grep cardno | awk '{print $3}'); do
+for card in $(ssh-add -l | grep cardno | awk '{print $3}' | sort); do
     gpg -d $HOME/.gnupg/$card.gpg
 done
