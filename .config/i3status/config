@@ -10,7 +10,7 @@
 
 general {
         colors = true
-        interval = 1
+        interval = 5
 }
 
 order += "my_thing_2"
