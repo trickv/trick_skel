@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+py3status --include $HOME/bin/trick_skel/py3status/ --log-file $HOME/tmp/py3status-$(date -u +%Y%m%d-%H%M%S).log || i3status
