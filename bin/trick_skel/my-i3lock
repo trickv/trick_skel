@@ -8,4 +8,12 @@ else
     imageflag="--image=$bg"
 fi
 
+revert() {
+    xset dpms 0 0 0
+}
+trap revert HUP INT TERM
+xset +dpms 5 5 5
+
 i3lock --color=000000 --show-failed-attempts --ignore-empty-password $imageflag
+
+revert
