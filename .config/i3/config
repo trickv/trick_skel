@@ -150,6 +150,9 @@ exec --no-startup-id "nm-applet"
 exec --no-startup-id "xsetroot -solid '#111111'"
 exec --no-startup-id conky -d -b
 
+# debugging
+bindsym $mod+g exec --no-startup-id $HOME/bin/trick_skel/record-xwininfo
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec $HOME/bin/trick_skel/brightness -inc 10
 bindsym XF86MonBrightnessDown exec $HOME/bin/trick_skel/brightness -dec 10
