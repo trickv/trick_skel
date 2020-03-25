@@ -203,3 +203,5 @@ bar {
         status_command $HOME/bin/trick_skel/my-i3-statusbar
 #	font pango:Terminus 15px
 }
+
+for_window [instance="rdesktop"] floating enable
