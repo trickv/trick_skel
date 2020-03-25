@@ -23,6 +23,7 @@ order += "ethernet bnep0"
 order += "tztime chicago"
 order += "tztime london"
 order += "tztime singapore"
+order += "sysdata"
 
 volume master {
         format = "♪ %volume"
@@ -68,6 +69,10 @@ tztime singapore {
 battery all {
         format = "%status %percentage %remaining %consumption"
         status_full = "FULL"
+}
+
+sysdata {
+        format = "mem {mem_used_percent}%"
 }
 
 # things to add someday:
