@@ -27,6 +27,10 @@ for id in $window_ids; do
         -e "/^_NET_WM_NAME\(UTF8_STRING\) = ($match_qstring)$/{s//title=\1/; h}" \
         -e '${g; p}'
     } | sort | tr "\n" " " | sed -r 's/^(.*) $/[\1]\n/'
+    echo
+    echo "Full xprop output:"
+    xprop -id $id
+    echo
 done
 
 
