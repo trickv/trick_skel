@@ -13,7 +13,7 @@ general {
         interval = 5
 }
 
-order += "my_thing_2"
+order += "watson"
 order += "headset_state"
 order += "volume master"
 order += "battery all"
