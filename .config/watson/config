@@ -1,3 +1,6 @@
 [options]
 pager = less
+log_current = true
+stop_on_start = true
+report_current = true
 
