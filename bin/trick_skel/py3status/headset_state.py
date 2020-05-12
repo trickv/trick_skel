@@ -24,7 +24,8 @@ class Py3status:
         else:
             port = active.name.replace("analog-input-", "")
         card = builtin_source.description.split(' ')[0]
-        message = "{}: {}, idx={}, sink idx={}".format(card, port, source_index, sink_index)
+        # message = "{}: {}, idx={}, sink idx={}".format(card, port, source_index, sink_index) # Debug format
+        message = "{}: {}".format(card, port)
         return {
             'full_text': message,
             'cached_until': self.py3.time_in(1)
