@@ -1,0 +1,19 @@
+#!/bin/sh
+
+TAB="	";
+
+#pushd /proc/ide
+cd /proc/ide
+
+for a in `ls -d hd*`; do
+	echo -n $a
+	echo -n "	"
+	echo -n `cat ${a}/media`	
+	echo -n "	"
+	echo -n `cat ${a}/model`
+	echo
+done
+
+
+
+#popd
