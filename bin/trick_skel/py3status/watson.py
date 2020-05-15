@@ -11,7 +11,11 @@ class Py3status:
         res = Popen(["watson", "status"], stdout=PIPE).communicate()[0]
         res = res.decode()
         if not res.startswith("No project started"):
-            out = res.split()[1].strip()
+            out = res[0:res.index("(") - 1]
+            out = " ".join(out.split()[1:])
+            out = out.replace(" started ", ": ")
+            out = out.replace(" ago", "")
+            out = out.strip()
         else:
             out = "No project"
         return {
