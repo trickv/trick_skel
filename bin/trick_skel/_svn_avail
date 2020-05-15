@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+if [ $# -eq 1 ]; then
+    branch=$1
+else
+    branch=""
+fi
+
+source_count=`svn propget svn:mergeinfo . | wc -l`
+if [ $source_count -ne 1 -a "$branch" == "" ]; then
+    echo "Multiple merge sources available ($source_count), you need to pick one. Options:"
+    svn propget svn:mergeinfo | cut -d: -f1
+    exit 1
+fi
+
+if [ "$branch" == "" ]; then
+    source_path=`svn propget svn:mergeinfo | cut -d: -f1`
+else
+    source_path=`svn propget svn:mergeinfo | grep $branch | cut -d: -f1`
+fi
+if [ "$source_path" == "" ]; then
+    source_path=$branch
+else
+    source_path="^$source_path"
+fi
+echo "Source path: $source_path"
+
+echo -n "Revisions: "
+for revision in `svn mergeinfo --show-revs eligible $source_path`; do
+    echo -n "$revision "
+done
+echo
+
+for revision in `svn mergeinfo --show-revs eligible $source_path`; do
+    svn log -v -c $revision $source_path
+done

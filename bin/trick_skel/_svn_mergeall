@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -u
+
+message=pv-svn-merge-message.txt
+
+branch=""
+if [ $# -eq 1 ]; then
+    branch=$1
+fi
+
+echo -n "Merged the following revisions using svn 1.5 merge: " > $message
+_svn_avail $branch >> $message
+
+source_count=`svn propget svn:mergeinfo . | wc -l`
+if [ $source_count -ne 1 -a "$branch" == "" ]; then
+    _svn_avail
+    exit 1
+fi
+
+if [ "$branch" == "" ]; then
+    source_path=`svn propget svn:mergeinfo | cut -d: -f1`
+else
+    source_path=`svn propget svn:mergeinfo | grep $branch | cut -d: -f1`
+fi
+source_path="^$source_path"
+echo "Source path: $source_path"
+
+svn merge $source_path
+echo "Review the merge, and you can commit using svn ci -F $message"
