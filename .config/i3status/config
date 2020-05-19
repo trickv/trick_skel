@@ -27,12 +27,12 @@ order += "sysdata"
 
 volume master {
         format = "♪ %volume"
-        format_muted = "♪ muted (%volume)"
+        format_muted = "♪ muted %volume"
         device = "pulse"
 }
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid %frequency) %ip"
+        format_up = "W:%essid %frequency %ip"
         format_down = "W"
         color_bad = "#1199ff"
 }
@@ -52,7 +52,7 @@ ethernet bnep0 {
 }
 
 tztime london {
-        format = "LON %H:%M:%S"
+        format = "LON %H"
         timezone = "Europe/London"
 }
 
@@ -62,7 +62,7 @@ tztime chicago {
 }
 
 tztime singapore {
-        format = "SIN %H:%M:%S"
+        format = "SIN %H"
         timezone = "Asia/Singapore"
 }
 
