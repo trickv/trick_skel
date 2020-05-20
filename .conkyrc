@@ -5,7 +5,7 @@ conky.config = {
     gap_x = 10,
     gap_y = 10,
     minimum_height = 500,
-    minimum_width = 500,
+    minimum_width = 700,
     no_buffers = true,
     update_interval = 1,
     use_xft = true,
@@ -25,6 +25,9 @@ ${fs_bar 8 /}
 ${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
 
 ${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
+
+${font Monospace:pixelsize=12}${execi 60 watson log -d}
+Current status: ${execi 60 watson status}
 
 ${color #33FFFF}earlyoom:
 ${font Monospace:pixelsize=10}${execi 10 journalctl -b -0 -u earlyoom | grep -e "Low Memory\|Killing" | cut -d\  -f1-3,6- | cut -b1-80}
