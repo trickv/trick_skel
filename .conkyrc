@@ -26,9 +26,11 @@ ${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null
 
 ${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
 
-${font Monospace:pixelsize=12}${execi 60 watson log -d}
-Current status: ${execi 60 watson status}
+${color #ffbf00}${font Monospace:pixelsize=12}${execi 60 watson log -d}
 
-${color #33FFFF}earlyoom:
+${color #00ff00}${execi 60 watson report -d | grep -v ^Total | tail --lines=+3}
+${color #ffbf00}${font Monospace:pixelsize=14}Current status:${color #ffffff} ${execi 60 watson status | cut -d\( -f1}
+
+${color #777777}earlyoom:
 ${font Monospace:pixelsize=10}${execi 10 journalctl -b -0 -u earlyoom | grep -e "Low Memory\|Killing" | cut -d\  -f1-3,6- | cut -b1-80}
 ]]
