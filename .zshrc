@@ -8,13 +8,48 @@ export ZSH="/home/pv/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="fino"
+# Good themes from random:
+# agnoster # meh, weird symbols
+# kiwi
+# xiong-chiamiov-plus # meh
+# fino
+# wedisagree
+# daveverwer
+# fino-time
+# jonathan
+# af-magic
+# jonathan # huge/heavy/cool
+# linuxonly # pretty
+# avit # shows git last commit time
+
+# minimal themes:
+# sorin # super minimal
+# muse shows path but still minimal
+# avit
+
+# final selection is probably fino / fino-time vs jonathan
+
+# fino:
+#[oh-my-zsh] Random theme 'fino' loaded
+#╭─pv at CHI-Linux-L-016 in ~ using
+#╰─○
+
+# difference between fino and fino-time is subtle
+
+# [oh-my-zsh] Random theme 'jonathan' loaded
+#┌─(~)──────────────────────────────────────(pv@CHI-Linux-L-016:pts/3)─┐
+#└─(17:16:26)──>                                         ──(Mon,Jul06)─┘
+
+
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ZSH_THEME_RANDOM_CANDIDATES=( "fino" "fino-time" "jonathan" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -27,7 +62,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -68,9 +103,40 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git svn watson)
+plugins=(git watson)
 
 source $ZSH/oh-my-zsh.sh
+
+# to use plugin svn or svn-fast-info neither of which are fast:
+prompt_svn() {
+    local rev branch
+    if in_svn; then
+        rev=$(svn_get_rev_nr)
+        branch=$(svn_get_branch_name)
+        if [[ $(svn_dirty_choose_pwd 1 0) -eq 1 ]]; then
+            prompt_segment yellow black
+            echo -n "$rev@$branch"
+            echo -n "±"
+        else
+            prompt_segment green black
+            echo -n "$rev@$branch"
+        fi
+    fi
+}
+
+# build_prompt() {
+#    RETVAL=$?
+#    prompt_status
+#    prompt_context
+#    prompt_dir
+#    prompt_git
+#    #prompt_svn
+#    svn_prompt_info
+#    prompt_end
+#}
+#
+
+
 
 # User configuration
 
@@ -98,10 +164,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-PATH=$PATH:$HOME/bin/trick_skel
+PATH=$HOME/bin/trick_skel:$PATH
 if [ -e $HOME/.ssh/use-gpg ]; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     fi
 fi
+
+export today=$(date +%Y-%m-%d)
