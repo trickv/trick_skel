@@ -32,7 +32,7 @@ volume master {
 }
 
 wireless _first_ {
-        format_up = "W:%essid %frequency %ip"
+        format_up = "W:%essid %frequency %quality %ip"
         format_down = "W"
         color_bad = "#1199ff"
 }
