@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-for a in $(cat .gpg-id); do
-    gpg -k $a | head -n 1
-    gpg -k $a | head -n 3 | tail -n 1
+for gpgidfile in $(find . -name .gpg-id | grep -v './Users' | cut -b3-); do
+    echo
+    echo "*** For GPG IDs in file $gpgidfile"
+    for a in $(cat $gpgidfile); do
+        gpg -k $a | head -n 1
+        gpg -k $a | head -n 3 | tail -n 1
+    done
 done
