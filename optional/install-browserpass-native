@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo apt install webext-browserpass
+cd /etc/opt/chrome/native-messaging-hosts/
+sudo ln -s /etc/chromium/native-messaging-hosts/com.github.browserpass.native.json .
