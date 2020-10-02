@@ -1,0 +1,4 @@
+Unattended-Upgrade::Origins-Pattern {   
+        "origin=*"; // should allow everything
+};
+
