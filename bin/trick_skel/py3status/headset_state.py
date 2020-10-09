@@ -4,6 +4,7 @@ class Py3status:
     pulse = pulsectl.Pulse('headsetstate')
 
     def headset_state2(self):
+        color = "#ffffff"
         sources = self.pulse.source_list()
         sinks = self.pulse.sink_list()
         builtin_source = None
@@ -26,7 +27,10 @@ class Py3status:
         card = builtin_source.description.split(' ')[0]
         # message = "{}: {}, idx={}, sink idx={}".format(card, port, source_index, sink_index) # Debug format
         message = "{}: {}".format(card, port)
+        if port != "headset-mic":
+            color = "#ff9900"
         return {
             'full_text': message,
+            'color': color,
             'cached_until': self.py3.time_in(1)
         }
