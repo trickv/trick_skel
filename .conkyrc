@@ -14,7 +14,7 @@ conky.config = {
 conky.text = [[
 ${font Open Sans Light:pixelsize=80}${time %H:%M}${font}
 ${font Open Sans Light:pixelsize=40}${time %Y-%m-%d %Z}${font}
-${color #FF0000}Uptime: $uptime
+${color #FFffff}Uptime: $uptime  ${color #ff0000}${execi 3600 cat /var/run/reboot-required 2>/dev/null }
 ${color #0000FF}RAM: $memperc% ${membar 8}
 Swap:$swapperc% ${swapbar 8}
 CPU: $cpu% ${cpubar 8}
