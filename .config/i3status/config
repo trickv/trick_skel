@@ -24,6 +24,7 @@ order += "tztime chicago"
 order += "tztime london"
 order += "tztime singapore"
 order += "sysdata"
+order += "tztime date"
 
 volume master {
         format = "♪ %volume"
@@ -64,6 +65,10 @@ tztime chicago {
 tztime singapore {
         format = "SIN %H"
         timezone = "Asia/Singapore"
+}
+
+tztime date {
+        format = "%d %b"
 }
 
 battery all {
