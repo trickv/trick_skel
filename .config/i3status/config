@@ -13,6 +13,7 @@ general {
         interval = 5
 }
 
+order += "online_status"
 order += "watson"
 order += "headset_state"
 order += "volume master"
