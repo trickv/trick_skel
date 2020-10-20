@@ -77,7 +77,7 @@ battery all {
 }
 
 sysdata {
-        format = "mem {mem_used_percent}%"
+        format = "M {mem_used_percent}%"
 }
 
 # things to add someday:
