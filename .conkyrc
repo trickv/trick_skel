@@ -15,12 +15,8 @@ conky.text = [[
 ${font Open Sans Light:pixelsize=80}${time %H:%M}${font}
 ${font Open Sans Light:pixelsize=40}${time %Y-%m-%d %Z}${font}
 ${color #FFffff}Uptime: $uptime  ${color #ff0000}${execi 3600 cat /var/run/reboot-required 2>/dev/null }
-${color #0000FF}RAM: $memperc% ${membar 8}
-Swap:$swapperc% ${swapbar 8}
-CPU: $cpu% ${cpubar 8}
-CPU Temp: ${acpitemp}C
-${color #FFFF00}/       ${fs_used /}/${fs_size /}${alignr}${fs_used_perc /}%
-${fs_bar 8 /}
+${color #0000FF}RAM    ${membar 8}
+Disk /   ${fs_bar 8 /}
 
 ${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
 
