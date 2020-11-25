@@ -73,7 +73,7 @@ tztime date {
 }
 
 battery all {
-        format = "%status %percentage %remaining %consumption"
+        format = "%status %percentage"
         status_full = "FULL"
 }
 
