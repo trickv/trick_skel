@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+git push --set-upstream origin branch-name -o merge_request.create
+
+See more: https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests
+
+
+
+EOF
