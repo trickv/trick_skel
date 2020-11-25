@@ -128,7 +128,7 @@ bindsym $mod+Shift+l move workspace to output right
 
 # multi-monitor: change outputs
 bindsym $mod+Shift+n exec "/home/pv/.screenlayout/solo.sh"
-bindsym $mod+Shift+m exec "/home/pv/.screenlayout/home-crapdual.sh"
+bindsym $mod+Shift+m exec "/home/pv/.screenlayout/island.sh"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
