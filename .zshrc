@@ -164,7 +164,7 @@ prompt_svn() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-PATH=$HOME/bin/trick_skel:$PATH
+PATH=$HOME/bin/trick_skel:$HOME/src/svn.mintel.ad/infra/network/bin:$PATH
 if [ -e $HOME/.ssh/use-gpg ]; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
