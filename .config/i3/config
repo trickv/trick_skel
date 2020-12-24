@@ -123,12 +123,13 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # multi-monitor: move workspace between outputs
+bindsym $mod+Shift+i move workspace to output up
 bindsym $mod+Shift+k move workspace to output left
 bindsym $mod+Shift+l move workspace to output right
 
 # multi-monitor: change outputs
 bindsym $mod+Shift+n exec "/home/pv/.screenlayout/solo.sh"
-bindsym $mod+Shift+m exec "/home/pv/.screenlayout/island.sh"
+bindsym $mod+Shift+m exec "/home/pv/.screenlayout/hotkey.sh"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -165,10 +166,6 @@ bindsym XF86AudioMute exec --no-startup-id $HOME/bin/trick_skel/my-output-mute-t
 # screenshot
 bindsym $mod+p exec --no-startup-id "$HOME/bin/trick_skel/my-screenshot"
 bindsym Print exec --no-startup-id "$HOME/bin/trick_skel/my-screenshot"
-
-# bluetooth networking
-bindsym $mod+i exec --no-startup-id nmcli c up TrickyPlus
-bindsym $mod+Shift+i exec --no-startup-id nmcli c down TrickyPlus
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
