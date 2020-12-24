@@ -1,0 +1,5 @@
+xset s 86400 86400
+xset s off -dpms
+xset -dpms
+xset s off
+xautolock -disable
