@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    'london')
+        dnsdomain=london.mintel.ad
+        domain=MINTEL_LONDON
+        ;;
+    'chicago')
+        dnsdomain=chicago.mintel.ad
+        domain=MINTEL_CHICAGO
+        ;;
+    'shanghai')
+        dnsdomain=shanghai.mintel.ad
+        domain=MINTEL_SHANGHAI
+        ;;
+    'global')
+        dnsdomain=mintel.ad
+        domain=MINTEL_GLOBAL
+        ;;
+    *)
+        echo "Unknown domain: $1"
+        exit 10
+        ;;
+esac
+
+echo "My Windows SSH: Using:
+ * DNS domain: $dnsdomain
+ * Windows domain: $domain
+
+"
+
+#rdesktop -g 1280x1024 -u "Administrator" -d $dnsdomain -p "$(pass Root-passwords/Windows/Domain-Admins/$domain+Administrator)" $2
+pass -c Root-passwords/Windows/Domain-Admins/$domain+Administrator
+cmd="ssh -l Administrator $2"
+$cmd
