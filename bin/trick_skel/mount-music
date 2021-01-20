@@ -1,0 +1,1 @@
+sudo mount -t nfs 172.16.17.4:/share/CACHEDEV1_DATA/Multimedia /mnt
