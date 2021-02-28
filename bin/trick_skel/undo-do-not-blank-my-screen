@@ -1,0 +1,5 @@
+xset s 1200 1200
+xset s on -dpms
+xset +dpms
+xset s on
+xautolock -enable
