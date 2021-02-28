@@ -5,6 +5,10 @@ case "$1" in
         dnsdomain=london.mintel.ad
         domain=MINTEL_LONDON
         ;;
+    'apac')
+        dnsdomain=apac.mintel.ad
+        domain=MINTEL_APAC
+        ;;
     'chicago')
         dnsdomain=chicago.mintel.ad
         domain=MINTEL_CHICAGO
