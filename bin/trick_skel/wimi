@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Fetching http://ip.v9n.us/auto/" >> /dev/stderr
+curl http://ip.v9n.us/auto/; echo
