@@ -8,7 +8,7 @@ if [ $# -ne 1 ]; then
     exit 1;
 fi
 
-target=$1
+target=$(barehost $1)
 
 function rmssh() {
     ssh-keygen -f "$HOME/.ssh/known_hosts" -R $1
