@@ -25,7 +25,6 @@ trick_skel_aliases () {
     alias ping1='ping -c 1'
     alias sudol='sudo -l'
     alias crontabl='crontab -l'
-    alias psg=trick_skel_psg
     alias vimp="vim -c 'set paste'"
     alias vimm=vim
     alias rehash='hash -r'
@@ -144,10 +143,6 @@ trick_skel_dmesg_tail () {
         sudo=sudo
     fi
     $sudo dmesg | tail
-}
-
-trick_skel_psg () {
-    ps auxwww | egrep -iv 'grep|ps auxwww' | grep -i $*
 }
 
 trick_skel_noproxy () {

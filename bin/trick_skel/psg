@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ps auxwww | egrep -iv 'grep|ps auxwww' | grep -i $*
