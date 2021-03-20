@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
 echo "Fetching http://ip.v9n.us/auto/" >> /dev/stderr
-curl http://ip.v9n.us/auto/; echo
+ip=$(curl -s http://ip.v9n.us/auto/)
+echo $ip
+echo $ip | xclip -in
+
+if [ "$1" == "-v" ]; then
+    whob $ip
+fi
