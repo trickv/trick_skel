@@ -18,12 +18,10 @@ ${color #FFffff}Uptime: $uptime  ${color #ff0000}${execi 3600 cat /var/run/reboo
 ${color #0000FF}RAM    ${membar 8}
 Disk /   ${fs_bar 8 /}
 
-${color #33FFFF}apt upgradeable: ${execi 3600 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
+${color #33FFFF}apt upgradeable: ${execi 900 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
+${font Monospace:pixelsize=12}${color #33FFFF}${execi 900 apt list --upgradeable 2>/dev/null | grep -v ^Listing...}
 
 ${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
 
-${color #ffbf00}${font Monospace:pixelsize=12}${execi 60 watson log -d}
-
-${color #00ff00}${execi 60 watson report -d | grep -v ^Total | tail --lines=+3}
-${color #ffbf00}${font Monospace:pixelsize=14}Current status:${color #ffffff} ${execi 60 watson status | cut -d\( -f1}
+Zoom version: ${color #00ff00}${execi 900 dpkg -l | grep zoom | awk '{print $3}' }
 ]]
