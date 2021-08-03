@@ -199,6 +199,14 @@ bindsym $mod+r mode "resize"
 bar {
         status_command $HOME/bin/trick_skel/my-i3-statusbar
 #	font pango:Terminus 15px
+# FIXME: https://github.com/i3/i3/issues/3242
+# 2021-07-05 I am running version 3.22 of py3status, but I don't think this is fixed anywhere anyway.
+# Seeing this in the logs:
+# 2021-07-05 16:37:51 INFO received SIGTSTP
+# 2021-07-05 16:37:53 INFO received SIGCONT
+# 2021-07-05 16:37:56 INFO received SIGTSTP
+# 2021-07-05 16:37:57 INFO received SIGCONT
+
 }
 
 for_window [instance="rdesktop"] floating enable
