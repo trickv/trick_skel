@@ -103,7 +103,7 @@ DISABLE_UPDATE_PROMPT="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git watson)
+plugins=(git watson hitchhiker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -184,3 +184,9 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # Tell Node about these packages
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+. $HOME/.asdf/asdf.sh
+if [ -d "$HOME/android-platform-tools" ] ; then
+    export PATH="$HOME/android-platform-tools:$PATH"
+fi
+hitchhiker_cow
