@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pgrep -a chrome | grep type=gpu-process | awk '{print $1}' | xargs kill
