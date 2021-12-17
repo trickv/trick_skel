@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+pkill -USR1 py3status
+
 ssh-add -l | grep cardno > /dev/null
 if [ $? -ne 0 ]; then
     echo "No cards inserted?"
@@ -8,4 +10,5 @@ fi
 
 for card in $(ssh-add -l | grep cardno | awk '{print $3}' | sort); do
     gpg -d $HOME/.gnupg/$card.gpg
+    pkill -USR1 py3status
 done

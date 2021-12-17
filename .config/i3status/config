@@ -13,6 +13,7 @@ general {
         interval = 5
 }
 
+order += "gpg_status"
 order += "solar_status"
 order += "online_status"
 order += "headset_state"
