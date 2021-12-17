@@ -7,4 +7,4 @@ exec &>> /tmp/my-screenshot.log
 fn=$HOME/Pictures/screenshot-$(date -u +%Y%m%d-%H%M%S).png
 echo $fn
 
-escrotum --select $fn && pinta $fn
+scrot --select $fn && pinta $fn
