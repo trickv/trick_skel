@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-sleep 0.2
+#sleep 0.2
 
 exec &>> /tmp/my-screenshot.log
 
 fn=$HOME/Pictures/screenshot-$(date -u +%Y%m%d-%H%M%S).png
 echo $fn
 
-scrot --select $fn && pinta $fn
+#scrot --select $fn && pinta $fn
+if [ "$1" == "whole" ]; then
+    gnome-screenshot --file=$fn && pinta $fn
+else
+    gnome-screenshot --area --file=$fn && pinta $fn
+fi
