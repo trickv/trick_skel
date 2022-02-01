@@ -167,6 +167,7 @@ bindsym XF86AudioMute exec --no-startup-id $HOME/bin/trick_skel/my-output-mute-t
 
 # screenshot
 bindsym $mod+p exec --no-startup-id "$HOME/bin/trick_skel/my-screenshot"
+bindsym $mod+shift+p exec --no-startup-id "$HOME/bin/trick_skel/my-screenshot whole"
 bindsym Print exec --no-startup-id "$HOME/bin/trick_skel/my-screenshot"
 
 # resize window (you can also use the mouse for that)
