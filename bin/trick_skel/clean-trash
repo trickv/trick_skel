@@ -23,3 +23,6 @@ fi
 
 touch $HOME/tmp
 find $HOME/tmp -mtime +14 -print $delete
+
+touch $HOME/Pictures
+find $HOME/Pictures/ -name "*screenshot*" -mtime +30 -print $delete
