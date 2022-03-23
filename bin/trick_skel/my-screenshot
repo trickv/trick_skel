@@ -9,7 +9,13 @@ echo $fn
 
 #scrot --select $fn && pinta $fn
 if [ "$1" == "whole" ]; then
-    gnome-screenshot --file=$fn && pinta $fn
+    gnome-screenshot --file=$fn
 else
-    gnome-screenshot --area --file=$fn && pinta $fn
+    gnome-screenshot --area --file=$fn
+fi
+
+if [ -e $fn ]; then
+    pinta $fn
+else
+    notify-send --expire-time=3000 "my-screenshot aborted" "good luck with that"
 fi
