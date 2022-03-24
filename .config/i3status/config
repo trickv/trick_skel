@@ -25,6 +25,7 @@ order += "ethernet bnep0"
 order += "tztime chicago"
 order += "tztime london"
 order += "tztime singapore"
+order += "tztime idaho"
 order += "sysdata"
 order += "tztime date"
 
@@ -67,6 +68,11 @@ tztime chicago {
 tztime singapore {
         format = "SIN %H"
         timezone = "Asia/Singapore"
+}
+
+tztime idaho {
+        format = "ID %H"
+        timezone = "America/Boise"
 }
 
 tztime date {
