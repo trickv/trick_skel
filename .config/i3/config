@@ -213,3 +213,8 @@ bar {
 }
 
 for_window [instance="rdesktop"] floating enable
+
+# Zoom has a variety of popups that should float, but actual meeting windows i don't want to float...let's try this from reddit: https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom - Licensed Account"] floating disable
+for_window [class="zoom" title="Zoom Meeting"] floating disable
