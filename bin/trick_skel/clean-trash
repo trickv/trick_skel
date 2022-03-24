@@ -26,3 +26,7 @@ find $HOME/tmp -mtime +14 -print $delete
 
 touch $HOME/Pictures
 find $HOME/Pictures/ -name "*screenshot*" -mtime +30 -print $delete
+
+mkdir -p $HOME/Documents/Zoom
+touch $HOME/Documents/Zoom
+find $HOME/Documents/Zoom/ -mtime +30 -print $delete
