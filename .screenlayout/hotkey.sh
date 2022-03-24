@@ -1,1 +1,1 @@
-home-dock-displaylink-foo.sh
+island-lowres.sh
