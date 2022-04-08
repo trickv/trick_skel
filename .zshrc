@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/pv/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -96,7 +96,9 @@ DISABLE_UPDATE_PROMPT="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom/
+# i think i need this hack which I do not understand to include my custom completions:
+fpath+=$ZSH_CUSTOM/completions
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -106,6 +108,7 @@ DISABLE_UPDATE_PROMPT="true"
 plugins=(git watson hitchhiker)
 
 source $ZSH/oh-my-zsh.sh
+#ZSH_CUSTOM=$HOME/.oh-my-zsh-custom/
 
 # to use plugin svn or svn-fast-info neither of which are fast:
 prompt_svn() {
