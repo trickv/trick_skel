@@ -14,3 +14,5 @@ powertop
 socat
 mosh
 python3-pip
+curl
+zsh
