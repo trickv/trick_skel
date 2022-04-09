@@ -16,3 +16,5 @@ mosh
 python3-pip
 curl
 zsh
+cowsay
+fortune
