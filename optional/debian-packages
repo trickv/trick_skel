@@ -3,7 +3,7 @@
 packages=$(cat debian-workstation-packages)
 
 case "$HOSTNAME" in
-    "CHI-Linux-L-016" | "tink" )
+    "CHI-Linux-L-016" | "tink" | "compy386")
         packages+=" "
         packages+=$(cat debian-workstation-packages-x11)
         echo "Using x11 package set"
