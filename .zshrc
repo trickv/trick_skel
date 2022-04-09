@@ -190,7 +190,9 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # Tell Node about these packages
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
-. $HOME/.asdf/asdf.sh
+if [ -e $HOME/.asdf/asdf.sh ]; then
+    . $HOME/.asdf/asdf.sh
+fi
 if [ -d "$HOME/android-platform-tools" ] ; then
     export PATH="$HOME/android-platform-tools:$PATH"
 fi
