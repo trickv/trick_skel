@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+Some notes on how to import a key from a yubikey locally:
+https://gist.github.com/jacquesbh/79d3bbf6cdde41800491f55f13c1d8f0
+
+Basically on a new workstation with yadm trick_skel do:
+$ touch $HOME/.ssh/use-gpg
+# spawn a new terminal
+$ ssh-add -l # should show key inserted
+$ gpg --card-edit
+> fetch
+# loads the private key into stub
+$ opengpg # should succeed
+$ ssh foo # should also work
+
+
+
+
+EOF
