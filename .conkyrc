@@ -23,5 +23,4 @@ ${font Monospace:pixelsize=12}${color #33FFFF}${execi 900 apt list --upgradeable
 
 ${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
 
-Zoom version: ${color #00ff00}${execi 900 dpkg -l | grep zoom | awk '{print $3}' }
 ]]
