@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cd $HOME/.config/i3status/
+
+rm -f config
+
+if [ -e config.$(hostname) ]; then
+    ln -s config.$(hostname) config
+else
+    ln -s config.general config
+fi

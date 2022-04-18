@@ -1,0 +1,87 @@
+# trick_skel i3status config
+# $Id$
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "gpg_status"
+#order += "solar_status"
+#order += "online_status"
+#order += "headset_state"
+#order += "volume master"
+order += "battery all"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "tztime chicago"
+
+volume master {
+        format = "♪ %volume"
+        format_muted = "♪ muted %volume"
+        device = "pulse"
+}
+
+wireless _first_ {
+        format_up = "W:%essid %frequency %quality"
+        format_down = "W"
+        color_bad = "#1199ff"
+}
+
+ethernet _first_ {
+        # if you use %speed, i3status requires root privileges
+        format_up = "E: %ip"
+        format_down = "E"
+        color_bad = "#1199ff"
+}
+
+ethernet bnep0 {
+        # if you use %speed, i3status requires root privileges
+        format_up = "bt: %ip"
+        format_down = "bt"
+        color_bad = "#1199ff"
+}
+
+tztime london {
+        format = "LON %H"
+        timezone = "Europe/London"
+}
+
+tztime chicago {
+        format = "CHI %H:%M:%S"
+        timezone = "America/Chicago"
+}
+
+tztime singapore {
+        format = "SIN %H"
+        timezone = "Asia/Singapore"
+}
+
+tztime idaho {
+        format = "ID %H"
+        timezone = "America/Boise"
+}
+
+tztime date {
+        format = "%d %b"
+}
+
+battery all {
+        format = "%status %percentage"
+        status_full = "FULL"
+}
+
+sysdata {
+        format = "M {mem_used_percent}%"
+}
+
+# things to add someday:
+# wrapper around rfkill which shows, y'know, the rfkill state
+# gpg card status (inserted or not, unlocked or not)

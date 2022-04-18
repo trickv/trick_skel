@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd sudoers.d
+sudo cp -pv * /etc/sudoers.d/
+sudo chown root:root /etc/sudoers.d/*
