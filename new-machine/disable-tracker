@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# from https://gist.github.com/vancluever/d34b41eb77e6d077887c
+
+# if your new machine comes with tracker...
+
+tracker daemon -t
+sleep 2
+tracker daemon -k
+sleep 1
+cd ~/.config/autostart
+cp -v /etc/xdg/autostart/tracker-*.desktop ./
+for FILE in tracker-*.desktop; do echo Hidden=true >> $FILE; done
+rm -rf ~/.cache/tracker ~/.local/share/tracker
