@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
 cd sudoers.d
-sudo cp -pv * /etc/sudoers.d/
-sudo chown root:root /etc/sudoers.d/*
+#sudo cp -pv * /etc/sudoers.d/
+#sudo chown root:root /etc/sudoers.d/*
+
+for a in $(ls); do
+    sudo install --group=root --owner=root --mode=600 $a /etc/sudoers.d/
+done
