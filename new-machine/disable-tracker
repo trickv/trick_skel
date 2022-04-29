@@ -8,6 +8,7 @@ tracker daemon -t
 sleep 2
 tracker daemon -k
 sleep 1
+mkdir -pv ~/.config/autostart
 cd ~/.config/autostart
 cp -v /etc/xdg/autostart/tracker-*.desktop ./
 for FILE in tracker-*.desktop; do echo Hidden=true >> $FILE; done
