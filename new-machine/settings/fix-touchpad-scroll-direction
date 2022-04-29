@@ -1,1 +1,2 @@
+# This only seems to affect gnome stuff, so don't use it.
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd xorg.conf.d
+
+for a in $(ls *.conf); do
+    sudo install --preserve-timestamps --group=root --owner=root --mode=644 $a /etc/X11/xorg.conf.d/
+done
