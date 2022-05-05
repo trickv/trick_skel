@@ -1,5 +1,6 @@
 " trick_skel vimrc
 " #ident  "@(#)PROJECTNAME:FILENAME:$Format:%D:%ci:%cN:%h$"
+" $Id$
 
 set number
 set nocompatible
