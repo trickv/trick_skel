@@ -176,7 +176,7 @@ if [ -e $HOME/.ssh/use-gpg ]; then
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     fi
 else
-    source $HOME/.trick_skel/sh-startup/10-common-functions
+    source $HOME/.trick_skel/sh-startup/20-ssh
     trick_skel_start_keychain
 fi
 
