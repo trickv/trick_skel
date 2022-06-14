@@ -107,7 +107,7 @@ fpath+=$ZSH_CUSTOM/completions
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git watson hitchhiker)
+plugins=(git watson hitchhiker command-time)
 
 source $ZSH/oh-my-zsh.sh
 #ZSH_CUSTOM=$HOME/.oh-my-zsh-custom/
