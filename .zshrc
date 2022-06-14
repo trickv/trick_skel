@@ -175,6 +175,9 @@ if [ -e $HOME/.ssh/use-gpg ]; then
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     fi
+else
+    source $HOME/.trick_skel/sh-startup/10-common-functions
+    trick_skel_start_keychain
 fi
 
 export today=$(date +%Y-%m-%d)

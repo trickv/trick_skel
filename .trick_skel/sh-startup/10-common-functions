@@ -34,7 +34,7 @@ trick_skel_start_keychain () {
             for cur in $TRICK_KEYS; do
                 $TRICK_KEYCHAIN -q --nogui $cur
             done
-            . $HOME/.keychain/$HOSTNAME-sh
+            . $HOME/.keychain/$(hostname)-sh
         else
             trick_skel_notice "trick_skel keychain: No keys!"
         fi
