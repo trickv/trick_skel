@@ -197,3 +197,11 @@ if [ -d "$HOME/android-platform-tools" ] ; then
     export PATH="$HOME/android-platform-tools:$PATH"
 fi
 hitchhiker_cow
+
+if [ -e /var/run/reboot-required ]; then
+    echo -n "APT says reboot required as of "
+    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 3600)) hours ago
+    echo -n " ("
+    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 1)) seconds
+    echo ")"
+fi
