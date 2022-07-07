@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+#set -eu
+
+rm -f /tmp/pinentry.log
+
+echo "$@" > /tmp/pinentry.log
+echo $PINENTRY_USER_DATA >> /tmp/pinentry.log
+echo foo >> /tmp/pinentry.log
+env >> /tmp/pinentry.log
+
+COLOR_FLAGS=""
+
+# https://github.com/gpg/pinentry
+
+# Mintel key GREEN
+pgrep -f 000605672437 2>&1 > /dev/null
+if [ $? -eq 0 ]; then
+    #echo "first" >> /tmp/pinentry.log
+    #pgrep -f 000605672437 2>&1 >> /tmp/pinentry.log
+    export COLOR_FLAGS="--colors=yellow,green,default"
+fi
+
+# Personal key Blue:
+pgrep -f 000605661937 2>&1 > /dev/null
+if [ $? -eq 0 ]; then
+    #echo "second" >> /tmp/pinentry.log
+    #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
+    export COLOR_FLAGS="--colors=yellow,blue,default"
+fi
+
+exec /usr/bin/pinentry-curses $COLOR_FLAGS "$@"
