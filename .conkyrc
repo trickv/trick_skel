@@ -7,7 +7,7 @@ conky.config = {
     minimum_height = 500,
     minimum_width = 700,
     no_buffers = true,
-    update_interval = 1,
+    update_interval = 10,
     use_xft = true,
 }
 
