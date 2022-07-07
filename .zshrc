@@ -196,4 +196,11 @@ fi
 if [ -d "$HOME/android-platform-tools" ] ; then
     export PATH="$HOME/android-platform-tools:$PATH"
 fi
+
+set-virt () {
+    export LIBVIRT_DEFAULT_URI=qemu+ssh://$(whoami)@$1/system
+    echo LIBVIRT_DEFAULT_URI=$LIBVIRT_DEFAULT_URI
+    virsh list --all
+}
+
 hitchhiker_cow
