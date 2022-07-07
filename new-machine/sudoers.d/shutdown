@@ -1,2 +1,4 @@
 %sudo	ALL=(ALL:ALL) NOPASSWD: /usr/sbin/shutdown
 %sudo	ALL=(ALL:ALL) NOPASSWD: /usr/sbin/pm-suspend
+%sudo	ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl suspend
+%sudo	ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl hibernate

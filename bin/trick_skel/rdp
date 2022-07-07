@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 case "$1" in
+    'saopaulo')
+        dnsdomain=saopaulo.mintel.ad
+        domain=MINTEL_SAOPAULO
+        ;;
     'london')
         dnsdomain=london.mintel.ad
         domain=MINTEL_LONDON

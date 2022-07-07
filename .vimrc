@@ -1,4 +1,5 @@
 " trick_skel vimrc
+" #ident  "@(#)PROJECTNAME:FILENAME:$Format:%D:%ci:%cN:%h$"
 " $Id$
 
 set number
@@ -6,10 +7,19 @@ set nocompatible
 set backspace=2
 syntax on
 
+" default for all file types is 4 spaces and not tabs:
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Stealing from: https://superuser.com/a/632661
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" needed, and have indentation at 8 chars to be sure that all indents are tabs
+" (despite the mappings later):
+autocmd FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
+
 set hlsearch
 
 set smartindent

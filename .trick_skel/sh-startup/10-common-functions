@@ -7,82 +7,10 @@ trick_skel_terminal_interactive () {
     fi
 }
 
-
-# Keychain (or gpg!) automagicalness
-trick_skel_start_keychain () {
-    if [ -e $HOME/.ssh/use-gpg ]; then
-        unset SSH_AGENT_PID
-        if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-          export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-        fi
-        return 0
-    fi
-    TRICK_KEYCHAIN=`which keychain 2> /dev/null`
-    if [ $? -eq 0 ]; then
-        # we have keychain
-
-        # quick check to ensure we're not already starting keychain
-        egrep '^keychain' $HOME/.bash_profile &> /dev/null
-        if [ $? -ne 1 ]; then
-            trick_skel_notice "Refusing to run keychain as it seems to be in this bash_profile already."
-            return
-        fi
-
-        # find keys and load them in
-        TRICK_KEYS=`find $HOME/.ssh/ -name "*id_rsa" -or -name "*id_ecdsa" -or -name "*id_ed25519" | grep -v backup | grep -v old`
-        if [ "$TRICK_KEYS" != "" ]; then
-            for cur in $TRICK_KEYS; do
-                $TRICK_KEYCHAIN -q --nogui $cur
-            done
-            . $HOME/.keychain/$HOSTNAME-sh
-        else
-            trick_skel_notice "trick_skel keychain: No keys!"
-        fi
-    else
-        trick_skel_notice "Keychain is not installed on this host."
-    fi
-    unset TRICK_KEYCHAIN TRICK_KEYS cur
-}
-
-trick_skel_first_ssh_run () {
-    trick_skel_start_keychain
-    unalias ssh
-    ssh "${@}"
-}
-
-trick_skel_first_scp_run () {
-    trick_skel_start_keychain
-    unalias scp
-    scp "${@}"
-}
-
-trick_skel_first_rsync_run () {
-    trick_skel_start_keychain
-    unalias rsync
-    rsync "${@}"
-}
-
-trick_skel_first_mosh_run () {
-    trick_skel_start_keychain
-    unalias mosh
-    mosh "${@}"
-}
-
 # echo's out information to the terminal if it's proper to do so
 trick_skel_notice () {
     if trick_skel_terminal_interactive; then
         echo $@
-    fi
-}
-
-trick_skel_verify_ssh_agent () {
-    if [ -e $HOME/.ssh/dont_auto_keychain ]; then
-        alias ssh=trick_skel_first_ssh_run
-        alias scp=trick_skel_first_scp_run
-        alias rsync=trick_skel_first_rsync_run
-        alias mosh=trick_skel_first_mosh_run
-    else
-        trick_skel_start_keychain
     fi
 }
 
