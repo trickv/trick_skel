@@ -11,10 +11,10 @@ else
 fi
 
 revert() {
-    xset dpms 0 0 0
+    xset dpms
 }
 trap revert HUP INT TERM
-xset +dpms 5 5 5
+xset +dpms
 
 i3lock --color=000000 --show-failed-attempts --ignore-empty-password $imageflag
 
