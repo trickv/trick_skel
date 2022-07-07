@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$HOSTNAME" != "CHI-Linux-L-016" -a "$HOSTNAME" != "tink" -a "$HOSTNAME" != "compy386" ]; then
+    echo "Not a gui host, skipping backgrounds."
+    exit
+fi
+
 set -u
 set -e
 

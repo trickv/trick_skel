@@ -107,7 +107,7 @@ fpath+=$ZSH_CUSTOM/completions
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git watson hitchhiker)
+plugins=(git watson hitchhiker command-time)
 
 source $ZSH/oh-my-zsh.sh
 #ZSH_CUSTOM=$HOME/.oh-my-zsh-custom/
@@ -175,6 +175,9 @@ if [ -e $HOME/.ssh/use-gpg ]; then
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     fi
+else
+    source $HOME/.trick_skel/sh-startup/20-ssh
+    trick_skel_start_keychain
 fi
 
 export today=$(date +%Y-%m-%d)
@@ -204,3 +207,11 @@ set-virt () {
 }
 
 hitchhiker_cow
+
+if [ -e /var/run/reboot-required ]; then
+    echo -n "APT says reboot required as of "
+    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 3600)) hours ago
+    echo -n " ("
+    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 1)) seconds
+    echo ")"
+fi
