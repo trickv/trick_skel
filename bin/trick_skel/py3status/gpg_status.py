@@ -35,7 +35,7 @@ class Py3status:
         return {
             'full_text': message,
             'color': color,
-            'cached_until': self.py3.time_in(120)
+            'cached_until': self.py3.time_in(3600)
         }
 
 if __name__ == "__main__":
