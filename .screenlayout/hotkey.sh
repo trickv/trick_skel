@@ -1,1 +1,1 @@
-island-lowres.sh
+home-anker.sh
