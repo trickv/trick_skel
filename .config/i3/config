@@ -153,8 +153,12 @@ bindsym $mod+u exec "$HOME/bin/trick_skel/continue-py3status"
 #bindsym $mod+l exec "xautolock -locknow"
 
 # xidlehook mode:
-exec --no-startup-id "$HOME/bin/trick_skel/my-xidlehook"
-bindsym $mod+l exec "$HOME/bin/trick_skel/my-i3lock"
+#exec --no-startup-id "$HOME/bin/trick_skel/my-xidlehook"
+#bindsym $mod+l exec "$HOME/bin/trick_skel/my-i3lock"
+
+# automatic switch between xautlock and xidlehook:
+exec --no-startup-id "$HOME/bin/trick_skel/my-i3-screensaver"
+bindsym $mod+l exec "$HOME/bin/trick_skel/my-i3-screensaver-locknow"
 
 # Startup stuff:
 exec --no-startup-id "$HOME/bin/trick_skel/i3-manage-screensaver-with-fullscreen.py 2>&1 | logger -t i3-m-s-w-f.py"

@@ -210,8 +210,8 @@ hitchhiker_cow
 
 if [ -e /var/run/reboot-required ]; then
     echo -n "APT says reboot required as of "
-    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 3600)) hours ago
+    echo -n $((($(date +%s) - $(date +%s -r "/var/run/reboot-required")) / 3600)) hours ago
     echo -n " ("
-    echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 1)) seconds
+    echo -n $((($(date +%s) - $(date +%s -r "/var/run/reboot-required")) / 1)) seconds
     echo ")"
 fi
