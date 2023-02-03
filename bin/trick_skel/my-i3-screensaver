@@ -9,16 +9,17 @@ if [ -e $HOME/.cargo/bin/xidlehook ]; then
 
     # Run xidlehook
     $HOME/.cargo/bin/xidlehook \
+      --socket /tmp/xidlehook.sock \
       `# Don't lock when there's a fullscreen application` \
       --not-when-fullscreen \
       `# Don't lock when there's audio playing` \
       --not-when-audio \
       `# Dim the screen after a short while, undim if user becomes active` \
-      --timer 120 \
+      --timer 500 \
         'xrandr --output "$PRIMARY_DISPLAY" --brightness .3' \
         'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
-      `# Undim & lock after 600 more seconds` \
-      --timer 600 \
+      `# Undim & lock after 100 more seconds` \
+      --timer 100 \
         'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; $HOME/bin/trick_skel/my-i3lock' \
         '' \
       `# Finally, suspend an hour after it locks` \
