@@ -169,6 +169,8 @@ exec --no-startup-id "nm-applet"
 #exec --no-startup-id "xinput --set-prop 'AlpsPS/2 ALPS DualPoint TouchPad' 'libinput Natural Scrolling Enabled' 1"
 exec --no-startup-id "xsetroot -solid '#111111'"
 exec --no-startup-id conky -d -b
+exec --no-startup-id xset s 1800 1800
+exec --no-startup-id xset dpms 3500 3500 3500
 
 # debugging
 bindsym $mod+g exec --no-startup-id $HOME/bin/trick_skel/record-xwininfo
