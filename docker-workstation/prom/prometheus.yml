@@ -35,10 +35,10 @@ scrape_configs:
         - 192.168.0.1
         - 192.168.44.1
         - 192.168.42.129
-        - 172.17.0.1
+        - 172.17.0.10
         - 172.19.248.1
         - 10.42.0.1
-        - 10.1.4.1
+        - 172.16.17.1
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
