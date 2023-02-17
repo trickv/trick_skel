@@ -215,3 +215,22 @@ if [ -e /var/run/reboot-required ]; then
     echo -n $((($(date +%s) - $(date +%s -r "/var/log/syslog")) / 1)) seconds
     echo ")"
 fi
+
+nogpg () {
+    alias gc='git commit --no-gpg-sign'
+    export TRICK_SKEL_NO_GPG=1
+}
+
+____git() {
+    args=$@
+    if [[ $1 == "commit" && "$TRICK_SKEL_NO_GPG" == "1" ]]; then
+        #args=("${(@)a:#commit}")
+        #@[1]=()
+        shift args
+        echo " $0 commit --no-gpg-sign \"$args\""
+        command $0 commit --no-gpg-sign $args
+    else
+        echo "wtf git $0 $1 \"$@\""
+        command $0 "$@"
+    fi
+}
