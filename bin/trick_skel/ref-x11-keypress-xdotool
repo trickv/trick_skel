@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+
+To copy/paste by typing into a dumb X11 app like virt-manager or VirtualBox, use xdotool:
+
+xdotool type asdf
+
+Maybe like:
+sleep 5 && xdotool type $(pass that/thing)
+
+
+EOF
+

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "I am about to delete these branches:"
+git branch --merged | grep -v "master"
+
+echo "Hit enter to continue."
+read x
+
+git branch --merged | cut -b3- | grep -v "master" | xargs git branch -D
+git remote prune origin

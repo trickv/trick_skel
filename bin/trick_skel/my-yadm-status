@@ -12,6 +12,7 @@ dirs=".bash_completion.d .config/{i3,i3status,watson,yadm} .gnupg .oh-my-zsh-cus
 for a in $dirs; do
     yadm status -u $a | grep "working tree clean" &> /dev/null
     if [ $? -ne 0 ]; then
+        echo "Dir: $a"
         yadm status -u $a | grep -v "nothing added to commit but untracked files" | grep -v "Your branch is up to date" | grep -v "On branch master"
     fi
 done

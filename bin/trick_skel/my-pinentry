@@ -18,7 +18,7 @@ pgrep -f 000605672437 2>&1 > /dev/null
 if [ $? -eq 0 ]; then
     #echo "first" >> /tmp/pinentry.log
     #pgrep -f 000605672437 2>&1 >> /tmp/pinentry.log
-    export COLOR_FLAGS="--colors=yellow,green,default"
+    export COLOR_FLAGS="--colors=black,green,default"
 fi
 
 # Personal key Blue:
@@ -26,7 +26,7 @@ pgrep -f 000605661937 2>&1 > /dev/null
 if [ $? -eq 0 ]; then
     #echo "second" >> /tmp/pinentry.log
     #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
-    export COLOR_FLAGS="--colors=yellow,blue,default"
+    export COLOR_FLAGS="--colors=black,blue,default"
 fi
 
 exec /usr/bin/pinentry-curses $COLOR_FLAGS "$@"
