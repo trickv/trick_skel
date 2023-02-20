@@ -30,7 +30,7 @@ function box_color {
     # get predictably-hashed hexidecimal string that depends on hostname
     md5sum <<<"$(box_name)" |
     # meh - take first byte and convert it to decimal
-    cut -c-2 | xargs -i printf "%d\n" "0x{}" |
+    cut -c7-8 | xargs -i printf "%d\n" "0x{}" |
     # convert 0-255 range into 30-37 range
     awk '{print int($0/255.0*(37-30)+30)}'
   )
