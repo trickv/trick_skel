@@ -170,14 +170,23 @@ prompt_svn() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 PATH=$HOME/bin/trick_skel:$HOME/src/svn.mintel.ad/infra/network/bin:$PATH
-if [ -e $HOME/.ssh/use-gpg ]; then
-    unset SSH_AGENT_PID
-    if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-      export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
+
+# GPG / SSH handling
+if [[ -z ${SSH_CLIENT+x} ]]; then
+    if [ -e $HOME/.ssh/use-gpg ]; then
+        echo "Local GPG mode: setting SSH_AUTH_SOCK to local gpg agent-ssh-socket"
+        unset SSH_AGENT_PID
+        if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+          export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+        fi
+    else
+        echo "Using old world SSH startup for local keys"
+        source $HOME/.trick_skel/sh-startup/20-ssh
+        trick_skel_start_keychain
     fi
 else
-    source $HOME/.trick_skel/sh-startup/20-ssh
-    trick_skel_start_keychain
+    echo "Remote SSH session; not doing anything with SSH_AUTH_SOCK"
 fi
 
 export today=$(date +%Y-%m-%d)
