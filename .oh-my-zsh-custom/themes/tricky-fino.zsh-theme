@@ -32,16 +32,17 @@ function box_color {
     # meh - take first byte and convert it to decimal
     cut -c7-8 | xargs -i printf "%d\n" "0x{}" |
     # convert 0-255 range into 30-37 range
-    awk '{print int($0/255.0*(37-30)+30)}'
+    awk '{print int($0/255.0*(231-124)+124)}'
   )
-  echo $number
+  #echo $number
+  printf '\e[38;5;%dm' $number $number
 }
 
 local ruby_env='$(ruby_prompt_info)'
 local git_info='$(git_prompt_info)'
 local virtualenv_info='$(virtualenv_prompt_info)'
 
-PROMPT="${FG[040]}%n${FG[239]} @ ${FG[1$(box_color)]}$(box_name) ${FG[239]}in %B${FG[226]}%~%b${git_info}${ruby_env}${virtualenv_info}
+PROMPT="${FG[040]}%n${FG[239]} @ $(box_color)$(box_name) ${FG[239]}in %B${FG[226]}%~%b${git_info}${ruby_env}${virtualenv_info}
  \$%{$reset_color%} "
 
 # borrowed from: https://zenbro.github.io/2015/07/23/show-exit-code-of-last-command-in-zsh.html
