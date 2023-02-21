@@ -173,7 +173,7 @@ PATH=$HOME/bin/trick_skel:$HOME/src/svn.mintel.ad/infra/network/bin:$PATH
 
 
 # GPG / SSH handling
-if [[ -z ${SSH_CLIENT+x} ]]; then
+if [[ -z ${SSH_CLIENT+x} || -e $HOME/.ssh/jumpbox ]]; then
     if [ -e $HOME/.ssh/use-gpg ]; then
         echo "Local GPG mode: setting SSH_AUTH_SOCK to local gpg agent-ssh-socket"
         unset SSH_AGENT_PID
