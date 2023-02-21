@@ -17,3 +17,5 @@
 
 [includeIf "gitdir:~/src/gitlab.com/pvanstaveren/"]
     path = ~/.gitconfig.mintel
+[pull]
+	rebase = false
