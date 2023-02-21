@@ -18,3 +18,5 @@ curl
 zsh
 cowsay
 fortune
+jq
+tree

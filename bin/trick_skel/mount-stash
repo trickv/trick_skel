@@ -1,0 +1,2 @@
+sudo mkdir -p /mnt/stash
+sudo mount -t nfs minor:/srv/stash /mnt/stash

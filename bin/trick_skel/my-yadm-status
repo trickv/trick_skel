@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+cd $HOME
+# something like this ought to work, but i need to figure out how to get the most specific versioned paths...go figure.
+dirs=$(yadm ls-tree --full-name --name-only -r HEAD | grep "/" | cut -d/ -f1 | sort | uniq)
+
+echo $dirs
+#exit
+
+dirs=".bash_completion.d .config/{i3,i3status,watson,yadm} .gnupg .oh-my-zsh-custom .screenlayout .ssh .trick_skel .vim .yadm/bootstrap.d Templates bin/trick_skel docker-workstation new-machine optional skel-extras"
+
+for a in $dirs; do
+    yadm status -u $a | grep "working tree clean" &> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Dir: $a"
+        yadm status -u $a | grep -v "nothing added to commit but untracked files" | grep -v "Your branch is up to date" | grep -v "On branch master"
+    fi
+done

@@ -12,10 +12,13 @@ fi
 
 revert() {
     xset dpms
+    xrandr --output "$(xrandr | awk '/ primary/{print $1}')" --brightness 1
 }
 trap revert HUP INT TERM
 xset +dpms
 
 i3lock --color=000000 --show-failed-attempts --ignore-empty-password $imageflag
+# dangerous but useful in a pinch:
+# i3lock --color=000000 --show-failed-attempts --ignore-empty-password --debug $imageflag | logger -t my-i3lock
 
 revert

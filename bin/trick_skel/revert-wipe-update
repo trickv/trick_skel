@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 
-svn revert . -R
-svn status --ignore-externals | egrep '^\?' | awk '{print $2}' | xargs rm -rf
-svn update --ignore-externals
-svn status --ignore-externals
+if [ -d .svn ]; then
+    echo "$0: svn mode"
+    svn revert . -R
+    svn status --ignore-externals | egrep '^\?' | awk '{print $2}' | xargs rm -rf
+    svn update --ignore-externals
+    svn status --ignore-externals
+else
+    git status &> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "$0: git mode"
+        git reset --hard HEAD
+        git clean -df
+        git pull
+        git submodule update
+    fi
+fi

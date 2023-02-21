@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -e $HOME/.cargo/bin/xidlehook ]; then
+    # xidlehook is installed, so just call my-i3lock directly
+    echo "xidlehook mode"
+    $HOME/bin/trick_skel/my-i3lock
+else
+    echo "xautolock mode"
+    xautolock -locknow
+fi

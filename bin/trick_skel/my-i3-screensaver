@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+if [ -e $HOME/.cargo/bin/xidlehook ]; then
+    # xidlehook is installed, use it:
+    echo "xidlehook cargo mode"
+
+    # Only exported variables can be used within the timer's command.
+    export PRIMARY_DISPLAY="$(xrandr | awk '/ primary/{print $1}')"
+
+    # Run xidlehook
+    $HOME/.cargo/bin/xidlehook \
+      --socket /tmp/xidlehook.sock \
+      `# Don't lock when there's a fullscreen application` \
+      --not-when-fullscreen \
+      `# Don't lock when there's audio playing` \
+      --not-when-audio \
+      `# Dim the screen after a short while, undim if user becomes active` \
+      --timer 500 \
+        'xrandr --output "$PRIMARY_DISPLAY" --brightness .3' \
+        'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
+      `# Undim & lock after 100 more seconds` \
+      --timer 100 \
+        'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; $HOME/bin/trick_skel/my-i3lock' \
+        '' \
+      `# Finally, suspend an hour after it locks` \
+      --timer 3600 \
+        '/usr/bin/systemctl suspend' \
+        ''
+else
+    echo "xautolock mode"
+    xautolock -locker $HOME/bin/trick_skel/my-i3lock -notify 30 -notifier "notify-send -u critical -t 10000 -- 'locking screen in 30 seconds'"
+fi

@@ -4,4 +4,9 @@ port=8000
 
 terminal-title HTTP:$port on `hostname -s` by $USER
 
-python -m SimpleHTTPServer $port
+which python3 &> /dev/null
+if [ $? -eq 0 ]; then
+    python3 -m http.server $port
+else
+    python -m SimpleHTTPServer $port
+fi

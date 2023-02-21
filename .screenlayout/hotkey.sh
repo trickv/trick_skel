@@ -1,1 +1,0 @@
-island-lowres.sh

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+out=$HOME/.gnupg/gpg-agent.conf
+
+echo "# trick_skel generated gpg-agent.conf $(strdate)" > $out
+echo '# $Id$' >> $out
+
+echo "pinentry-program $HOME/bin/trick_skel/my-pinentry" >> $out
