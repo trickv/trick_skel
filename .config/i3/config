@@ -223,6 +223,9 @@ bar {
 
 }
 
+# to find windows that you might want to float:
+# i3-get-window-criteria (it's in bin/trick_skel)
+
 for_window [instance="rdesktop"] floating enable
 
 # Zoom has a variety of popups that should float, but actual meeting windows i don't want to float...let's try this from reddit: https://www.reddit.com/r/i3wm/comments/m27dwc/comment/hsi1l0m/?utm_source=share&utm_medium=web2x&context=3
@@ -230,3 +233,5 @@ for_window [instance="rdesktop"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+
+for_window[instance="fldigi"] floating enable
