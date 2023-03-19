@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ "$1" != "Disable" -a "$1" != "Enable" ]; then
+    echo "Usage: $0 <Enable|Disable>"
+    exit 42
+fi
+
+~/.cargo/bin/xidlehook-client --socket /tmp/xidlehook.sock control --action $1
