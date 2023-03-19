@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    echo "Usage: $0 <title> <chapter number>"
+    exit 42
+fi
+
+mencoder dvd://$1 -chapter $2-$2 -of rawaudio -ovc copy -af volnorm=1,resample=44100:0:0 -oac mp3lame -lameopts fast:preset=standard -o out-$2.mp3

@@ -1,0 +1,1 @@
+mplayer dvd:// -dumpaudio -dumpfile out.ac3

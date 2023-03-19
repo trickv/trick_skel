@@ -1,0 +1,1 @@
+mencoder dvd://1 -of rawaudio -ovc copy -af volnorm=1,resample=44100:0:0 -oac mp3lame -lameopts fast:preset=standard -o out.mp3
