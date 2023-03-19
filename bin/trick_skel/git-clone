@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# example: https://github.com/trickv/radio_flyer
+# or     : https://gitlab.com/pvanstaveren/foo
+# perhaps: git@github.com:trickv/secret_thing ? wont work yet
+
+host=$(echo $1 | cut -d/ -f3)
+author=$(echo $1 | cut -d/ -f4)
+repo=$(echo $1 | cut -d/ -f5)
+
+src_dir=$HOME/src/$host/$author
+echo "This goes into: $src_dir"
+mkdir -p $src_dir
+cd $src_dir
+git clone $1
+
+echo "Now cd $src_dir/$repo"
