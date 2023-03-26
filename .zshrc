@@ -169,7 +169,7 @@ prompt_svn() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-PATH=$HOME/bin/trick_skel:$HOME/src/svn.mintel.ad/infra/network/bin:$PATH
+PATH=$HOME/bin/trick_skel:$HOME/bin:$HOME/src/svn.mintel.ad/infra/network/bin:$PATH
 
 
 # GPG / SSH handling
