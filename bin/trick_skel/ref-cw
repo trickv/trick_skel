@@ -1,0 +1,1 @@
+arecord -D pulse -c1 -r22050 -fS16_LE -|multimon-ng -t wav -A -a MORSE_CW  -
