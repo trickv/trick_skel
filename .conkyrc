@@ -19,7 +19,6 @@ ${color #0000FF}RAM    ${membar 8}
 Disk /   ${fs_bar 8 /}
 
 ${color #33FFFF}apt upgradeable: ${execi 900 apt list --upgradeable 2>/dev/null | grep -v ^Listing... | wc -l}
-${font Monospace:pixelsize=12}${color #33FFFF}${execi 900 apt list --upgradeable 2>/dev/null | grep -v ^Listing...}
 
 ${font Monospace:pixelsize=18}${execi 3600 cal | sed 's///g'  | sed 's/_//g'}
 
