@@ -39,7 +39,7 @@ function box_color {
 }
 
 local ruby_env='$(ruby_prompt_info)'
-local git_info='$(git_prompt_info)'
+local git_info='$(git_prompt_info)$(git_remote_status)${FG[255]}'
 local virtualenv_info='$(virtualenv_prompt_info)'
 
 PROMPT="${FG[040]}%n${FG[239]} @ $(box_color)$(box_name) ${FG[239]}in %B${FG[226]}%~%b${git_info}${ruby_env}${virtualenv_info}
@@ -59,10 +59,21 @@ function check_last_exit_code() {
 
 RPROMPT='$(check_last_exit_code)'
 
+# These inflence git_prompt_info in oh-my-zsh/lib/git.zsh:
 ZSH_THEME_GIT_PROMPT_PREFIX=" ${FG[239]}on%{$reset_color%} ${FG[255]}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="${FG[202]}✘✘✘"
-ZSH_THEME_GIT_PROMPT_CLEAN="${FG[040]}✔"
+ZSH_THEME_GIT_PROMPT_DIRTY="${FG[202]} ✘✘"
+ZSH_THEME_GIT_PROMPT_CLEAN="${FG[040]} ✔"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="${FG[013]} <"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="${FG[011]} >>>"
+#ZSH_THEME_GIT_PROMPT_EQUAL_REMOTE="${FG[018]} ="
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="${FG[208]} !"
+# detailed mode shows remote name too
+#ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED=yes
+# only in detailed mode:
+#ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_PREFIX="foo"
+#ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_SUFFIX="%{$reset_color$}xxx"
+# colors list: https://misc.flogisoft.com/bash/tip_colors_and_formatting#colors1
 
 ZSH_THEME_RUBY_PROMPT_PREFIX=" ${FG[239]}using${FG[243]} ‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
