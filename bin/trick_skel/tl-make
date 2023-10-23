@@ -35,5 +35,6 @@ fi
 
 mencoder -nosound -ovc lavc -lavcopts \
     vcodec=mpeg4:mbd=2:trell:autoaspect:vqscale=3 \
+#    -vf flip,mirror \
     $vf -mf type=jpeg:fps=$fps \
     mf://@$frames $ofps -o output/time-lapse-$1-`strdate`.avi
