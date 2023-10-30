@@ -6,7 +6,7 @@ docker stop prometheus
 docker run \
     --rm \
     --volumes-from grafana \
-    -v ~/docker-workstation/backup/:/backup \
+    -v ~/workstation-monitor/backup/:/backup \
     ubuntu \
     bash -c "tar cvvfj /backup/grafana-`strdate`.tar.bz2 /var/lib/grafana"
 

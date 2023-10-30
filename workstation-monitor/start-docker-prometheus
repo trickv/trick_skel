@@ -8,7 +8,7 @@ fi
 
 docker run --name=prometheus -p 9090:9090 \
     -v /var/lib/prometheus/master/prometheus:/prometheus \
-    -v $HOME/docker-workstation/prom/prometheus.yml:/etc/prometheus/prometheus.yml \
+    -v $HOME/workstation-monitor/prom/prometheus.yml:/etc/prometheus/prometheus.yml \
     --restart unless-stopped \
     --detach \
     prom/prometheus:$version \
