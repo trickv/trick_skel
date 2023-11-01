@@ -28,10 +28,10 @@ class Py3status:
                 1: '1',
                 0: '🟢',
             }
-            status += "{}:{} ".format(cardmap[card], codemap[p.returncode])
+            status += " {}{}".format(cardmap[card], codemap[p.returncode])
             
 
-        message = "GnuPG: {}".format(status)
+        message = "GPG{}".format(status)
         return {
             'full_text': message,
             'color': color,
