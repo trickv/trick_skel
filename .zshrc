@@ -243,3 +243,7 @@ ____git() {
         command $0 "$@"
     fi
 }
+
+# mosh via shell from JuiceSSH seems to send odd Home/End keys so bind them:
+bindkey  "^[[1~"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
