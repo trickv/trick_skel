@@ -14,7 +14,7 @@ trick_skel_start_keychain () {
         # quick check to ensure we're not already starting keychain
         egrep '^keychain' $HOME/.bash_profile &> /dev/null
         if [ $? -ne 1 ]; then
-            trick_skel_notice "Refusing to run keychain as it seems to be in this bash_profile already."
+            echo "Refusing to run keychain as it seems to be in this bash_profile already."
             return
         fi
 
@@ -26,10 +26,10 @@ trick_skel_start_keychain () {
             done
             . $HOME/.keychain/$(hostname)-sh
         else
-            trick_skel_notice "trick_skel keychain: No keys!"
+            echo "trick_skel keychain: No keys!"
         fi
     else
-        trick_skel_notice "Keychain is not installed on this host."
+        echo "Keychain is not installed on this host."
     fi
     unset TRICK_KEYCHAIN TRICK_KEYS cur
 }
