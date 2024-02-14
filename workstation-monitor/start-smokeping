@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# https://github.com/linuxserver/docker-smokeping
+
+docker run -d \
+  --name=smokeping \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -p 8041:80 \
+  -v ./smokeping/config:/config \
+  -v ./smokeping/data:/data\
+  --restart unless-stopped \
+  lscr.io/linuxserver/smokeping:latest
