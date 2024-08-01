@@ -37,4 +37,4 @@ echo "My RDP: Using:
 
 "
 
-rdesktop -g 1280x1024 -u "Administrator" -d $dnsdomain -p "$(pass Root-passwords/Windows/Domain-Admins/$domain+Administrator)" $2
+rdesktop -V 1.2 -g 1280x1024 -u "Administrator" -d $dnsdomain -p "$(pass Root-passwords/Windows/Domain-Admins/$domain+Administrator)" $2
