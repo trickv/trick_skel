@@ -1,5 +1,4 @@
 gimp
-docker.io
 pavucontrol
 virtualbox
 xbacklight
@@ -17,3 +16,5 @@ pinta
 py3status
 webext-browserpass
 sshpass
+gnome-screenshot
+util-linux
