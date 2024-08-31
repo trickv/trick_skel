@@ -45,6 +45,16 @@ if [ $? -eq 0 ]; then
     echo "YELLOW" >> /tmp/pinentry.log
 fi
 
+# Personal key Orange
+#pgrep -f 000605661937 2>&1 > /dev/null
+ps auxwww | grep -v "gpg --pinentry-mode" | grep -v grep | grep "gpg -d" | grep 000609625189 &> /dev/null
+if [ $? -eq 0 ]; then
+    #echo "second" >> /tmp/pinentry.log
+    #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
+    export COLOR_FLAGS="--colors=black,yellow,default"
+    echo "YELLOW/ORANGE" >> /tmp/pinentry.log
+fi
+
 echo >> /tmp/pinentry.log
 echo $COLOR_FLAGS >> /tmp/pinentry.log
 
