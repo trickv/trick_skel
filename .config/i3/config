@@ -234,5 +234,6 @@ for_window [instance="rdesktop"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+for_window [instance="zoom"] floating disable
 
 for_window[instance="fldigi"] floating enable
