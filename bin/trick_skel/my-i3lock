@@ -2,7 +2,7 @@
 
 # 2022-04-17: https://github.com/jD91mZM2/xidlehook looks cool but...rust? cargo? no .deb pkg I can find.
 
-bg=$(find $HOME/Pictures/bg/ -type f | grep png$ | shuf -n 1)
+bg=$(find $HOME/bg/ -type f | grep png$ | shuf -n 1)
 
 if [ "$bg" == "" ]; then
     imageflag=""
