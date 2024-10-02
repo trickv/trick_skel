@@ -234,5 +234,17 @@ for_window [instance="rdesktop"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+for_window [instance="zoom" title="Meeting"] floating disable
+
+##### 2024-10-01
+# $ i3-get-window-criteria  # headset popup notification
+#[class="zoom" id=46137631 instance="zoom" title="zoom"]
+#pv @ CHI-LX-L-068 in ~
+# $ i3-get-window-criteria # meeting itself
+#[class="zoom" id=46137546 instance="zoom" title="Meeting"]
+#pv @ CHI-LX-L-068 in ~
+# $ i3-get-window-criteria # main zoom window
+#[class="zoom" id=46137952 instance="zoom" title="Zoom Workplace - Licensed account"]
+
 
 for_window[instance="fldigi"] floating enable
