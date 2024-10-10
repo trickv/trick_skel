@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Fetching http://ip.v9n.us/auto/" >> /dev/stderr
-ip=$(curl -s http://ip.v9n.us/auto/)
+ip=$(curl -s https://ip.v9n.us/auto/)
 echo $ip
 echo $ip | xclip -in
 
