@@ -3,13 +3,24 @@ import sys
 from PIL import Image
 from PIL.ExifTags import TAGS
 
+# ExposureTime
+# FNumber
+# ApertureValue
+# FocalLength
+
 def get_timestamp(filepath):
     img = Image.open(filepath)
     exif_data = img._getexif()
+    data = ""
     if exif_data:
         for tag, value in exif_data.items():
-            if TAGS.get(tag) == 'DateTimeOriginal':
-                return value
+            if TAGS.get(tag) in ('DateTimeOriginal', 'ExposureTime', 'FNumber', 'ApertureValue', 'FocalLength'):
+            #if TAGS.get(tag) in ('DateTimeOriginal'):
+                #return value
+                data += str(value)
+                data += ", "
+    if len(data) > 0:
+        return data
     # Fallback to filename format
     return os.path.splitext(os.path.basename(filepath))[0].split('_')[-1]
 
@@ -19,9 +30,9 @@ def main(image_folder, output_file):
     with open(output_file, 'w') as f, open(overlay_file, 'w') as overlay_f:
         for filename in sorted(os.listdir(image_folder)):
             i = i + 1
-            if i > 1200:
+            if i > 100000000:
                 print("ERR: max input pictures")
-                sys.exit()
+                sys.exit(0)
             if filename.endswith('.JPG'):
                 filepath = os.path.join(image_folder, filename)
                 timestamp = get_timestamp(filepath).replace(":", "_")

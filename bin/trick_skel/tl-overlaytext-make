@@ -25,18 +25,24 @@ python $HOME/bin/trick_skel/_tl_extract_timestamps.py $1
 num_frames=$(wc -l < overlays.txt)
 
 # Create an FFmpeg command dynamically
-ffmpeg_command="ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf \""
+ffmpeg_command="ffmpeg -y -f concat -safe 0 -i timestamps.txt -filter_script vf.txt "
+ffmpeg_vf_command=""
 
 for ((i=1; i<=num_frames; i++)); do
+    if [ $i -gt 1 ]; then
+        ffmpeg_vf_command+=","
+    fi
     timestamp=$(sed -n "${i}p" overlays.txt)
     # FIXME: is there a way to set position,size,color to persist across these entries? the length of this string hits a max in ffmpeg around 1200-1300 pictures
-    ffmpeg_command+="drawtext=text='${timestamp}':x=10:y=10:fontsize=100:fontcolor=yellow:enable='between(n,${i},${i})',"
+    ffmpeg_vf_command+="drawtext=text='${timestamp}':x=10:y=10:fontsize=100:fontcolor=yellow:enable='between(n,${i},${i})'"
 done
 
 mkdir -p output
 
+echo $ffmpeg_vf_command > vf.txt
+
 # Remove the last comma and close the vf option
-ffmpeg_command="${ffmpeg_command%,}\" -r 30 -c:v libx264 -pix_fmt yuv420p output/time-lapse-$1-overlay-$(strdate).mp4"
+ffmpeg_command="${ffmpeg_command%,} -r 30 -c:v libx264 -pix_fmt yuv420p output/time-lapse-$1-overlay-$(strdate).mp4"
 
 # Execute the command
 echo $ffmpeg_command
