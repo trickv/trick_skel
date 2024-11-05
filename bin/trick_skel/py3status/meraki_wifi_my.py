@@ -10,6 +10,7 @@ class Py3status:
         #cmd = "curl -s http://my.meraki.com/index.json | jq -r '.config.node_name'"
         is_on_mintel_wifi_cmd = "nmcli d show wlp0s20f3 | grep GENERAL.CONNECTION | grep Mintel_Chicago_wifi"
         p = subprocess.run(is_on_mintel_wifi_cmd, shell=True, cwd=pathlib.Path.home(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        timeout = 60
         if p.returncode == 0:
             cmd = "curl -s http://my.meraki.com/index.json | jq -r '.config.node_name + \" \" + .client.rssi + \"dB\"'"
             #cmd = "echo hi"
@@ -22,13 +23,14 @@ class Py3status:
             #message = "foo"
             #print(message)
             color = "#00ff00"
+            timeout = 1
         else:
             message = "(not meraki)"
             color = "#666666"
         return {
             'full_text': message,
             'color': color,
-            'cached_until': self.py3.time_in(1)
+            'cached_until': self.py3.time_in(timeout)
         }
             
 
