@@ -1,1 +1,2 @@
 pkill -SIGCONT py3status
+pkill -USR1 py3status

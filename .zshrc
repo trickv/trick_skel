@@ -156,6 +156,7 @@ prompt_svn() {
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -252,3 +253,8 @@ ____git() {
 # mosh via shell from JuiceSSH seems to send odd Home/End keys so bind them:
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
+
+# gam gets installed here which is weird but ok:
+if [ -e $HOME/bin/gam7/gam ]; then
+    alias gam="/home/pv/bin/gam7/gam"
+fi

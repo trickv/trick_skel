@@ -15,3 +15,5 @@ cd $src_dir
 git clone $1
 
 echo "Now cd $src_dir/$repo"
+echo "cd $src_dir/$repo" | xclip -in
+# cloud also use zsh print -S ala https://unix.stackexchange.com/questions/651679/how-do-i-add-a-command-to-zsh-history but this requires sourcing this script rather than forking it.

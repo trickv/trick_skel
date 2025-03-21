@@ -1,0 +1,56 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+    echo "Usage: $0 <pictures dir>"
+    exit 43
+fi
+
+set -e
+set -u
+
+# Run the Python script to generate timestamps.txt
+python $HOME/bin/trick_skel/_tl_extract_timestamps.py $1
+
+# Use ffmpeg to create the video with overlays
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='%{eif\:mod(n\,60)\:d\:02d}':x=10:y=10:fontsize=24:fontcolor=white" -c:v libx264 output.mp4 # produces 1fps # this seems to work for ten frames but not 100; it errors out
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4 # this works for 100 frames
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='%{eif\:mod(n\,60)\:d\:02d}':x=10:y=10:fontsize=24:fontcolor=white" -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4
+
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='%{eif\:mod(n\,30)\:d\:02d}':x=W/2-text_w/2:y=H/2-text_h/2:fontsize=100:fontcolor=yellow" -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4 # works! but the text is just a frame identifier...
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='$(awk 'NR==N' overlays.txt)':x=W/2-text_w/2:y=H/2-text_h/2:fontsize=100:fontcolor=yellow" -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4
+#ffmpeg -y -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='%{file_packet_metadata\:timestamp}':x=10:y=10:fontsize=24:fontcolor=yellow" -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4 # great idea but can't read metadata
+
+# here's a colvoluted way:
+# Get the number of frames (images)
+num_frames=$(wc -l < overlays.txt)
+
+# Create an FFmpeg command dynamically
+ffmpeg_command="ffmpeg -y -f concat -safe 0 -i timestamps.txt -filter_script vf.txt "
+ffmpeg_vf_command=""
+
+for ((i=1; i<=num_frames; i++)); do
+    if [ $i -gt 1 ]; then
+        ffmpeg_vf_command+=","
+    fi
+    timestamp=$(sed -n "${i}p" overlays.txt)
+    # FIXME: is there a way to set position,size,color to persist across these entries? the length of this string hits a max in ffmpeg around 1200-1300 pictures
+    ffmpeg_vf_command+="drawtext=text='${timestamp}':x=10:y=10:fontsize=100:fontcolor=yellow:enable='between(n,${i},${i})'"
+done
+
+mkdir -p output
+
+echo $ffmpeg_vf_command > vf.txt
+
+# Remove the last comma and close the vf option
+ffmpeg_command="${ffmpeg_command%,} -r 30 -c:v libx264 -pix_fmt yuv420p output/time-lapse-$1-overlay-$(strdate).mp4"
+
+# Execute the command
+echo $ffmpeg_command
+eval $ffmpeg_command
+
+
+
+
+
+#ffmpeg -f concat -safe 0 -i timestamps.txt -vf "drawtext=text='%{eif\:mod(n\,30)\:d\:02d}':x=10:y=10:fontsize=24:fontcolor=white" -r 30 -c:v libx264 -pix_fmt yuv420p output.mp4
+

@@ -1,0 +1,57 @@
+*** Targets ***
+
+probe = FPing
+
+menu = Top
+title = Network Latency Grapher
+remark = Welcome to the SmokePing website of WORKS Company. \
+         Here you will learn all about the latency of our network.
+
++ InternetSites
+
+menu = Internet Sites
+title = Internet Sites
+
+++ linuxserverio
+menu = linuxserver.io
+title = linuxserver.io
+host = linuxserver.io
+
++ USA
+
+menu = North America
+title = North American Connectivity
+
+++ UMN
+
+menu =  University of Minnesota
+title = University of Minnesota
+host = twin-cities.umn.edu
+
++ DNS
+menu = DNS
+title = DNS
+
+++ GoogleDNS1
+menu = Google DNS 1
+title = Google DNS 8.8.8.8
+host = 8.8.8.8
+
+++ CloudflareDNS1
+menu = Cloudflare DNS 1
+title = Cloudflare DNS 1.1.1.1
+host = 1.1.1.1
+
++ Mintel
+menu = Mintel
+title = Mintel
+
+++ sshbastion02
+menu = ssh-bastion02 chi-dc
+title = ssh-bastion02 chi-dc
+host = 172.17.0.10
+
+++ chioffcore
+menu = Chi-Off core
+title = Chi-Off core 172.24.2.1
+host = 172.24.2.1

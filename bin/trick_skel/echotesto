@@ -1,0 +1,5 @@
+pactl load-module module-loopback
+# docs: https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#module-loopback
+#pactl load-module module-loopback latency_msec=2000
+
+echo "then run pactl unload-module module-loopback"

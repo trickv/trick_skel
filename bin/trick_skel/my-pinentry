@@ -8,25 +8,54 @@ echo "$@" > /tmp/pinentry.log
 echo $PINENTRY_USER_DATA >> /tmp/pinentry.log
 echo foo >> /tmp/pinentry.log
 env >> /tmp/pinentry.log
+echo >> /tmp/pinentry.log
+echo >> /tmp/pinentry.log
 
 COLOR_FLAGS=""
 
 # https://github.com/gpg/pinentry
 
 # Mintel key GREEN
-pgrep -f 000605672437 2>&1 > /dev/null
+#pgrep -f 000605672437 2>&1 > /dev/null
+ps auxwww | egrep -v "gpg --pinentry-mode" | grep -v grep | egrep "gpg -d" | grep 000605672437 &> /dev/null
 if [ $? -eq 0 ]; then
     #echo "first" >> /tmp/pinentry.log
     #pgrep -f 000605672437 2>&1 >> /tmp/pinentry.log
     export COLOR_FLAGS="--colors=black,green,default"
+    echo "GREEN" >> /tmp/pinentry.log
 fi
 
 # Personal key Blue:
-pgrep -f 000605661937 2>&1 > /dev/null
+#pgrep -f 000605661937 2>&1 > /dev/null
+ps auxwww | egrep -v "gpg --pinentry-mode" | grep -v grep | egrep "gpg -d" | grep 0006056619377 &> /dev/null
 if [ $? -eq 0 ]; then
     #echo "second" >> /tmp/pinentry.log
     #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
     export COLOR_FLAGS="--colors=black,blue,default"
+    echo "BLUE" >> /tmp/pinentry.log
 fi
+
+# Personal key Yellow:
+#pgrep -f 000605661937 2>&1 > /dev/null
+ps auxwww | grep -v "gpg --pinentry-mode" | grep -v grep | grep "gpg -d" | grep FFFE87192417 &> /dev/null
+if [ $? -eq 0 ]; then
+    #echo "second" >> /tmp/pinentry.log
+    #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
+    export COLOR_FLAGS="--colors=black,yellow,default"
+    echo "YELLOW" >> /tmp/pinentry.log
+fi
+
+# Personal key Orange
+#pgrep -f 000605661937 2>&1 > /dev/null
+ps auxwww | grep -v "gpg --pinentry-mode" | grep -v grep | grep "gpg -d" | grep 000609625189 &> /dev/null
+if [ $? -eq 0 ]; then
+    #echo "second" >> /tmp/pinentry.log
+    #pgrep -f 000605661937 2>&1 >> /tmp/pinentry.log
+    export COLOR_FLAGS="--colors=black,yellow,default"
+    echo "YELLOW/ORANGE" >> /tmp/pinentry.log
+fi
+
+echo >> /tmp/pinentry.log
+echo $COLOR_FLAGS >> /tmp/pinentry.log
 
 exec /usr/bin/pinentry-curses $COLOR_FLAGS "$@"
