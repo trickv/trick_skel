@@ -235,6 +235,7 @@ nogpg () {
     alias git='git -c commit.gpgsign=false'
     alias yadm='yadm -c commit.gpgsign=false'
     export TRICK_SKEL_NO_GPG=1
+    export TRICKY_PROMPT_SUFFIX=" >nogpg< "
 }
 
 ____git() {

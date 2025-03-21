@@ -38,11 +38,17 @@ function box_color {
   printf '\e[38;5;%dm' $number $number
 }
 
+function tricky_prompt_suffix {
+  [[ -n ${TRICKY_PROMPT_SUFFIX} ]] || return
+  echo "${TRICKY_PROMPT_SUFFIX}"
+}
+
 local ruby_env='$(ruby_prompt_info)'
 local git_info='$(git_prompt_info)$(git_remote_status)${FG[255]}'
 local virtualenv_info='$(virtualenv_prompt_info)'
+local tricky_prompt_suffix='$(tricky_prompt_suffix)'
 
-PROMPT="${FG[040]}%n${FG[239]} @ $(box_color)$(box_name) ${FG[239]}in %B${FG[226]}%~%b${git_info}${ruby_env}${virtualenv_info}
+PROMPT="${FG[040]}%n${FG[239]} @ $(box_color)$(box_name) ${FG[239]}in %B${FG[226]}%~%b${git_info}${ruby_env}${virtualenv_info}${tricky_prompt_suffix}
  \$%{$reset_color%} "
 
 # borrowed from: https://zenbro.github.io/2015/07/23/show-exit-code-of-last-command-in-zsh.html
