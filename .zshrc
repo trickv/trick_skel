@@ -232,7 +232,8 @@ if [ -e /var/run/reboot-required ]; then
 fi
 
 nogpg () {
-    alias gc='git commit --no-gpg-sign'
+    alias git='git -c commit.gpgsign=false'
+    alias yadm='yadm -c commit.gpgsign=false'
     export TRICK_SKEL_NO_GPG=1
 }
 
