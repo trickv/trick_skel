@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if [ ! -f "$1" -o "$2" = "" ]; then
-    echo "Usage: $0 <pub key file> <remote host spec>"
+if [ "$1" == "" -o "$1" == "-h" ]; then
+    echo "Usage: $0 <remote host spec>"
     exit 1
 fi
 
-key=`cat $1`
+key=`ssh-add -L`
 
-ssh $2 $3 $4 $5 $6 $7 $8 $9 "mkdir -p ~/.ssh; echo '$key' >> ~/.ssh/authorized_keys"
+ssh $1 "mkdir -p ~/.ssh; echo '$key' >> ~/.ssh/authorized_keys"
