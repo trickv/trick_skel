@@ -21,9 +21,12 @@ else
     echo "I don't know how to handle $OSTYPE"
 fi
 
+mkdir -p $HOME/tmp
 touch $HOME/tmp
+touch $HOME/tmp/.gitkeep
 find $HOME/tmp -mtime +14 -print $delete
 
+mkdir -p $HOME/Pictures
 touch $HOME/Pictures
 find $HOME/Pictures/ -name "*screenshot*" -mtime +30 -print $delete
 
