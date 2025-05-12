@@ -35,6 +35,7 @@ class Py3status:
                     'FC:EC:DA:B8:5A:C3': 'Office',
                     '74:AC:B9:28:E5:EE': 'Attic',
                     'FC:EC:DA:B7:5A:C3': 'Office 2.4ghz',
+                    '74:AC:B9:27:E5:EE': 'Attic 2.4ghz',
                 }
                 if ap_mac in ap_mac_map:
                     message = ap_mac_map[ap_mac]
