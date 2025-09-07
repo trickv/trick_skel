@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    echo "Usage: $0 <number of hours>"
+    exit 1
+fi
+
+hours=$1
+echo "Pausing xautolock for $hours hours and then re-enabling it."
+xautolock -disable
+echo "xautolock disabled, sleeping..."
+sleep ${hours}h
+xautolock -enable
+echo "xautolock re-enabled"

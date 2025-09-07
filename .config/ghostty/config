@@ -1,0 +1,5 @@
+#window-decoration = server
+focus-follows-mouse = true
+confirm-close-surface = false
+theme = "3024 Night"
+clipboard-paste-bracketed-safe = true
