@@ -262,3 +262,17 @@ if [ -e $HOME/bin/gam7/gam ]; then
 fi
 
 . "$HOME/.local/bin/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# If we have a hostname specific script in ~/.${host}.sh, run it
+HOSTNAME=$(hostname)
+echo "look for ${HOME}/.${HOSTNAME}.sh"
+if [ -f "${HOME}/.${HOSTNAME}.sh" ]; then
+    if [ "`head -n 1 ${HOME}/.${HOSTNAME}.sh`" != "# quiet!" ]; then
+        echo "Executing .${HOSTNAME}.sh (add '# quiet!' to hide this)"
+    fi
+    . ${HOME}/.${HOSTNAME}.sh
+fi
