@@ -260,3 +260,5 @@ bindkey  "^[[4~"   end-of-line
 if [ -e $HOME/bin/gam7/gam ]; then
     alias gam="/home/pv/bin/gam7/gam"
 fi
+
+. "$HOME/.local/bin/env"

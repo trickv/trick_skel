@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-pactl set-sink-mute $(pacmd info | grep "Default sink name" | cut -d: -f2) toggle
+#pactl set-sink-mute $(pacmd info | grep "Default sink name" | cut -d: -f2) toggle
+# ubuntu 24 PipeWire compatibility wth Pulse; pacmd doesn't work but pactl works and this syntax should be portable:
+pactl set-sink-mute @DEFAULT_SINK@ toggle
