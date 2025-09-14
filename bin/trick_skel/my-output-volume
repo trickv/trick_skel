@@ -2,4 +2,4 @@
 
 #pactl set-sink-volume $(pacmd info | grep "Default sink name" | cut -d: -f2) $1
 # ubuntu 24 PipeWire compatibility wth Pulse; pacmd doesn't work but pactl works and this syntax should be portable:
-pactl set-sink-volume @DEFAULT_SINK@ +5%
+pactl set-sink-volume @DEFAULT_SINK@ $1
