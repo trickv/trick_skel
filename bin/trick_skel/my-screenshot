@@ -15,7 +15,8 @@ else
 fi
 
 if [ -e $fn ]; then
-    pinta $fn
+    app=$(which pinta eog | grep -v 'not found' | head -n 1)
+    $app $fn
 else
     notify-send --expire-time=3000 "my-screenshot aborted" "good luck with that"
 fi
