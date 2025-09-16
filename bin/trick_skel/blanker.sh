@@ -11,4 +11,6 @@ COLOR=$(printf "#%02x%02x%02x" $R $G $B)
 # Generate the image
 convert -size 1920x1080 xc:$COLOR /tmp/dark_color_image.png
 
-eog -f /tmp/dark_color_image.png
+if [ "$1" == "" ]; then
+    eog -f /tmp/dark_color_image.png
+fi

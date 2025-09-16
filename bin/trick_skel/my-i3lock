@@ -2,10 +2,11 @@
 
 # 2022-04-17: https://github.com/jD91mZM2/xidlehook looks cool but...rust? cargo? no .deb pkg I can find.
 
-bg=$(find $HOME/bg/ -type f | grep png$ | shuf -n 1)
+bg=$(find $HOME/bg/ -type f 2>/dev/null | grep png$ | shuf -n 1)
 
 if [ "$bg" == "" ]; then
-    imageflag=""
+    $HOME/bin/trick_skel/blanker.sh no
+    imageflag="--image=/tmp/dark_color_image.png"
 else
     imageflag="--image=$bg"
 fi
