@@ -8,3 +8,12 @@ echo $ip | xclip -in
 if [ "$1" == "-v" ]; then
     whob $ip
 fi
+
+if [ "$1" == "-p" ] || [ "$1" == "--prefix" ]; then
+    echo "Looking up IP prefix and ASN for $ip..." >> /dev/stderr
+    whois -h v4.whois.cymru.com " -v $ip" | while IFS= read -r line; do
+        if [[ $line =~ ^[0-9] ]]; then
+            echo "$line"
+        fi
+    done
+fi
