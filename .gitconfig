@@ -10,7 +10,7 @@
     autocrlf = input
     excludesfile = ~/.gitignore_global
 [commit]
-	gpgsign = true
+	gpgsign = false
 
 [includeIf "gitdir:~/src/gitlab.com/mintel/"]
     path = ~/.gitconfig.mintel
