@@ -18,7 +18,7 @@ revert() {
 trap revert HUP INT TERM
 xset +dpms
 
-i3lock --color=000000 --show-failed-attempts --ignore-empty-password $imageflag
+i3lock --color=220000 --show-failed-attempts --ignore-empty-password $imageflag
 # dangerous but useful in a pinch:
 # i3lock --color=000000 --show-failed-attempts --ignore-empty-password --debug $imageflag | logger -t my-i3lock
 
