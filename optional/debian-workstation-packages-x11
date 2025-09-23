@@ -7,12 +7,10 @@ arandr
 imagemagick
 rdesktop
 i3
-conky
-yubikey-personalization-gui
+conky-all
 python3-gnupg
 webext-browserpass
 exfat-fuse
-pinta
 py3status
 webext-browserpass
 sshpass
