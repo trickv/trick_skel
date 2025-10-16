@@ -42,16 +42,3 @@ menu = Cloudflare DNS 1
 title = Cloudflare DNS 1.1.1.1
 host = 1.1.1.1
 
-+ Mintel
-menu = Mintel
-title = Mintel
-
-++ sshbastion02
-menu = ssh-bastion02 chi-dc
-title = ssh-bastion02 chi-dc
-host = 172.17.0.10
-
-++ chioffcore
-menu = Chi-Off core
-title = Chi-Off core 172.24.2.1
-host = 172.24.2.1
