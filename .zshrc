@@ -182,7 +182,7 @@ if [[ -z ${SSH_CLIENT+x} || -e $HOME/.ssh/jumpbox ]]; then
           export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
         fi
     else
-        echo "Using old world SSH startup for local keys"
+        #echo "Using old world SSH startup for local keys"
         source $HOME/.trick_skel/sh-startup/20-ssh
         trick_skel_start_keychain
     fi
@@ -221,7 +221,9 @@ set-virt () {
     virsh list --all
 }
 
-hitchhiker_cow
+if [ "$ASCIINEMA_REC" != "1" ]; then
+    hitchhiker_cow
+fi
 
 if [ -e /var/run/reboot-required ]; then
     echo -n "APT says reboot required as of "
@@ -235,7 +237,7 @@ nogpg () {
     alias git='git -c commit.gpgsign=false'
     alias yadm='yadm -c commit.gpgsign=false'
     export TRICK_SKEL_NO_GPG=1
-    export TRICKY_PROMPT_SUFFIX=" >nogpg< "
+    #export TRICKY_PROMPT_SUFFIX=" >nogpg< "
 }
 
 ____git() {
@@ -269,7 +271,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # If we have a hostname specific script in ~/.${host}.sh, run it
 HOSTNAME=$(hostname)
-echo "look for ${HOME}/.${HOSTNAME}.sh"
 if [ -f "${HOME}/.${HOSTNAME}.sh" ]; then
     if [ "`head -n 1 ${HOME}/.${HOSTNAME}.sh`" != "# quiet!" ]; then
         echo "Executing .${HOSTNAME}.sh (add '# quiet!' to hide this)"
