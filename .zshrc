@@ -277,3 +277,12 @@ if [ -f "${HOME}/.${HOSTNAME}.sh" ]; then
     fi
     . ${HOME}/.${HOSTNAME}.sh
 fi
+
+files=( /home/trick/.trick_skel/zsh-startup/*.sh )
+
+for file in "${files[@]}"; do
+  if [[ -f "$file" ]]; then
+    source "$file" 2>/dev/null || echo "Error sourcing $file" >&2
+  fi
+done
+
