@@ -1,0 +1,4 @@
+# this prevents easytag from scanning subdirs when you click them.
+# saves me from eternal wait from it scanning my entire music library when i accidentally click on it.
+# the setting really does have a confusing name...
+dconf load /org/gnome/easytag/ < easytag.dconf
