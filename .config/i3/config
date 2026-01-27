@@ -162,6 +162,7 @@ exec --no-startup-id "xsetroot -solid '#111111'"
 exec --no-startup-id conky -d -b
 exec --no-startup-id xset s 1800 1800
 exec --no-startup-id xset dpms 3500 3500 3500
+exec --no-startup-id syncthing-gtk --minimized
 
 # debugging
 bindsym $mod+g exec --no-startup-id $HOME/bin/trick_skel/record-xwininfo
@@ -235,6 +236,7 @@ for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
 for_window [instance="zoom" title="Meeting"] floating disable
+for_window [class="strwinclt.exe"] floating enable
 
 ##### 2024-10-01
 # $ i3-get-window-criteria  # headset popup notification
@@ -247,4 +249,4 @@ for_window [instance="zoom" title="Meeting"] floating disable
 #[class="zoom" id=46137952 instance="zoom" title="Zoom Workplace - Licensed account"]
 
 
-for_window[instance="fldigi"] floating enable
+for_window [instance="fldigi"] floating enable
