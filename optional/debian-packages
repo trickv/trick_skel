@@ -16,4 +16,4 @@ esac
 echo $packages
 sudo apt install $packages
 
-pip3 install -r pip3-packages
+#pip3 install -r pip3-packages

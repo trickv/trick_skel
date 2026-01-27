@@ -1,0 +1,10 @@
+#!/bin/bash
+# csvtable - Format CSV files as tables
+
+if [ -t 1 ]; then
+    # Output is a terminal, use column with proper formatting
+    column -t -s, "$@" | less -S
+else
+    # Output is being piped, just use column
+    column -t -s, "$@"
+fi
