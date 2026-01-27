@@ -187,7 +187,9 @@ if [[ -z ${SSH_CLIENT+x} || -e $HOME/.ssh/jumpbox ]]; then
         trick_skel_start_keychain
     fi
 else
-    echo "Remote SSH session; not doing anything with SSH_AUTH_SOCK"
+    if [ "$ASCIINEMA_REC" != "1" ]; then
+        echo "Remote SSH session; not doing anything with SSH_AUTH_SOCK"
+    fi
 fi
 
 export today=$(date +%Y-%m-%d)
