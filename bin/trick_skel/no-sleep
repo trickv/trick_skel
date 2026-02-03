@@ -1,0 +1,1 @@
+sudo systemd-inhibit --what=handle-lid-switch --who="Manual Override" --why="Keeping laptop awake" --mode=block sleep infinity
