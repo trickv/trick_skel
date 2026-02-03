@@ -1,1 +1,20 @@
-sudo systemd-inhibit --what=handle-lid-switch --who="Manual Override" --why="Keeping laptop awake" --mode=block sleep infinity
+#!/bin/bash
+
+DURATION=${1:-infinity}
+
+echo "Inhibiting sleep for $DURATION seconds..."
+
+sudo systemd-inhibit \
+  --what=handle-lid-switch \
+  --who="Manual Override" \
+  --why="Keeping laptop awake" \
+  --mode=block \
+  sleep "$DURATION"
+
+# After timer expires, check if lid is closed and suspend if so
+if grep -q closed /proc/acpi/button/lid/*/state 2>/dev/null; then
+  echo "Lid is closed after inhibit; manually syspending"
+  systemctl suspend
+else
+  echo "inhibit terminated; lid appears open"
+fi
