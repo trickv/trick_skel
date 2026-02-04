@@ -1,0 +1,2 @@
+%sudo ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemd-inhibit
+%sudo ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl suspend
