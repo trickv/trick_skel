@@ -163,6 +163,8 @@ exec --no-startup-id conky -d -b
 exec --no-startup-id xset s 1800 1800
 exec --no-startup-id xset dpms 3500 3500 3500
 exec --no-startup-id syncthing-gtk --minimized
+# 3d support:
+exec --no-startup-id picom -b
 
 # debugging
 bindsym $mod+g exec --no-startup-id $HOME/bin/trick_skel/record-xwininfo
