@@ -1,3 +1,28 @@
-pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
-pacmd set-source-volume alsa_input.pci-0000_00_1f.3.analog-stereo 0x9999
+#!/bin/sh
+# Switch the primary input device to its headset mic port.
+
+# Find the default source, falling back to the first non-monitor input source.
+source=$(pactl get-default-source 2>/dev/null)
+if [ -z "$source" ] || echo "$source" | grep -q '\.monitor$'; then
+    source=$(pactl list short sources | awk '!/\.monitor\t/{print $2; exit}')
+fi
+
+if [ -z "$source" ]; then
+    notify-send -u critical "Headset mic" "No input source found"
+    exit 1
+fi
+
+# Find the headset-mic port on this source.
+port=$(pactl list sources | awk -v src="$source" '
+    /^\tName: /{found = ($2 == src)}
+    found && /analog-input-headset-mic:/{print $1; exit}
+' | sed 's/:$//')
+
+if [ -z "$port" ]; then
+    notify-send -u critical "Headset mic" "No headset-mic port on $source"
+    exit 1
+fi
+
+pactl set-source-port "$source" "$port"
+pactl set-source-volume "$source" 60%
 notify-send "Using headset mic"
