@@ -1,0 +1,109 @@
+#!/bin/bash
+# rip-dvd — Auto-detect DVD title name + longest title, rip with HandBrakeCLI
+# Usage: ./rip-dvd [/dev/dvd]
+# Install: sudo apt install handbrake-cli lsdvd
+
+set -euo pipefail
+
+DVD_DEV="${1:-/dev/sr0}"
+
+if ! command -v HandBrakeCLI &>/dev/null; then
+    echo "ERROR: HandBrakeCLI not found. Install with: sudo apt install handbrake-cli"
+    exit 1
+fi
+
+echo "=== Scanning DVD on $DVD_DEV ==="
+
+# --- Detect disc name from volume label ---
+DISC_NAME=""
+
+# Method 1: blkid (most reliable)
+if command -v blkid &>/dev/null; then
+    DISC_NAME=$(blkid -s LABEL -o value "$DVD_DEV" 2>/dev/null) || true
+fi
+
+# Method 2: lsdvd
+if [[ -z "$DISC_NAME" ]] && command -v lsdvd &>/dev/null; then
+    DISC_NAME=$(lsdvd "$DVD_DEV" 2>/dev/null | grep '^Disc Title:' | sed 's/^Disc Title: //') || true
+fi
+
+# Method 3: volname
+if [[ -z "$DISC_NAME" ]] && command -v volname &>/dev/null; then
+    DISC_NAME=$(volname "$DVD_DEV" 2>/dev/null) || true
+fi
+
+# Method 4: isoinfo
+if [[ -z "$DISC_NAME" ]] && command -v isoinfo &>/dev/null; then
+    DISC_NAME=$(isoinfo -d -i "$DVD_DEV" 2>/dev/null | grep 'Volume id:' | sed 's/Volume id: //') || true
+fi
+
+# Clean up the name: trim whitespace, lowercase, replace underscores/spaces
+if [[ -n "$DISC_NAME" ]]; then
+    DISC_NAME=$(echo "$DISC_NAME" \
+        | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' \
+        | tr '[:upper:]' '[:lower:]' \
+        | tr ' _' '-' \
+        | tr -cd 'a-z0-9-')
+    echo "  Disc name: $DISC_NAME"
+else
+    DISC_NAME="dvd-rip-$(date +%Y%m%d-%H%M%S)"
+    echo "  Could not detect disc name, using: $DISC_NAME"
+fi
+
+OUTPUT="${DISC_NAME}.mp4"
+
+# Avoid clobbering existing files
+if [[ -e "$OUTPUT" ]]; then
+    i=1
+    while [[ -e "${DISC_NAME}-${i}.mp4" ]]; do ((i++)); done
+    OUTPUT="${DISC_NAME}-${i}.mp4"
+fi
+
+# --- Find the longest title ---
+echo "=== Scanning titles ==="
+
+SCAN_OUTPUT=$(HandBrakeCLI --input "$DVD_DEV" --title 0 --min-duration 10 2>&1) || true
+echo "$SCAN_OUTPUT" | grep -E '(\+ title|\+ duration:|\+ Main Feature)' | sed 's/^/  /'
+
+# HandBrakeCLI reports the longest title as "Main Feature"
+TITLE_NUM=$(echo "$SCAN_OUTPUT" | grep -B1 'Main Feature' | grep -oP '\+ title \K\d+(?=:)') || true
+
+# Fall back to first title if Main Feature not tagged
+if [[ -z "$TITLE_NUM" ]]; then
+    TITLE_NUM=$(echo "$SCAN_OUTPUT" | grep -oP '\+ title \K\d+(?=:)' | head -1)
+fi
+
+# Grab duration for the selected title
+TITLE_LEN=$(echo "$SCAN_OUTPUT" | sed -n "/+ title ${TITLE_NUM}:/,/+ title /p" \
+    | grep -oP 'duration: \K[\d:]+' | head -1) || true
+
+if [[ -z "$TITLE_NUM" ]]; then
+    echo "ERROR: No DVD titles found on $DVD_DEV"
+    exit 1
+fi
+
+echo ""
+echo "=== Title $TITLE_NUM ($TITLE_LEN) -> $OUTPUT ==="
+echo ""
+
+# --- Encode with HandBrakeCLI ---
+HandBrakeCLI \
+    --input "$DVD_DEV" \
+    --title "$TITLE_NUM" \
+    --output "$OUTPUT" \
+    --format av_mp4 \
+    --encoder x264 \
+    --encoder-preset medium \
+    --quality 20 \
+    --aencoder av_aac \
+    --ab 192 \
+    --mixdown stereo \
+    --width 720 \
+    --loose-anamorphic \
+    --markers \
+    --optimize
+
+echo ""
+echo "=== Done! ==="
+echo "  File: $OUTPUT"
+echo "  Size: $(du -h "$OUTPUT" | cut -f1)"
