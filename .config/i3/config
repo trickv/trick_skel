@@ -134,11 +134,6 @@ bindsym $mod+t exec "nautilus"
 bindsym $mod+c exec "gnome-calculator"
 bindsym $mod+m exec "$HOME/bin/trick_skel/laptop-headset-mic"
 bindsym $mod+o exec "notify-send trying 'bluetooth tether to TrickyPixel'; nmcli c up TrickyPixel"
-#bindsym $mod+n exec "notify-send trying 'VPN to test-openvpn01'; nmcli c up test-openvpn01\ UDP"
-bindsym $mod+n exec "notify-send trying 'VPN to Chicago UDP'; nmcli c up Mintel_Chicago"
-#bindsym $mod+n exec "notify-send trying 'VPN to Chi-DC UDP'; nmcli c up Mintel_ChiDC_VPN"
-#bindsym $mod+n exec "notify-send trying 'VPN to CHicago 2 TCP'; nmcli c up Mintel_Chicago_2"
-#bindsym $mod+n exec "notify-send trying 'VPN to LONDON'; nmcli c up Mintel_London_1_UDP"
 bindsym $mod+u exec "$HOME/bin/trick_skel/continue-py3status"
 bindsym $mod+i exec "$HOME/bin/trick_skel/blanker.sh"
 
@@ -252,3 +247,6 @@ for_window [class="strwinclt.exe"] floating enable
 
 
 for_window [instance="fldigi"] floating enable
+# chrome annoying floating "helpers"
+for_window [ window_role="bubble"] floating enable
+for_window [title="Calculator"] floating enable
