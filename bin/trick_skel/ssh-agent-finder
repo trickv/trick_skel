@@ -1,8 +1,14 @@
 #!/bin/bash
-# Find the first usable SSH agent socket in /tmp with keys available.
+# Find the first usable SSH agent socket with keys available.
 # Diagnostics go to stderr; the winning socket path goes to stdout.
+#
+# Searches:
+#   ~/.ssh/agent/s.*.sshd.*   (Ubuntu 26.04+ / OpenSSH 9.9+ layout)
+#   /tmp/ssh-*/agent.*        (legacy layout, PID embedded in filename)
 
 MY_UID=$(id -u)
+MY_USER=$(id -un)
+MY_HOME=${HOME:-$(getent passwd "$MY_UID" | cut -d: -f6)}
 
 human_age() {
     local seconds=$1
@@ -18,15 +24,103 @@ human_age() {
     fi
 }
 
+# Look up source host for a pts. Tries `who` first (utmp); on Ubuntu 26.04+
+# utmp is gone and `who` is empty, so fall back to walking /proc for any
+# sshd-session whose ctty is that pts and reading SSH_CONNECTION.
+pts_source() {
+    local pts=$1
+    [ -z "$pts" ] && return
+    local src
+    src=$(who 2>/dev/null | awk -v p="$pts" '$2 == p {gsub(/[()]/, "", $NF); print $NF; exit}')
+    if [ -z "$src" ]; then
+        local pid env_line
+        for pid in $(pgrep -u "$MY_UID" -f "sshd.*: $MY_USER@$pts" 2>/dev/null); do
+            env_line=$({ tr '\0' '\n' < "/proc/$pid/environ"; } 2>/dev/null | grep '^SSH_CONNECTION=')
+            if [ -n "$env_line" ]; then
+                src=$(echo "$env_line" | awk -F'[= ]' '{print $2}')
+                break
+            fi
+        done
+    fi
+    if [[ "$src" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        local rdns
+        rdns=$(getent hosts "$src" 2>/dev/null | awk '{print $2; exit}')
+        [ -n "$rdns" ] && src="$src ($rdns)"
+    fi
+    echo "$src"
+}
+
+# Print "pts/N[ from host][, pts/M[ from host]]" for our active sshd sessions,
+# derived from `ps` (works on systems without utmp).
+active_pts_summary() {
+    local first=1 line pts src
+    while IFS= read -r line; do
+        pts=$(echo "$line" | grep -oP 'pts/\d+')
+        [ -z "$pts" ] && continue
+        src=$(pts_source "$pts")
+        if [ $first -eq 1 ]; then first=0; else printf ", "; fi
+        printf "%s" "$pts"
+        [ -n "$src" ] && printf " from %s" "$src"
+    done < <(ps -u "$MY_UID" -o args= 2>/dev/null | grep -E "sshd.*: $MY_USER@pts/")
+}
+
 now=$(date +%s)
 
+# Try a candidate socket. On success: print path to stdout, log to stderr,
+# exit 0. On failure: log to stderr and return.
+try_socket() {
+    local sock=$1 label=$2
+    [ -S "$sock" ] || return
+
+    local sock_mtime age_str
+    sock_mtime=$(stat -c %Y "$sock" 2>/dev/null)
+    if [ -n "$sock_mtime" ]; then
+        age_str=$(human_age $((now - sock_mtime)))
+        label="${label:+$label, }$age_str"
+    fi
+
+    local output rc
+    output=$(SSH_AUTH_SOCK="$sock" ssh-add -l 2>&1)
+    rc=$?
+    if [ $rc -eq 0 ]; then
+        local nkeys
+        nkeys=$(echo "$output" | wc -l)
+        echo "FOUND $sock [$label] ${nkeys} key(s):" >&2
+        echo "$output" | sed 's/^/  /' >&2
+        echo "$sock"
+        exit 0
+    elif [ $rc -eq 1 ]; then
+        echo "SKIP $sock [$label] agent running but no keys" >&2
+    else
+        echo "SKIP $sock [$label] could not connect: $output" >&2
+    fi
+}
+
+# --- New layout: ~/.ssh/agent/ ---
+# The directory itself is mode 0700 user-owned, so any socket inside
+# implicitly belongs to us. The filename no longer encodes a PID, so we
+# can't tightly map socket -> sshd session; instead we annotate with the
+# active pts sessions from `who` for context.
+agent_dir="$MY_HOME/.ssh/agent"
+if [ -d "$agent_dir" ]; then
+    pts_summary=$(active_pts_summary)
+
+    # Process newest-first so the most recently created agent wins.
+    while IFS= read -r sock; do
+        [ -n "$sock" ] || continue
+        try_socket "$sock" "${pts_summary:-no active pts}"
+    done < <(ls -1t "$agent_dir"/s.*.sshd.* 2>/dev/null)
+fi
+
+# --- Legacy layout: /tmp/ssh-*/agent.<pid> ---
+# Here the PID in the filename names the sshd session process, which lets
+# us verify ownership and look up pts + source host precisely.
+shopt -s nullglob
 for sock in /tmp/ssh-*/agent.*; do
     [ -S "$sock" ] || continue
 
-    # The PID in agent.N is the sshd session process
     sshd_pid=${sock##*.}
 
-    # Check if the process exists and belongs to us
     if [ -d "/proc/$sshd_pid" ]; then
         sock_uid=$(stat -c %u "/proc/$sshd_pid" 2>/dev/null)
         if [ "$sock_uid" != "$MY_UID" ]; then
@@ -38,47 +132,13 @@ for sock in /tmp/ssh-*/agent.*; do
         continue
     fi
 
-    # Get the pts from the sshd process args (e.g. "sshd: trick@pts/8")
     pts=$(ps -o args= -p "$sshd_pid" 2>/dev/null | grep -oP 'pts/\d+')
-
-    # Look up source host from `who` for this pts
-    source_host=""
-    if [ -n "$pts" ]; then
-        source_host=$(who | awk -v p="$pts" '$2 == p {gsub(/[()]/, "", $NF); print $NF}')
-        # Try reverse DNS if it looks like an IP
-        if [[ "$source_host" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            rdns=$(getent hosts "$source_host" 2>/dev/null | awk '{print $2}')
-            if [ -n "$rdns" ]; then
-                source_host="$source_host ($rdns)"
-            fi
-        fi
-    fi
-
-    # Session age from socket mtime
-    sock_mtime=$(stat -c %Y "$sock" 2>/dev/null)
-    age_str=""
-    if [ -n "$sock_mtime" ]; then
-        age_str=$(human_age $((now - sock_mtime)))
-    fi
+    src=$(pts_source "$pts")
 
     label="${pts:-?}"
-    [ -n "$source_host" ] && label="$label from $source_host"
-    [ -n "$age_str" ] && label="$label, $age_str"
+    [ -n "$src" ] && label="$label from $src"
 
-    # Try listing keys
-    output=$(SSH_AUTH_SOCK="$sock" ssh-add -l 2>&1)
-    rc=$?
-    if [ $rc -eq 0 ]; then
-        nkeys=$(echo "$output" | wc -l)
-        echo "FOUND $sock [$label] ${nkeys} key(s):" >&2
-        echo "$output" | sed 's/^/  /' >&2
-        echo "$sock"
-        exit 0
-    elif [ $rc -eq 1 ]; then
-        echo "SKIP $sock [$label] agent running but no keys" >&2
-    else
-        echo "SKIP $sock [$label] could not connect: $output" >&2
-    fi
+    try_socket "$sock" "$label"
 done
 
 echo "ERROR: no agent with keys found" >&2
