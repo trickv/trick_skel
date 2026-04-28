@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# Two-segment brightness ladder:
+#   Segment A: /sys/class/backlight/intel_backlight  (sysfs PWM, full -> 1)
+#   Segment B: xrandr --brightness on eDP-1          (1.0 -> 0.1 in 9 steps of 0.1)
+#
+# eDP-1 is hardcoded: this script is bound to physical XF86MonBrightness keys on the
+# laptop chassis, which are semantically about the onboard panel only. External
+# monitors on a dock are adjusted via ext-brightness (ddcutil), not xrandr.
 
 xbacklight -get &> /dev/null
 if [ $? -eq 0 ]; then
@@ -7,51 +14,95 @@ if [ $? -eq 0 ]; then
 fi
 
 sysfs_point=/sys/class/backlight/intel_backlight
+output=eDP-1
+xrandr_floor=0.1
+xrandr_step=0.1
+log_file=$HOME/.cache/trick_skel/brightness.log
+
+mkdir -p "$(dirname "$log_file")"
 
 current_brightness=$(cat $sysfs_point/brightness)
 max_brightness=$(cat $sysfs_point/max_brightness)
-
 scale=$(echo "$max_brightness / 100" | bc)
 
+# Read current xrandr brightness for $output. Defaults to 1.0 on parse failure.
+current_xrandr=$(xrandr --verbose 2>/dev/null \
+    | awk -v out="$output" '
+        $1 == out && $2 == "connected" { found = 1; next }
+        found && /^[A-Za-z0-9]+ (connected|disconnected)/ { found = 0 }
+        found && /Brightness:/ { print $2; exit }
+    ')
+if [ -z "$current_xrandr" ]; then
+    current_xrandr=1.0
+fi
+
 if [ "$1" == "" ]; then
-    echo "$current_brightness / $max_brightness (my increment: $scale)"
+    echo "sysfs: $current_brightness / $max_brightness (step: $scale)"
+    echo "xrandr $output --brightness: $current_xrandr"
     exit
 fi
 
-if [ "$2" != "" ]; then
-    let increment=$2*$scale
+# Helper float ops via awk
+fle() { awk -v a="$1" -v b="$2" 'BEGIN{exit !(a<=b+1e-9)}'; }
+flt() { awk -v a="$1" -v b="$2" 'BEGIN{exit !(a< b-1e-9)}'; }
+fmax() { awk -v a="$1" -v b="$2" 'BEGIN{printf "%.1f", (a>b)?a:b}'; }
+fmin() { awk -v a="$1" -v b="$2" 'BEGIN{printf "%.1f", (a<b)?a:b}'; }
+fsub() { awk -v a="$1" -v b="$2" 'BEGIN{printf "%.1f", a-b}'; }
+fadd() { awk -v a="$1" -v b="$2" 'BEGIN{printf "%.1f", a+b}'; }
+
+n=${2:-1}
+
+action="$1"
+new_sysfs=$current_brightness
+new_xrandr=$current_xrandr
+
+for ((i=0; i<n; i++)); do
+    if [ "$action" == "-inc" ]; then
+        if flt "$new_xrandr" "1.0"; then
+            # In xrandr territory: one tick of 0.1 per call, then stop.
+            new_xrandr=$(fmin "$(fadd "$new_xrandr" "$xrandr_step")" "1.0")
+            break
+        else
+            let candidate=$new_sysfs+$scale
+            if [ $candidate -gt $max_brightness ]; then
+                candidate=$max_brightness
+            fi
+            new_sysfs=$candidate
+        fi
+    elif [ "$action" == "-dec" ]; then
+        if flt "$new_xrandr" "1.0"; then
+            # In xrandr territory: one tick of 0.1 per call, then stop.
+            new_xrandr=$(fmax "$(fsub "$new_xrandr" "$xrandr_step")" "$xrandr_floor")
+            break
+        elif [ $new_sysfs -gt 1 ]; then
+            let candidate=$new_sysfs-$scale
+            if [ $candidate -lt 1 ]; then
+                candidate=1
+            fi
+            new_sysfs=$candidate
+        else
+            # sysfs at 1, xrandr at 1.0 -- cross into xrandr leg with one tick, then stop.
+            new_xrandr=$(fsub "1.0" "$xrandr_step")
+            break
+        fi
+    else
+        # explicit numeric value: set sysfs directly, leave xrandr alone
+        new_sysfs=$action
+        break
+    fi
+done
+
+if [ "$new_sysfs" != "$current_brightness" ]; then
+    echo $new_sysfs | sudo /usr/bin/tee $sysfs_point/brightness > /dev/null
 fi
 
-if [ "$1" == "-inc" ]; then
-    let new=$current_brightness+$increment
-    if [ $current_brightness -eq 0 ]; then
-        new=1
-    fi
-    if [ $new -gt $max_brightness ]; then
-        new=$max_brightness
-    fi
-elif [ "$1" == "-dec" ]; then
-    let new=$current_brightness-$increment
-    if [ $new -lt 0 -a $current_brightness -gt 1 ]; then
-        echo "Near bottom, hang onto your butts..."
-        let new=1
-    fi
-
-    if [ $current_brightness -eq 1 ]; then
-        echo "OK, you've been warned, going to zero"
-        new=0
-    fi
-
-    if [ $new -eq 0 -a $current_brightness -gt 1 ]; then
-        echo "Near bottom but let's give you the minimum..."
-        new=1
-    fi
-    if [ $new -lt 0 ]; then
-        new=0
-    fi
-else
-    new=$1
+if [ "$new_xrandr" != "$current_xrandr" ]; then
+    xrandr --output "$output" --brightness "$new_xrandr"
 fi
 
+echo "$(date -Iseconds) $action n=$n  sysfs $current_brightness->$new_sysfs  xrandr $current_xrandr->$new_xrandr" >> "$log_file"
+echo "sysfs=$new_sysfs/$max_brightness xrandr=$new_xrandr"
 
-echo $new | sudo /usr/bin/tee $sysfs_point/brightness
+# Nudge py3status to refresh immediately so the indicator tracks hotkey presses
+# without waiting for the cache_timeout.
+pkill -USR1 py3status 2>/dev/null || true
