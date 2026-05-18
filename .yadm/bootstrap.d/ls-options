@@ -3,14 +3,12 @@ echo > $DEST
 
 # Show symbols after files based on their type
 LS_OPTIONS="-F"
-echo $OSTYPE | grep darwin &> /dev/null
-if [ $? -ne 0 ]; then
-    # not OSX
+if [[ "$OSTYPE" != darwin* ]]; then
+    # GNU ls flags — not supported by BSD ls on macOS
     LS_OPTIONS="$LS_OPTIONS --color=auto"
+    # https://www.topbug.net/blog/2016/11/28/a-better-ls-command/#better-color
+    LS_OPTIONS="$LS_OPTIONS --time-style=long-iso"
 fi
-
-# https://www.topbug.net/blog/2016/11/28/a-better-ls-command/#better-color
-LS_OPTIONS="$LS_OPTIONS --time-style=long-iso"
 
 echo "export LS_OPTIONS='$LS_OPTIONS'" >> $DEST
 

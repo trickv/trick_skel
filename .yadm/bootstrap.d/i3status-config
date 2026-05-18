@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ "$OSTYPE" == darwin* ]]; then
+    exit 0
+fi
+
 cd $HOME/.config/i3status/
 
 rm -f config

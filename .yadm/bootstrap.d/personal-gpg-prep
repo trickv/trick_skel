@@ -10,11 +10,15 @@
 ## wget https://raw.githubusercontent.com/trickv/trick_skel/master/.gnupg/0x01F8267F096D3F52-opengpg.gpg
 ## gpg -d 0x01F8267F096D3F52-opengpg.gpg
 
-grep StreamLocalBindUnlink /etc/ssh/sshd_config &> /dev/null
-if [ $? -ne 0 ]; then
-    echo "***** Need to add StreamLocalBindUnlink yes to /etc/ssh/sshd_config"
-    echo -e "\n#added by trick_skel bootstrap for gnupg forwarding\nStreamLocalBindUnlink yes" | sudo tee -a /etc/ssh/sshd_config
-    echo "***** You now need to go restart sshd by hand..."
+# sshd_config edit is only relevant on Linux hosts that receive a forwarded
+# gpg-agent socket. Skip on macOS workstations (also avoids sudo prompts).
+if [[ "$OSTYPE" != darwin* ]]; then
+    grep StreamLocalBindUnlink /etc/ssh/sshd_config &> /dev/null
+    if [ $? -ne 0 ]; then
+        echo "***** Need to add StreamLocalBindUnlink yes to /etc/ssh/sshd_config"
+        echo -e "\n#added by trick_skel bootstrap for gnupg forwarding\nStreamLocalBindUnlink yes" | sudo tee -a /etc/ssh/sshd_config
+        echo "***** You now need to go restart sshd by hand..."
+    fi
 fi
 
 gpg -k

@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
 
 cd $HOME/optional/
-$HOME/optional/debian-packages
+
+if [[ "$OSTYPE" == darwin* ]]; then
+    if command -v brew &> /dev/null; then
+        brew install $(cat $HOME/optional/macos-homebrew-packages)
+    else
+        echo "brew not found on macOS, skipping package install"
+    fi
+elif command -v apt-get &> /dev/null; then
+    $HOME/optional/debian-packages
+else
+    echo "No supported package manager found, skipping package install"
+fi
