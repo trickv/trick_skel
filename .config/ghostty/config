@@ -3,3 +3,6 @@ focus-follows-mouse = true
 confirm-close-surface = false
 theme = "3024 Night"
 clipboard-paste-bracketed-safe = true
+confirm-close-surface = false
+window-inherit-working-directory = false
+working-directory = home
