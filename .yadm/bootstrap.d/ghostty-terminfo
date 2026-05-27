@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Ghostty's terminfo (xterm-ghostty) ships with Ghostty itself, so Linux hosts
+# we ssh into don't know it -> "missing or unsuitable terminal: xterm-ghostty"
+# in tmux/etc. Compile the bundled source into ~/.terminfo so every host knows
+# the terminal without needing root or Ghostty installed.
+
+src=$HOME/.config/ghostty/xterm-ghostty.terminfo
+
+if ! command -v tic &> /dev/null; then
+    echo "tic not found, skipping ghostty terminfo install"
+    exit 0
+fi
+
+# Already known to this host's terminfo database? Nothing to do.
+if infocmp -x xterm-ghostty &> /dev/null; then
+    exit 0
+fi
+
+tic -x -o "$HOME/.terminfo" "$src"
